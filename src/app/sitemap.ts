@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/metadata";
 import { solutions } from "@/data/solutions";
 import { industries } from "@/data/industries";
+import { useCases } from "@/data/useCases";
 
 const staticRoutes = [
   "",
@@ -25,8 +26,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     .map((s) => `/solutions/${s.slug}`);
 
   const industryRoutes = industries.map((i) => `/industries/${i.slug}`);
+  const useCaseRoutes = useCases.map((useCase) => `/use-cases/${useCase.slug}`);
 
-  const all = [...staticRoutes, ...solutionRoutes, ...industryRoutes];
+  const all = [...staticRoutes, ...solutionRoutes, ...industryRoutes, ...useCaseRoutes];
 
   return all.map((route) => ({
     url: `${SITE_URL}${route}`,

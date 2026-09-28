@@ -68,6 +68,17 @@ const industriesMenu = [
   },
 ];
 
+const useCaseMenu = [
+  {
+    heading: "Use Case Pages",
+    items: [
+      { label: "Home Services Automation", href: "/use-cases/home-services" },
+      { label: "Healthcare Automation", href: "/use-cases/healthcare" },
+      { label: "Automotive Automation", href: "/use-cases/automotive" },
+    ],
+  },
+];
+
 const resourcesMenu = [
   {
     heading: "Resources",
@@ -84,9 +95,10 @@ const resourcesMenu = [
 const navLinks = [
   { label: "Solutions", href: "/solutions", menu: solutionsMenu },
   { label: "Industries", href: "/industries", menu: industriesMenu },
+  { label: "Use Case Pages", href: "/use-cases/home-services", menu: useCaseMenu },
   { label: "How It Works", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Case Studies", href: "/case-studies" },
+  // { label: "Case Studies", href: "/case-studies" },
   { label: "Resources", href: "/resources/faqs", menu: resourcesMenu },
   { label: "About", href: "/about" },
 ];
