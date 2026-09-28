@@ -1,0 +1,140 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  background: #ffffff;
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.card:hover::before {
+  transform: scaleX(1);
+}
+
+.card:hover {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+}
+
+.iconBadge {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(155deg, var(--color-accent-100) 0%, #ffffff 100%);
+  color: var(--color-accent);
+  border: 1px solid rgba(62, 95, 174, 0.18);
+  transition: transform var(--dur-fast) var(--ease-out), background var(--dur-fast);
+  flex-shrink: 0;
+}
+
+.card:hover .iconBadge {
+  transform: scale(1.06);
+  background: linear-gradient(155deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  color: #ffffff;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--space-4);
+}
+
+.category {
+  font-size: 0.6875rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  display: block;
+  margin-bottom: var(--space-3);
+}
+
+.icon {
+  color: var(--color-subtle);
+  transition: color var(--dur-fast), transform var(--dur-fast);
+  flex-shrink: 0;
+}
+
+.card:hover .icon {
+  color: var(--color-accent);
+  transform: translate(2px, -2px);
+}
+
+.name {
+  font-size: 1.15rem;
+  margin-bottom: var(--space-3);
+}
+
+.problem {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin-bottom: var(--space-4);
+  flex: 1;
+}
+
+.impact {
+  font-size: 0.8125rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-4);
+}
+
+/* Compact homepage variant */
+.compactCard {
+  gap: var(--space-3);
+  padding: var(--space-7) var(--space-6);
+}
+
+.compactCard .iconBadge {
+  margin-bottom: var(--space-4);
+}
+
+.compactCard .name {
+  margin-bottom: var(--space-2);
+}
+
+.compactBlurb {
+  font-size: 0.875rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+  margin-bottom: var(--space-5);
+  flex: 1;
+}
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  transition: gap var(--dur-fast) var(--ease-out);
+}
+
+.compactCard:hover .exploreLink {
+  gap: var(--space-3);
+}

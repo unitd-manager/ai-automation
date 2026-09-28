@@ -1,0 +1,99 @@
+.hero {
+  padding: 160px 0 var(--space-9);
+  background: linear-gradient(180deg, #f8f9fb 0%, #ffffff 60%);
+}
+
+.heroGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: start;
+}
+
+.category {
+  font-size: 0.8125rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+  display: block;
+}
+
+.title {
+  font-size: var(--fs-h1);
+  margin-bottom: var(--space-6);
+}
+
+.problemBlock, .solutionBlock {
+  border-left: 2px solid var(--color-border-strong);
+  padding-left: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.blockLabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-subtle);
+  margin-bottom: var(--space-2);
+}
+
+.blockText {
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  line-height: 1.6;
+}
+
+.workflowPanel {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  background: var(--color-surface);
+}
+
+@media (max-width: 900px) {
+  .heroGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.twoCol {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
+@media (max-width: 860px) {
+  .twoCol {
+    grid-template-columns: 1fr;
+  }
+}
+
+.capList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.capItem {
+  display: flex;
+  gap: var(--space-3);
+  font-size: 0.95rem;
+  color: var(--color-ink);
+  line-height: 1.5;
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.integrationRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.integrationChip {
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-primary);
+}

@@ -1,0 +1,95 @@
+.hero {
+  padding: 160px 0 var(--space-8);
+}
+
+.heroTitle {
+  font-size: var(--fs-h1);
+  max-width: 18ch;
+  margin-bottom: var(--space-5);
+}
+
+.heroCopy {
+  font-size: var(--fs-lead);
+  color: var(--color-muted);
+  max-width: 58ch;
+  line-height: 1.6;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.timelineStep {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: var(--space-6);
+  padding: 0 0 var(--space-8);
+  position: relative;
+}
+
+.timelineStep:last-child {
+  padding-bottom: 0;
+}
+
+.markerCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stepDot {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(155deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px -4px rgba(62, 95, 174, 0.45);
+}
+
+.stepLine {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(180deg, var(--color-border-strong) 0%, var(--color-border) 100%);
+  margin-top: var(--space-2);
+}
+
+.timelineStep:last-child .stepLine {
+  display: none;
+}
+
+.stepContent {
+  padding-top: var(--space-1);
+}
+
+.stepTitle {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-3);
+}
+
+.stepBody {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+  max-width: 60ch;
+}
+
+@media (max-width: 600px) {
+  .timelineStep {
+    grid-template-columns: 44px 1fr;
+    gap: var(--space-4);
+  }
+  .stepDot {
+    width: 36px;
+    height: 36px;
+    font-size: 0.8rem;
+  }
+}

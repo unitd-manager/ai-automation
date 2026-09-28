@@ -1,0 +1,230 @@
+/* ==========================================================================
+   United Technologies — Design System
+   Palette derived from the logo: deep navy→blue gradient mark with
+   royal-blue schematic accent squares. The system leans technical and
+   architectural rather than "AI startup gradient."
+   ========================================================================== */
+
+:root {
+  /* Core palette */
+  --color-primary: #0b1220;      /* deep navy — from logo gradient start */
+  --color-primary-700: #141f36;
+  --color-secondary: #26417a;    /* mid blue — logo gradient end */
+  --color-accent: #3e5fae;       /* royal blue — logo accent squares */
+  --color-accent-600: #32498a;
+  --color-accent-100: #eaf0fb;
+
+  --color-background: #ffffff;
+  --color-surface: #f5f7fa;
+  --color-surface-2: #eef1f6;
+  --color-ink: #0f1620;          /* primary text */
+  --color-muted: #5b6472;
+  --color-subtle: #8a92a0;
+  --color-border: #e1e5eb;
+  --color-border-strong: #ccd3dd;
+
+  --color-dark-bg: #0b1220;
+  --color-dark-surface: #121b2e;
+  --color-dark-border: #23304a;
+  --color-dark-text: #eef1f6;
+  --color-dark-muted: #98a2b3;
+
+  --color-success: #1e7a52;
+  --color-warning: #a8641f;
+
+  /* Typography */
+  --font-display: var(--font-display-family), "Helvetica Neue", Arial, sans-serif;
+  --font-body: var(--font-body-family), "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-mono-family), "SFMono-Regular", Consolas, monospace;
+
+  /* Type scale */
+  --fs-hero: clamp(2.5rem, 4.6vw + 1rem, 4.5rem);
+  --fs-h1: clamp(2.1rem, 2.6vw + 1rem, 3.1rem);
+  --fs-h2: clamp(1.6rem, 1.4vw + 1rem, 2.25rem);
+  --fs-h3: clamp(1.25rem, 0.6vw + 1rem, 1.5rem);
+  --fs-lead: clamp(1.05rem, 0.4vw + 1rem, 1.25rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-micro: 0.75rem;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 2.5rem;
+  --space-8: 3.5rem;
+  --space-9: 5rem;
+  --space-10: 7rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  --container: 1240px;
+  --container-narrow: 780px;
+
+  --shadow-sm: 0 1px 2px rgba(11, 18, 32, 0.06);
+  --shadow-md: 0 8px 24px rgba(11, 18, 32, 0.08);
+  --shadow-lg: 0 20px 48px rgba(11, 18, 32, 0.12);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 0.18s;
+  --dur-med: 0.32s;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--color-background);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--color-primary);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: 0 var(--space-5);
+  }
+}
+
+.container-narrow {
+  max-width: var(--container-narrow);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
+}
+
+.section {
+  padding: var(--space-9) 0;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: var(--space-8) 0;
+  }
+}
+
+.section-dark {
+  background: var(--color-dark-bg);
+  color: var(--color-dark-text);
+}
+
+.section-dark h1, .section-dark h2, .section-dark h3 {
+  color: #ffffff;
+}
+
+.section-surface {
+  background: linear-gradient(180deg, var(--color-surface) 0%, #eef1f6 100%);
+}
+
+/* Global scroll-reveal: applied at runtime by ScrollReveal.tsx.
+   No-JS / reduced-motion users always see full content — nothing is
+   hidden by default in the base CSS. */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal-init.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-init {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+.mono {
+  font-family: var(--font-mono);
+  letter-spacing: -0.01em;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: #fff;
+}

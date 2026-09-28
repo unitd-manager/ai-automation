@@ -1,0 +1,20 @@
+.hero {
+  padding: 160px 0 var(--space-7);
+}
+
+.heroTitle {
+  font-size: var(--fs-h1);
+  max-width: 16ch;
+  margin-bottom: var(--space-5);
+}
+
+.heroCopy {
+  font-size: var(--fs-lead);
+  color: var(--color-muted);
+  max-width: 54ch;
+  line-height: 1.6;
+}
+
+.wrap {
+  max-width: 760px;
+}

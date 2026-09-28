@@ -1,0 +1,257 @@
+.hero {
+  padding: 150px 0 var(--space-8);
+  background: radial-gradient(90% 120% at 100% 0%, #edf2fc 0%, #ffffff 58%);
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: color var(--dur-fast);
+}
+
+.backLink:hover {
+  color: var(--color-accent);
+}
+
+.heroContent {
+  max-width: 820px;
+  padding-top: var(--space-8);
+}
+
+.heroMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.industry,
+.kicker {
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.disclaimer {
+  color: var(--color-muted);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  padding: 0.3rem 0.65rem;
+  font-size: 0.75rem;
+}
+
+.title {
+  max-width: 18ch;
+  margin-bottom: var(--space-4);
+  font-size: var(--fs-h1);
+}
+
+.lead {
+  max-width: 68ch;
+  color: var(--color-muted);
+  font-size: var(--fs-lead);
+  line-height: 1.65;
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  max-width: 820px;
+  margin-top: var(--space-8);
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-5);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.metricValue {
+  color: var(--color-secondary);
+  font-size: 1.35rem;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+
+.metricLabel,
+.metricNote {
+  color: var(--color-muted);
+  font-size: 0.8125rem;
+}
+
+.metricNote {
+  margin-top: var(--space-3);
+}
+
+.storySection {
+  background: var(--color-surface);
+}
+
+.sectionIntro {
+  max-width: 640px;
+  margin-bottom: var(--space-7);
+}
+
+.sectionIntro h2,
+.workflowHeading h2 {
+  margin-top: var(--space-3);
+  font-size: var(--fs-h2);
+}
+
+.storyGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.storyCard {
+  position: relative;
+  min-width: 0;
+  padding: var(--space-7);
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.storyIndex {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: var(--space-5);
+  border-radius: 8px;
+  color: var(--color-accent);
+  background: var(--color-accent-100);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.storyLabel {
+  margin-bottom: var(--space-2);
+  color: var(--color-accent);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.storyCard h3 {
+  margin-bottom: var(--space-3);
+  font-size: 1.1rem;
+}
+
+.storyText {
+  color: var(--color-muted);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.workflowSection {
+  background: #ffffff;
+}
+
+.workflowHeading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-bottom: var(--space-6);
+}
+
+.workflowHeading > p {
+  max-width: 42ch;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.workflowPanel {
+  padding: var(--space-7);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  overflow-x: auto;
+}
+
+.outcome {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr auto;
+  align-items: center;
+  gap: var(--space-6);
+  margin-top: var(--space-6);
+  padding: var(--space-6) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.outcome h3 {
+  margin-top: var(--space-2);
+  font-size: 1rem;
+}
+
+.outcome > p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.contactLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--color-accent);
+  font-size: 0.875rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.contactLink:hover {
+  color: var(--color-secondary);
+}
+
+@media (max-width: 760px) {
+  .workflowHeading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .outcome {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-top: 128px;
+  }
+
+  .metricGrid,
+  .storyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric {
+    padding: var(--space-4);
+  }
+
+  .storyCard {
+    padding: var(--space-6);
+  }
+
+  .workflowPanel {
+    padding: var(--space-4);
+  }
+}

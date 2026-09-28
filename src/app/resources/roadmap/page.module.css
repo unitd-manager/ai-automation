@@ -1,0 +1,52 @@
+.hero {
+  padding: 160px 0 var(--space-7);
+}
+
+.heroTitle {
+  font-size: var(--fs-h1);
+  max-width: 18ch;
+  margin-bottom: var(--space-5);
+}
+
+.heroCopy {
+  font-size: var(--fs-lead);
+  color: var(--color-muted);
+  max-width: 56ch;
+  line-height: 1.6;
+}
+
+.phaseGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+@media (max-width: 860px) {
+  .phaseGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.phaseCard {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.phaseWeek {
+  font-size: 0.75rem;
+  color: var(--color-accent);
+  margin-bottom: var(--space-3);
+  display: block;
+}
+
+.phaseTitle {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-3);
+}
+
+.phaseBody {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+}
