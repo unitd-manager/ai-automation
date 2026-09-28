@@ -110,7 +110,7 @@ export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
-  const onDarkHero = darkHeroRoutes.includes(pathname);
+  const onDarkHero = darkHeroRoutes.includes(pathname) || pathname.startsWith("/use-cases/");
   const useWhiteLogo = onDarkHero && !scrolled;
 
   useEffect(() => {
