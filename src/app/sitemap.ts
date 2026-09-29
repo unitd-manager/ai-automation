@@ -22,7 +22,7 @@ const staticRoutes = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const solutionRoutes = solutions
-    .filter((s) => s.slug === "ai-lead-response" || s.slug === "ai-voice-agents")
+    .filter((s) => ["ai-lead-response", "ai-voice-agents", "ai-chat"].includes(s.slug))
     .map((s) => `/solutions/${s.slug}`);
 
   const industryRoutes = industries.map((i) => `/industries/${i.slug}`);

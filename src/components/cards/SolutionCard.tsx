@@ -34,7 +34,7 @@ interface SolutionCardProps {
 }
 
 export default function SolutionCard({ solution, compact = false }: SolutionCardProps) {
-  const href = solution.slug === "ai-lead-response" || solution.slug === "ai-voice-agents"
+  const href = ["ai-lead-response", "ai-voice-agents", "ai-chat"].includes(solution.slug)
     ? `/solutions/${solution.slug}`
     : `/solutions#${solution.slug}`;
 

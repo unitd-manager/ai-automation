@@ -1,28 +1,29 @@
 import type { Metadata } from "next";
 import {
   ArrowRight,
-  AudioLines,
   BarChart3,
+  BookOpen,
   CalendarCheck,
   Check,
   ClipboardCheck,
+  ClipboardList,
   Clock,
   Database,
   GitBranch,
+  Globe,
   KeyRound,
   Minus,
+  MoonStar,
   PencilRuler,
-  PhoneForwarded,
   Plug,
   Rocket,
   Search,
   ShieldCheck,
-  Siren,
   SlidersHorizontal,
   Sparkles,
   TrendingUp,
   UserCheck,
-  Voicemail,
+  UserRoundPlus,
   Workflow,
   Zap,
 } from "lucide-react";
@@ -30,158 +31,156 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
 import FAQAccordion from "@/components/sections/FAQAccordion";
-import CallScenarioExplorer from "@/components/sections/CallScenarioExplorer";
-import VoiceHeroVisual from "@/components/hero/VoiceHeroVisual";
+import ChatScenarioExplorer from "@/components/sections/ChatScenarioExplorer";
+import ChatHeroVisual from "@/components/hero/ChatHeroVisual";
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import { StaggerGroup, StaggerItem } from "@/components/animations/StaggerGroup";
 import { solutions } from "@/data/solutions";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
-const data = solutions.find((s) => s.slug === "ai-voice-agents")!;
+const data = solutions.find((s) => s.slug === "ai-chat")!;
 
 export const metadata: Metadata = buildMetadata({
   title: data.name,
   description:
-    "An AI voice agent answers every call, understands intent, qualifies the caller, and books or transfers based on urgency.",
-  path: "/solutions/ai-voice-agents",
+    "A chat agent trained on your services, pricing structure, and service area answers website visitors in real time and captures qualified leads.",
+  path: "/solutions/ai-chat",
 });
 
 /* ------------------------------------------------------------------ */
 /* Content — deliberately industry-neutral                             */
 /* ------------------------------------------------------------------ */
 
-const problemText =
-  "Calls that go unanswered after hours, during busy periods, or while your team is occupied are opportunities that go to whoever picks up first.";
-const solutionText =
-  "An AI voice agent answers every call, understands intent, qualifies the caller, and books or transfers based on urgency.";
+const problemText = data.problem;
+const solutionText = data.solution;
 
-const heroChecks = ["Answers 24/7, every call", "Books, routes or transfers instantly", "Syncs every call to your CRM"];
+const heroChecks = ["Answers in real time, 24/7", "Captures structured leads", "Syncs every chat to your CRM"];
 
 const statStrip = [
-  { icon: Clock, value: "24/7", label: "Always-on call coverage" },
-  { icon: Zap, value: "Instant", label: "Pickup, no hold time" },
-  { icon: PhoneForwarded, value: "Live", label: "Transfer when it matters" },
-  { icon: Database, value: "100%", label: "Calls logged to your CRM" },
+  { icon: Clock, value: "24/7", label: "Always-on website coverage" },
+  { icon: Zap, value: "Instant", label: "Replies, no waiting for tomorrow" },
+  { icon: UserCheck, value: "Human", label: "Handoff for complex requests" },
+  { icon: Database, value: "100%", label: "Chats logged to your CRM" },
 ];
 
 const flowSteps = [
-  { title: "Call rings in", body: "Any inbound call, at any hour, at any volume, lands on the agent first." },
-  { title: "AI voice agent answers", body: "A natural, low-latency greeting — no menus, no hold music." },
-  { title: "Intent identified", body: "The agent works out who is calling and what they need, including how urgent it is." },
-  { title: "Booking or transfer", body: "It books the appointment, answers the question, or transfers live to your team." },
-  { title: "CRM updated", body: "Summary, recording, and next steps are saved to the contact record automatically." },
+  { title: "Visitor opens chat", body: "Someone on your site has a question and starts a conversation instead of leaving." },
+  { title: "AI answers questions", body: "The agent replies in real time using your services, pricing structure, and service area." },
+  { title: "Lead details captured", body: "Name, contact info, and job details are collected as structured fields, not loose transcripts." },
+  { title: "Synced to CRM", body: "The lead, the conversation, and any booking land on the right record automatically." },
+  { title: "Follow-up triggered", body: "Your team is notified and automated follow-up starts, so no enquiry sits waiting." },
 ];
 
-const capabilityIcons = [AudioLines, Siren, PhoneForwarded, Database];
+const capabilityIcons = [BookOpen, UserCheck, ClipboardList, Globe];
 const capabilityBodies = [
-  "Human-sounding conversations with minimal delay, so callers stay engaged instead of hanging up.",
-  "Recognises urgent language and moves those calls to the front of the queue.",
-  "Warm-transfers to on-call staff with the context already captured, or schedules a callback.",
-  "Every call is summarised and recorded, then written to the right record in your CRM.",
+  "Answers come from your own service catalog, FAQs, and pricing structure, so replies are accurate and on-brand.",
+  "Complex, sensitive, or high-value requests move to a person with the full conversation already attached.",
+  "Leads arrive as clean, structured records with the details your team needs to act on them.",
+  "Add it with a simple embed. No redesign, no rebuild, and no change to your current site.",
 ];
 
 const gapRows = [
   {
-    icon: Voicemail,
-    title: "Missed & after-hours calls",
-    moment: "Demand peaks when your team is busy or offline.",
-    cost: "Lost enquiries — callers move on to whoever answers first.",
-    fix: "The agent answers 24/7, identifies urgency, captures details, and books or routes the request.",
+    icon: MoonStar,
+    title: "Unanswered enquiries",
+    moment: "A visitor has a question after hours or while your team is busy, and the only option is a contact form.",
+    cost: "Lost enquiries. Visitors leave and ask someone else.",
+    fix: "The agent answers instantly, captures their details, and books or routes the request.",
   },
   {
     icon: Zap,
-    title: "Slow response & stalled follow-up",
-    moment: "A caller asks for information or a quote and contacts several providers at once.",
+    title: "Slow response & dead leads",
+    moment: "A visitor compares several providers and goes with whoever responds first.",
     cost: "Opportunities go to the fastest responder.",
-    fix: "Instant voice and SMS response, followed by automated follow-up until the loop is closed.",
+    fix: "An immediate reply in chat, followed by automated follow-up until the loop is closed.",
   },
   {
     icon: CalendarCheck,
-    title: "Empty slots & no-shows",
-    moment: "A cancellation or unconfirmed appointment leaves a gap in the schedule.",
-    cost: "Wasted capacity and lost revenue.",
-    fix: "Confirms and reminds automatically, reschedules, fills open slots, and reactivates past contacts.",
+    title: "Incomplete details & empty slots",
+    moment: "Forms come back half-filled and appointments never get booked or confirmed.",
+    cost: "Administrative delays, wasted capacity, and lost bookings.",
+    fix: "The agent collects the right details up front, books available slots, and sends reminders.",
   },
 ];
 
 const compareRows = [
-  { label: "After-hours calls", before: "Sent to voicemail", after: "Answered live, every time" },
-  { label: "Speed to respond", before: "Minutes to days", after: "Instant" },
-  { label: "Caller details", before: "Partial notes or none", after: "Structured, complete capture" },
-  { label: "Urgent requests", before: "Wait in the same queue", after: "Detected and prioritised" },
-  { label: "Scheduling", before: "Back-and-forth calls", after: "Booked during the call" },
+  { label: "After-hours questions", before: "Wait for tomorrow", after: "Answered instantly" },
+  { label: "Speed to respond", before: "Hours to days", after: "Seconds" },
+  { label: "Lead details", before: "Partial or missing form fields", after: "Structured, complete capture" },
+  { label: "Common questions", before: "Answered again and again by staff", after: "Handled automatically" },
+  { label: "Scheduling", before: "Back-and-forth emails", after: "Booked in the chat" },
   { label: "CRM records", before: "Manual entry", after: "Updated automatically" },
 ];
 
 const extras = [
-  { icon: Sparkles, title: "Brand-matched voice & script", body: "Tone, greeting, and answers are tuned to how your business actually speaks." },
-  { icon: BarChart3, title: "Call analytics", body: "Track volume, peak hours, outcomes, and transfer rates in one view." },
-  { icon: Workflow, title: "Automated follow-up", body: "Missed or unfinished calls trigger SMS and email follow-up sequences." },
-  { icon: TrendingUp, title: "Continuous tuning", body: "Real call transcripts are reviewed to refine responses over time." },
+  { icon: Sparkles, title: "Brand-matched tone", body: "Greeting, voice, and answers are tuned to how your business actually talks." },
+  { icon: BarChart3, title: "Chat analytics", body: "See top questions, peak hours, capture rates, and handoffs in one view." },
+  { icon: Workflow, title: "Automated follow-up", body: "Unfinished chats trigger email or SMS follow-up so warm leads don't go cold." },
+  { icon: TrendingUp, title: "Continuous tuning", body: "Real conversations are reviewed to improve answers and fill knowledge gaps." },
 ];
 
-const integrations = ["Twilio", "RingCentral", "HubSpot", "Salesforce", "Google Calendar", "Slack"];
+const integrations = ["Website widget", "HubSpot", "Salesforce", "Slack", "Google Calendar", "Twilio"];
 
 const outcomes = [
-  { icon: Check, label: "Every call answered" },
+  { icon: Check, label: "Every visitor answered" },
   { icon: TrendingUp, label: "More leads captured" },
   { icon: CalendarCheck, label: "More appointments booked" },
-  { icon: Workflow, label: "Less manual admin" },
+  { icon: UserRoundPlus, label: "Less manual admin" },
 ];
 
 const rollout = [
-  { icon: Search, title: "Discover", body: "We map your call patterns, peak periods, and what a great call looks like for you." },
-  { icon: PencilRuler, title: "Design", body: "We script the conversation flows, escalation rules, and booking logic." },
-  { icon: Plug, title: "Integrate", body: "We connect your phone system, calendar, and CRM so nothing is re-entered." },
-  { icon: Rocket, title: "Launch & optimise", body: "We test against real scenarios, go live, and keep refining from call data." },
+  { icon: Search, title: "Discover", body: "We map the questions visitors ask, when they ask them, and what a great answer looks like." },
+  { icon: PencilRuler, title: "Design", body: "We build the knowledge base, conversation flows, lead capture, and handoff rules." },
+  { icon: Plug, title: "Integrate", body: "We connect your website, calendar, and CRM so nothing is re-entered." },
+  { icon: Rocket, title: "Launch & optimise", body: "We test against real questions, go live, and keep refining from chat data." },
 ];
 
 const trust = [
-  { icon: SlidersHorizontal, title: "You set the boundaries", body: "You decide what the agent can answer, book, or promise — and what it should never do." },
+  { icon: SlidersHorizontal, title: "You set the boundaries", body: "You decide what the agent can answer, book, or promise, and what it should never do." },
   { icon: GitBranch, title: "Clear escalation rules", body: "Anything outside its scope goes to your team with the full conversation attached." },
-  { icon: ShieldCheck, title: "Secure by design", body: "Call data is encrypted in transit and at rest, and access is limited to what the workflow needs." },
+  { icon: ShieldCheck, title: "Secure by design", body: "Chat data is encrypted in transit and at rest, and access is limited to what the workflow needs." },
   { icon: KeyRound, title: "No lock-in", body: "You own the workflow and the data it produces." },
   { icon: ClipboardCheck, title: "Fully transparent", body: "Every workflow documents what the AI handles and what is routed to a person." },
-  { icon: UserCheck, title: "Works with your team", body: "The agent supports your staff — it doesn't replace the people customers want to reach." },
+  { icon: UserCheck, title: "Works with your team", body: "The agent supports your staff. It doesn't replace the people customers want to reach." },
 ];
 
 const faqs = [
   {
-    question: "Will callers know they're speaking to an AI?",
+    question: "Will visitors know they're chatting with an AI?",
     answer:
-      "The agent uses a natural, conversational voice, and you decide how it introduces itself. Whatever you choose, callers can always ask for a person and will be transferred or offered a callback.",
+      "You decide how the agent introduces itself. Whatever you choose, visitors can always ask for a person and will be handed off or offered a callback.",
   },
   {
-    question: "What happens when a call is urgent or too complex?",
+    question: "How does the agent know what to say?",
     answer:
-      "Urgent calls are detected and prioritised, then transferred live to the right person. Anything outside the agent's scope is handed off with a full summary, so nobody has to repeat themselves.",
+      "It is trained on your service catalog, FAQs, pricing structure, and service area. It answers from that approved information and hands off anything it isn't sure about, rather than guessing.",
   },
   {
-    question: "Do we need to change our phone number or phone system?",
+    question: "Do we need to rebuild or redesign our website?",
     answer:
-      "No. The voice agent connects to your existing number and phone provider, and can sit alongside your current setup — answering everything, or only overflow and after-hours calls.",
+      "No. The chat agent embeds on any website with a small snippet, so it works alongside your existing pages without a rebuild.",
+  },
+  {
+    question: "What happens when a request is complex or urgent?",
+    answer:
+      "Complex requests are handed to a person with the full transcript and captured details, so nobody has to repeat themselves. You define which topics always go to a human.",
   },
   {
     question: "Which systems can it connect to?",
     answer:
-      "Common phone platforms, calendars, and CRMs are supported, including Twilio, RingCentral, HubSpot, Salesforce, and Google Calendar. If you use something else, we'll scope the integration during discovery.",
+      "Common CRMs, calendars, and messaging tools are supported, including HubSpot, Salesforce, Google Calendar, and Slack. If you use something else, we'll scope the integration during discovery.",
   },
   {
     question: "How long does setup take?",
     answer:
-      "It depends on the complexity of your call flows and integrations. We scope the timeline after an AI Audit, once we understand your call volume and the systems involved.",
-  },
-  {
-    question: "What happens to call recordings and data?",
-    answer:
-      "Call summaries and recordings are stored in your CRM under your access rules. Data is encrypted in transit and at rest, and you keep ownership of everything the workflow produces.",
+      "It depends on the size of your knowledge base and the integrations involved. We scope the timeline after an AI Audit, once we understand your site traffic and the systems you use.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
 
-export default function AiVoiceAgentsPage() {
+export default function AiChatPage() {
   return (
     <>
       {/* 1. HERO ---------------------------------------------------- */}
@@ -216,12 +215,12 @@ export default function AiVoiceAgentsPage() {
             </ul>
 
             <div className={styles.heroActions}>
-              <Button href="/contact" size="lg">Talk to Us About Voice Automation</Button>
+              <Button href="/contact" size="lg">Talk to Us About AI Chat</Button>
               <Button href="/how-it-works" variant="secondary" size="lg">See How It Works</Button>
             </div>
           </div>
 
-          <VoiceHeroVisual />
+          <ChatHeroVisual />
         </div>
       </section>
 
@@ -245,13 +244,13 @@ export default function AiVoiceAgentsPage() {
         </div>
       </section>
 
-      {/* 3. HOW A CALL FLOWS ---------------------------------------- */}
+      {/* 3. HOW A CHAT FLOWS ---------------------------------------- */}
       <section className="section">
         <div className="container">
           <SectionHeader
             index="01"
-            title="What Happens to Every Call"
-            description="From the first ring to the CRM record, every call follows the same reliable path."
+            title="What Happens in Every Chat"
+            description="From the first message to the CRM record, every conversation follows the same reliable path."
           />
           <div className={styles.flow}>
             <span className={styles.flowLine} aria-hidden />
@@ -272,7 +271,7 @@ export default function AiVoiceAgentsPage() {
           <SectionHeader
             index="02"
             title="Key Capabilities"
-            description="Everything a great front-desk call handler does — available at any hour and any volume."
+            description="Everything a great front-desk chat handler does, available at any hour and any volume."
           />
           <StaggerGroup className={styles.capGrid}>
             {data.capabilities.map((cap, i) => {
@@ -289,13 +288,13 @@ export default function AiVoiceAgentsPage() {
         </div>
       </section>
 
-      {/* 5. WHERE CALLS GET LOST ------------------------------------ */}
+      {/* 5. WHERE VISITORS GET LOST --------------------------------- */}
       <section className="section">
         <div className="container">
           <SectionHeader
             index="03"
-            title="Where Calls Turn Into Lost Revenue"
-            description="The same three gaps show up in every business that depends on the phone. A voice agent closes each one."
+            title="Where Website Visitors Turn Into Lost Revenue"
+            description="The same three gaps show up in every business that relies on its website to win work. AI Chat closes each one."
           />
           <div className={styles.gapList}>
             {gapRows.map((row, i) => {
@@ -325,17 +324,17 @@ export default function AiVoiceAgentsPage() {
         </div>
       </section>
 
-      {/* 6. INTERACTIVE CALL SCENARIOS (dark) ----------------------- */}
+      {/* 6. INTERACTIVE CHAT SCENARIOS (dark) ----------------------- */}
       <section className={`section section-dark ${styles.darkSection}`}>
         <div className={styles.darkGlow} aria-hidden />
         <div className={`container ${styles.darkInner}`}>
           <SectionHeader
             index="04"
             dark
-            title="See How the Agent Handles Different Calls"
-            description="Pick a scenario to see what the caller says, what the agent does, and what your team gets."
+            title="See How the Agent Handles Different Chats"
+            description="Pick a scenario to see what the visitor asks, what the agent does, and what your team gets."
           />
-          <CallScenarioExplorer />
+          <ChatScenarioExplorer />
         </div>
       </section>
 
@@ -344,14 +343,14 @@ export default function AiVoiceAgentsPage() {
         <div className="container">
           <SectionHeader
             index="05"
-            title="Voicemail vs. an AI Voice Agent"
-            description="A side-by-side look at what changes the moment every call gets answered."
+            title="Contact Form vs. AI Chat"
+            description="A side-by-side look at what changes the moment every visitor gets an answer."
           />
           <AnimatedSection className={styles.compare}>
             <div className={`${styles.compareRow} ${styles.compareHead}`}>
               <span />
-              <span>Without voice automation</span>
-              <span className={styles.compareAfterHead}>With AI Voice Agents</span>
+              <span>Without chat automation</span>
+              <span className={styles.compareAfterHead}>With AI Chat</span>
             </div>
             {compareRows.map((r) => (
               <div key={r.label} className={styles.compareRow}>
@@ -376,7 +375,7 @@ export default function AiVoiceAgentsPage() {
           <SectionHeader
             index="06"
             title="Built to Get Smarter Over Time"
-            description="Beyond answering calls, the system gives you visibility and keeps improving."
+            description="Beyond answering questions, the system gives you visibility and keeps improving."
           />
           <StaggerGroup className={styles.extraGrid}>
             {extras.map((e) => {
@@ -401,7 +400,7 @@ export default function AiVoiceAgentsPage() {
               <SectionHeader
                 index="07"
                 title="Integrations"
-                description="Works with your existing phone, calendar, and CRM systems — no migration needed."
+                description="Works with your existing website, calendar, and CRM. No migration needed."
               />
               <div className={styles.integrationRow}>
                 {integrations.map((i) => (
@@ -432,7 +431,7 @@ export default function AiVoiceAgentsPage() {
         <div className="container">
           <SectionHeader
             index="08"
-            title="From Kick-Off to Live Calls"
+            title="From Kick-Off to Live Chat"
             description="A structured rollout that fits around your business."
           />
           <StaggerGroup className={styles.rollGrid}>
@@ -460,7 +459,7 @@ export default function AiVoiceAgentsPage() {
           <SectionHeader
             index="09"
             title="Control, Security & Transparency"
-            description="A voice agent speaks for your business, so you stay in control of what it says and does."
+            description="A chat agent speaks for your business, so you stay in control of what it says and does."
           />
           <StaggerGroup className={styles.trustGrid}>
             {trust.map((t) => {
@@ -485,7 +484,7 @@ export default function AiVoiceAgentsPage() {
           <div className={styles.faqLayout}>
             <SectionHeader
               index="10"
-              title="Voice Agent FAQs"
+              title="AI Chat FAQs"
               description="Answers to the questions we hear most before a rollout."
             />
             <FAQAccordion items={faqs} />
@@ -496,8 +495,8 @@ export default function AiVoiceAgentsPage() {
       {/* 13. CTA ---------------------------------------------------- */}
       <CTASection
         variant="glow"
-        title="Ready for Every Call to Get Answered?"
-        description="We'll walk through your call volume and after-hours patterns to scope the right voice workflow."
+        title="Ready for Every Visitor to Get an Answer?"
+        description="We'll walk through your website traffic and enquiry patterns to scope the right chat workflow."
         primaryLabel="Get Your AI Audit"
         secondaryLabel="See All Solutions"
         secondaryHref="/solutions"
