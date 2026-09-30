@@ -1,0 +1,129 @@
+.hero {
+  padding: 160px 0 var(--space-8);
+}
+
+.heroTitle {
+  font-size: var(--fs-h1);
+  max-width: 22ch;
+  margin-bottom: var(--space-6);
+}
+
+.heroCopy {
+  font-size: var(--fs-lead);
+  color: var(--color-muted);
+  max-width: 60ch;
+  line-height: 1.65;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-9);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+
+.blockTitle {
+  font-size: 1.3rem;
+  margin-bottom: var(--space-4);
+}
+
+.blockBody {
+  font-size: 0.95rem;
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+.beliefList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.beliefItem {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-6);
+}
+
+.beliefItem:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.beliefIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(155deg, var(--color-accent-100) 0%, #ffffff 100%);
+  border: 1px solid rgba(62, 95, 174, 0.18);
+  color: var(--color-accent);
+}
+
+.beliefTitle {
+  font-size: 1.05rem;
+  color: var(--color-primary);
+  margin-bottom: var(--space-2);
+  font-family: var(--font-display);
+}
+
+.beliefBody {
+  font-size: 0.9rem;
+  color: var(--color-muted);
+  line-height: 1.55;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.techItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: var(--space-5);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: #ffffff;
+  transition: border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast);
+}
+
+.techItem:hover {
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.techIcon {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-accent-100);
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+
+@media (max-width: 860px) {
+  .techGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

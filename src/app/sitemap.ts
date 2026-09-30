@@ -20,10 +20,20 @@ const staticRoutes = [
   "/resources/faqs",
 ];
 
+const dedicatedPageRoutes: Record<string, string> = {
+  "ai-lead-response": "/solutions/ai-lead-response",
+  "ai-voice-agents": "/solutions/ai-voice-agents",
+  "ai-chat": "/solutions/ai-chat",
+  "appointment-automation": "/solutions/ai-appointment-booking",
+  "follow-up-automation": "/solutions/ai-follow-up",
+  "crm-automation": "/solutions/ai-crm-automation",
+  "document-automation": "/solutions/ai-document-processing",
+};
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const solutionRoutes = solutions
-    .filter((s) => s.slug === "ai-lead-response" || s.slug === "ai-voice-agents")
-    .map((s) => `/solutions/${s.slug}`);
+    .filter((s) => s.slug in dedicatedPageRoutes)
+    .map((s) => dedicatedPageRoutes[s.slug]);
 
   const industryRoutes = industries.map((i) => `/industries/${i.slug}`);
   const useCaseRoutes = useCases.map((useCase) => `/use-cases/${useCase.slug}`);
