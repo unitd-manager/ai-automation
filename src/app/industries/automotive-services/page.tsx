@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { HeartPulse, X, Check } from "lucide-react";
+import { Car, X, Check } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
@@ -9,15 +9,15 @@ import { industries } from "@/data/industries";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
-const data = industries.find((i) => i.slug === "healthcare")!;
+const data = industries.find((i) => i.slug === "automotive-services")!;
 
 export const metadata: Metadata = buildMetadata({
-  title: "AI Automation for Healthcare Practices",
+  title: "AI Automation for Auto Repair Shops & Automotive Services",
   description: data.hero,
-  path: "/industries/healthcare",
+  path: "/industries/automotive-services",
 });
 
-export default function HealthcarePage() {
+export default function AutomotiveServicesPage() {
   return (
     <>
       <section className={`section ${styles.hero}`}>
@@ -29,7 +29,7 @@ export default function HealthcarePage() {
         <div className={`container ${styles.heroTop}`}>
           <div>
             <span className={styles.iconBadge}>
-              <HeartPulse size={22} strokeWidth={1.75} />
+              <Car size={22} strokeWidth={1.75} />
             </span>
             <div className={styles.pillRow}>
               {data.segments.map((s) => (
@@ -89,7 +89,7 @@ export default function HealthcarePage() {
         <div className="container">
           <SectionHeader
             title="The Moments That Matter Most"
-            description="These are the moments that decide whether a patient books, or looks elsewhere."
+            description="These are the moments that decide whether a customer books with you or the next shop."
           />
           <div className={styles.momentsGrid}>
             {data.peakMoments.map((m) => (
@@ -119,8 +119,8 @@ export default function HealthcarePage() {
       </section>
 
       <CTASection
-        title="Ready to Fill Every Open Slot?"
-        description="We'll map your patient intake and scheduling process to find where automation returns the most."
+        title="Ready to Keep Every Bay Full?"
+        description="We'll map your call, estimate, and scheduling process to find where automation returns the most."
       />
     </>
   );

@@ -59,11 +59,12 @@ const industriesMenu = [
     ],
   },
   {
-    heading: "Construction",
+    heading: "Automotive Services",
     items: [
-      { label: "Roofing", href: "/industries/construction" },
-      { label: "Remodeling", href: "/industries/construction" },
-      { label: "General Contractors", href: "/industries/construction" },
+      { label: "Auto Repair", href: "/industries/automotive-services" },
+      { label: "Auto Body & Collision", href: "/industries/automotive-services" },
+      { label: "Tire & Wheel", href: "/industries/automotive-services" },
+      { label: "Towing & Roadside", href: "/industries/automotive-services" },
     ],
   },
 ];

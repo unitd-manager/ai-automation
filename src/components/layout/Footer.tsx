@@ -27,7 +27,7 @@ const columns = [
     links: [
       { label: "Home Services", href: "/industries/home-services" },
       { label: "Healthcare", href: "/industries/healthcare" },
-      { label: "Construction", href: "/industries/construction" },
+      { label: "Automotive Services", href: "/industries/automotive-services" },
     ],
   },
   {

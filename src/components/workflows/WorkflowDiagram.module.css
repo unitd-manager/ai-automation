@@ -1,22 +1,25 @@
 .diagram {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--space-2) 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5) 0;
 }
 
 .stageWrap {
   display: flex;
   align-items: center;
-  flex: 0 1 auto;
+}
+
+/* Hide the trailing connector for the last item in each row of 4,
+   so arrows never dangle at a line break. */
+.stageWrap:nth-child(4n) .connector {
+  visibility: hidden;
 }
 
 .node {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-width: 142px;
-  max-width: 190px;
+  width: 100%;
   min-height: 64px;
   background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
   border: 1px solid var(--color-border);
@@ -98,19 +101,19 @@
 
 @media (max-width: 860px) {
   .diagram {
-    flex-direction: column;
-    align-items: stretch;
+    grid-template-columns: 1fr;
     gap: 0;
   }
   .stageWrap {
     flex-direction: column;
     align-items: flex-start;
     width: 100%;
-    flex: initial;
+  }
+  .stageWrap:nth-child(4n) .connector {
+    visibility: visible;
   }
   .node {
     width: 100%;
-    max-width: none;
   }
   .connector {
     width: 16px;
