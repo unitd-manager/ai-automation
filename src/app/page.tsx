@@ -120,26 +120,19 @@ export default function HomePage() {
             </p>
             <div className={styles.heroActions}>
               <Button href="/resources/ai-audit" size="lg">Find Your Automation Opportunity</Button>
-              <Button href="/solutions" variant="secondary" size="lg">Explore Our Solutions</Button>
+              <Button href="/solutions" variant="ghost" size="lg">Explore Our Solutions</Button>
             </div>
           </div>
           <AnimatedSection as="fade-in">
             <HeroPanel
               eyebrow="LIVE AUTOMATION"
+              title="From inquiry to appointment"
+              description="One connected system that keeps every customer moment moving."
               stages={["Lead", "AI Detection", "AI Response", "Qualification", "CRM", "Appointment", "Follow-Up", "Business Outcome"]}
             />
           </AnimatedSection>
         </div>
-        <div className={`container ${styles.quickLinksWrap}`}>
-          <span className={styles.quickLinksLabel}>Not sure where to start?</span>
-          <div className={styles.quickLinksRow}>
-            {quickLinks.map((link) => (
-              <Link key={link.label} href={link.href} className={styles.quickLinkChip}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+       
       </section>
 
       {/* 2. Business Pain / Problem */}
@@ -227,9 +220,7 @@ export default function HomePage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
-          <div className={styles.workflowWrapDark}>
-            <WorkflowDiagram stages={["Peak Moment", "AI Response", "Revenue / Efficiency Outcome"]} highlightIndex={1} />
-          </div>
+          
         </div>
       </section>
 

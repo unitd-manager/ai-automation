@@ -1,9 +1,22 @@
 /* ============ Hero ============ */
 .hero {
   padding: 160px 0 var(--space-9);
-  background: linear-gradient(180deg, #f8f9fb 0%, #ffffff 60%);
+  background: linear-gradient(116deg, var(--color-primary) 0%, #162a55 62%, var(--color-secondary) 100%);
   position: relative;
   overflow: hidden;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -12%;
+  bottom: -58%;
+  width: 58%;
+  height: 130%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  transform: rotate(-24deg);
+  box-shadow: 0 0 0 34px rgba(255, 255, 255, 0.035), 0 0 0 70px rgba(255, 255, 255, 0.02);
 }
 
 .heroGrid {
@@ -20,7 +33,7 @@
   align-items: center;
   gap: var(--space-2);
   font-size: 0.8125rem;
-  color: var(--color-accent);
+  color: #a9c0f4;
   font-weight: 600;
   margin-bottom: var(--space-5);
 }
@@ -29,11 +42,12 @@
   font-size: var(--fs-hero);
   max-width: 16ch;
   margin-bottom: var(--space-6);
+  color: #ffffff;
 }
 
 .heroCopy {
   font-size: var(--fs-lead);
-  color: var(--color-muted);
+  color: #d7e0f3;
   max-width: 48ch;
   line-height: 1.6;
   margin-bottom: var(--space-7);
@@ -61,14 +75,14 @@
   gap: var(--space-4);
   margin-top: var(--space-9);
   padding-top: var(--space-6);
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   position: relative;
   z-index: 1;
 }
 
 .quickLinksLabel {
   font-size: 0.8125rem;
-  color: var(--color-subtle);
+  color: #c0cde6;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -83,7 +97,7 @@
   font-size: 0.8125rem;
   font-weight: 600;
   color: var(--color-primary);
-  border: 1px solid var(--color-border-strong);
+  border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: 999px;
   padding: 0.5rem 1rem;
   background: #ffffff;

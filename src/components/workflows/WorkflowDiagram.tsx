@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Fragment } from "react";
 import styles from "./WorkflowDiagram.module.css";
 
 interface WorkflowDiagramProps {
@@ -13,9 +14,10 @@ export default function WorkflowDiagram({ stages, highlightIndex, dense = false 
   return (
     <div className={`${styles.diagram} ${dense ? styles.dense : ""}`} role="list" aria-label="Automation workflow">
       {stages.map((stage, i) => (
-        <div className={styles.stageWrap} key={stage} role="listitem">
+        <Fragment key={stage}>
           <motion.div
-            className={`${styles.node} ${highlightIndex === i ? styles.nodeActive : ""}`}
+            className={`${styles.node} ${i % 2 === 0 ? styles.nodeLeft : styles.nodeRight} ${highlightIndex === i ? styles.nodeActive : ""}`}
+            role="listitem"
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -27,25 +29,21 @@ export default function WorkflowDiagram({ stages, highlightIndex, dense = false 
           {i < stages.length - 1 && (
             <motion.div
               className={styles.connector}
-              initial={{ scaleX: 0, opacity: 0 }}
+              initial={{ opacity: 0 }}
               whileInView={{ scaleX: 1, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.35, delay: i * 0.07 + 0.15, ease: [0.16, 1, 0.3, 1] }}
               aria-hidden
             >
-              <svg viewBox="0 0 40 12" className={styles.connectorSvg} preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id={`connector-grad-${i}`} x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stopColor="#3e5fae" />
-                    <stop offset="100%" stopColor="#26417a" />
-                  </linearGradient>
-                </defs>
-                <line x1="0" y1="6" x2="34" y2="6" stroke={`url(#connector-grad-${i})`} strokeWidth="1.5" />
-                <path d="M28 1 L36 6 L28 11" fill="none" stroke={`url(#connector-grad-${i})`} strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+              <svg viewBox="0 0 100 44" className={styles.connectorSvg} preserveAspectRatio="none">
+                <path className={styles.desktopPath} d="M0 22 H88" />
+                <path className={styles.desktopArrow} d="M80 16 L88 22 L80 28" />
+                <path className={styles.mobilePath} d="M50 0 V38" />
+                <path className={styles.mobileArrow} d="M44 32 L50 38 L44 44" />
               </svg>
             </motion.div>
           )}
-        </div>
+        </Fragment>
       ))}
     </div>
   );

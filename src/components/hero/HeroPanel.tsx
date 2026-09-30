@@ -6,11 +6,15 @@ import styles from "./HeroPanel.module.css";
 interface HeroPanelProps {
   stages?: string[];
   eyebrow?: string;
+  title?: string;
+  description?: string;
 }
 
 export default function HeroPanel({
   stages = ["Customer", "AI Response", "Qualification", "CRM", "Appointment", "Follow-Up", "Revenue"],
   eyebrow = "LIVE WORKFLOW",
+  title = "From inquiry to appointment",
+  description = "One connected system that keeps every customer moment moving.",
 }: HeroPanelProps) {
   const reduceMotion = useReducedMotion();
 
@@ -19,7 +23,15 @@ export default function HeroPanel({
       <div className={styles.panelGlow} aria-hidden />
       <div className={styles.panelHeader}>
         <span className={`${styles.panelLabel} mono`}>{eyebrow}</span>
-        <span className={styles.dot} aria-hidden />
+        <span className={styles.status}>
+          <span className={styles.dot} aria-hidden />
+          <span>Active now</span>
+        </span>
+      </div>
+
+      <div className={styles.panelIntro}>
+        <h2 className={styles.panelTitle}>{title}</h2>
+        <p className={styles.panelDescription}>{description}</p>
       </div>
 
       <div className={styles.flow}>
@@ -71,11 +83,11 @@ export default function HeroPanel({
       <div className={styles.readout}>
         <div className={styles.readoutItem}>
           <span className={`${styles.readoutValue} mono`}>&lt; 60s</span>
-          <span className={styles.readoutLabel}>example response time</span>
+          <span className={styles.readoutLabel}>first response</span>
         </div>
         <div className={styles.readoutItem}>
           <span className={`${styles.readoutValue} mono`}>24/7</span>
-          <span className={styles.readoutLabel}>coverage</span>
+          <span className={styles.readoutLabel}>always-on coverage</span>
         </div>
       </div>
     </div>
