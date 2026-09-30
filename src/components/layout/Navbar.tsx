@@ -19,8 +19,8 @@ const solutionsMenu = [
   {
     heading: "Sales & Appointment Automation",
     items: [
-      { label: "Appointment Booking", href: "/solutions#appointment-automation" },
-      { label: "Follow-Up", href: "/solutions#follow-up-automation" },
+      { label: "Appointment Booking", href: "/solutions/ai-appointment-booking" },
+      { label: "Follow-Up", href: "/solutions/ai-follow-up" },
     ],
   },
   {
