@@ -248,7 +248,6 @@ export default function AiChatPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="01"
             title="What Happens in Every Chat"
             description="From the first message to the CRM record, every conversation follows the same reliable path."
           />
@@ -269,7 +268,6 @@ export default function AiChatPage() {
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-            index="02"
             title="Key Capabilities"
             description="Everything a great front-desk chat handler does, available at any hour and any volume."
           />
@@ -292,7 +290,6 @@ export default function AiChatPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="03"
             title="Where Website Visitors Turn Into Lost Revenue"
             description="The same three gaps show up in every business that relies on its website to win work. AI Chat closes each one."
           />
@@ -329,7 +326,6 @@ export default function AiChatPage() {
         <div className={styles.darkGlow} aria-hidden />
         <div className={`container ${styles.darkInner}`}>
           <SectionHeader
-            index="04"
             dark
             title="See How the Agent Handles Different Chats"
             description="Pick a scenario to see what the visitor asks, what the agent does, and what your team gets."
@@ -342,7 +338,6 @@ export default function AiChatPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="05"
             title="Contact Form vs. AI Chat"
             description="A side-by-side look at what changes the moment every visitor gets an answer."
           />
@@ -373,7 +368,6 @@ export default function AiChatPage() {
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-            index="06"
             title="Built to Get Smarter Over Time"
             description="Beyond answering questions, the system gives you visibility and keeps improving."
           />
@@ -398,7 +392,6 @@ export default function AiChatPage() {
           <div className={styles.twoCol}>
             <div>
               <SectionHeader
-                index="07"
                 title="Integrations"
                 description="Works with your existing website, calendar, and CRM. No migration needed."
               />
@@ -430,7 +423,6 @@ export default function AiChatPage() {
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-            index="08"
             title="From Kick-Off to Live Chat"
             description="A structured rollout that fits around your business."
           />
@@ -457,7 +449,6 @@ export default function AiChatPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="09"
             title="Control, Security & Transparency"
             description="A chat agent speaks for your business, so you stay in control of what it says and does."
           />
@@ -483,7 +474,6 @@ export default function AiChatPage() {
         <div className="container">
           <div className={styles.faqLayout}>
             <SectionHeader
-              index="10"
               title="AI Chat FAQs"
               description="Answers to the questions we hear most before a rollout."
             />

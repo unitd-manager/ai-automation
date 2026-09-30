@@ -249,7 +249,7 @@ export default function AiVoiceAgentsPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="01"
+          
             title="What Happens to Every Call"
             description="From the first ring to the CRM record, every call follows the same reliable path."
           />
@@ -270,7 +270,7 @@ export default function AiVoiceAgentsPage() {
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-            index="02"
+           
             title="Key Capabilities"
             description="Everything a great front-desk call handler does — available at any hour and any volume."
           />
@@ -293,7 +293,7 @@ export default function AiVoiceAgentsPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="03"
+            
             title="Where Calls Turn Into Lost Revenue"
             description="The same three gaps show up in every business that depends on the phone. A voice agent closes each one."
           />
@@ -330,7 +330,7 @@ export default function AiVoiceAgentsPage() {
         <div className={styles.darkGlow} aria-hidden />
         <div className={`container ${styles.darkInner}`}>
           <SectionHeader
-            index="04"
+          
             dark
             title="See How the Agent Handles Different Calls"
             description="Pick a scenario to see what the caller says, what the agent does, and what your team gets."
@@ -343,7 +343,7 @@ export default function AiVoiceAgentsPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="05"
+           
             title="Voicemail vs. an AI Voice Agent"
             description="A side-by-side look at what changes the moment every call gets answered."
           />
@@ -374,7 +374,7 @@ export default function AiVoiceAgentsPage() {
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-            index="06"
+           
             title="Built to Get Smarter Over Time"
             description="Beyond answering calls, the system gives you visibility and keeps improving."
           />
@@ -394,7 +394,7 @@ export default function AiVoiceAgentsPage() {
       </section>
 
       {/* 9. INTEGRATIONS + IMPACT ----------------------------------- */}
-      <section className="section">
+      {/*<section className="section">
         <div className="container">
           <div className={styles.twoCol}>
             <div>
@@ -425,13 +425,13 @@ export default function AiVoiceAgentsPage() {
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* 10. ROLLOUT ------------------------------------------------ */}
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-            index="08"
+        
             title="From Kick-Off to Live Calls"
             description="A structured rollout that fits around your business."
           />
@@ -458,7 +458,7 @@ export default function AiVoiceAgentsPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="09"
+           
             title="Control, Security & Transparency"
             description="A voice agent speaks for your business, so you stay in control of what it says and does."
           />
@@ -484,7 +484,7 @@ export default function AiVoiceAgentsPage() {
         <div className="container">
           <div className={styles.faqLayout}>
             <SectionHeader
-              index="10"
+             
               title="Voice Agent FAQs"
               description="Answers to the questions we hear most before a rollout."
             />

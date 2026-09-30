@@ -1,88 +1,88 @@
 import type { Metadata } from "next";
-import { Check, Clock, Minus, PhoneMissed, Route, ShieldQuestion, Timer, UserCheck } from "lucide-react";
+import { AlertTriangle, Check, ClipboardCheck, FileSearch, Minus, Route, ScanLine, Timer } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
 import CTASection from "@/components/sections/CTASection";
 import FAQAccordion from "@/components/sections/FAQAccordion";
-import LeadResponseHeroVisual from "@/components/hero/LeadResponseHeroVisual";
+import DocumentHeroVisual from "@/components/hero/DocumentHeroVisual";
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import { StaggerGroup, StaggerItem } from "@/components/animations/StaggerGroup";
 import { solutions } from "@/data/solutions";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
-const data = solutions.find((s) => s.slug === "ai-lead-response")!;
+const data = solutions.find((s) => s.slug === "document-automation")!;
 
 export const metadata: Metadata = buildMetadata({
   title: data.name,
   description: data.problem,
-  path: "/solutions/ai-lead-response",
+  path: "/solutions/ai-document-processing",
 });
 
 /* ------------------------------------------------------------------ */
 /* Process-based content — not tied to one industry                    */
 /* ------------------------------------------------------------------ */
 
-const capIcons = [Timer, ShieldQuestion, Route, Check];
+const capIcons = [ScanLine, ClipboardCheck, Route, AlertTriangle];
 
 const gapRows = [
   {
-    icon: PhoneMissed,
-    title: "The channel that goes unanswered",
-    moment: "A form, call, or message comes in outside business hours, mid-job, or while the team is on another lead.",
-    cost: "The lead moves to the next result and contacts a competitor instead.",
-    fix: "Every channel gets an immediate, qualified response the moment the inquiry lands, regardless of who's free.",
+    icon: Timer,
+    title: "Slow, manual data entry",
+    moment: "Invoices, estimates, permits, and forms arrive as PDFs, scans, or photos and someone has to type the details in by hand.",
+    cost: "Hours spent on repetitive entry, with the backlog growing during busy periods.",
+    fix: "Documents are read and structured automatically, extracting the fields that matter without manual typing.",
   },
   {
-    icon: Clock,
-    title: "The gap between inquiry and reply",
-    moment: "A lead reaches out to several providers at once and books with whoever replies first.",
-    cost: "Deals are lost on speed alone, before your team even sees the lead.",
-    fix: "Sub-minute response on every channel, so you're first to reply regardless of when the inquiry came in.",
+    icon: FileSearch,
+    title: "Errors that propagate downstream",
+    moment: "A typo or missed field during manual entry makes it into the system and isn't caught until it causes a problem later.",
+    cost: "Incorrect invoices, mismatched records, and time spent tracing errors back to their source.",
+    fix: "Validation rules catch errors before they propagate, flagging anything that doesn't match expected values.",
   },
   {
-    icon: UserCheck,
-    title: "The unqualified handoff",
-    moment: "A rep picks up a lead with no context — no budget, no timeline, no idea what they actually need.",
-    cost: "Wasted calls, mismatched routing, and slower deal cycles.",
-    fix: "Qualifying questions run automatically, and the lead lands on the right rep's desk with context attached.",
+    icon: AlertTriangle,
+    title: "Exceptions that get silently dropped",
+    moment: "A document doesn't fit the expected format and either gets stuck in a queue or ignored entirely.",
+    cost: "Lost invoices, missed permits, and no visibility into what fell through the cracks.",
+    fix: "Exceptions are flagged for human review rather than silently dropped, so nothing gets lost.",
   },
 ];
 
 const compareRows = [
-  { label: "Time to first response", before: "Hours to next business day", after: "Under a minute" },
-  { label: "Coverage", before: "Business hours only", after: "24/7, every channel" },
-  { label: "Qualification", before: "Happens on the first call, if at all", after: "Done before a rep is ever involved" },
-  { label: "Routing", before: "Manual, by whoever's free", after: "Automatic, by service type or territory" },
+  { label: "Data entry", before: "Manual, by hand", after: "Extracted automatically" },
+  { label: "Accuracy", before: "Prone to typos and missed fields", after: "Validated before it's used" },
+  { label: "Routing", before: "Manual sorting by document type", after: "Automatic, by type or department" },
+  { label: "Exceptions", before: "Stuck in a queue or dropped", after: "Flagged for review" },
 ];
 
 const faqs = [
   {
-    question: "Which channels does it cover?",
+    question: "What types of documents can it process?",
     answer:
-      "Web forms, missed calls, and chat inquiries are covered as standard. Additional channels like SMS or a specific booking tool can be added during setup.",
+      "Invoices, estimates, permits, and intake forms are common examples. It works from PDFs, scans, and photos, not just clean digital originals.",
   },
   {
-    question: "How does it qualify a lead without sounding scripted?",
+    question: "How accurate is the data extraction?",
     answer:
-      "Qualifying questions are matched to your actual sales process, not a generic template, so the conversation reads like your team asking, not a form.",
+      "Validation rules check extracted fields against expected formats and values before they're used, and anything uncertain is flagged rather than assumed.",
   },
   {
-    question: "How does routing decide which rep gets the lead?",
+    question: "What happens to documents it can't process confidently?",
     answer:
-      "Routing rules are set up around how you already assign work — by service type, territory, or rep availability — so leads land where they'd go manually, just faster.",
+      "They're flagged as exceptions for human review instead of being silently dropped or forced through with bad data.",
   },
   {
-    question: "What does a rep see when a lead is routed to them?",
+    question: "Which systems can it route documents into?",
     answer:
-      "The full conversation log and qualification answers are attached to the lead record, so the rep has context before the first call.",
+      "Common destinations include QuickBooks, DocuSign, Google Drive, and SharePoint. Other systems can be scoped during setup.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
 
-export default function AiLeadResponsePage() {
+export default function DocumentProcessingPage() {
   return (
     <>
       {/* 1. HERO ------------------------------------------------------ */}
@@ -106,11 +106,11 @@ export default function AiLeadResponsePage() {
               <p className={styles.blockText}>{data.solution}</p>
             </div>
             <div className={styles.heroActions}>
-              <Button href="/contact" size="lg">Talk to Us About Lead Response</Button>
+              <Button href="/contact" size="lg">Talk to Us About Document Processing</Button>
               <Button href="/how-it-works" variant="secondary" size="lg">See How It Works</Button>
             </div>
           </div>
-          <LeadResponseHeroVisual />
+          <DocumentHeroVisual />
         </div>
       </section>
 
@@ -118,9 +118,8 @@ export default function AiLeadResponsePage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-      
             title="Key Capabilities"
-            description="What happens automatically between a lead coming in and a rep picking it up."
+            description="What happens automatically between a document arriving and clean data landing in your systems."
           />
           <StaggerGroup className={styles.capGrid}>
             {data.capabilities.map((cap, i) => {
@@ -136,13 +135,12 @@ export default function AiLeadResponsePage() {
         </div>
       </section>
 
-      {/* 3. WHERE LEADS GET LOST ---------------------------------------- */}
+      {/* 3. WHERE PAPERWORK BREAKS DOWN -------------------------------------- */}
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-          
-            title="Where Leads Are Lost Between Inquiry and Response"
-            description="The same three gaps show up regardless of industry or channel. Lead response automation closes each one."
+            title="Where Paperwork Slows Everything Down"
+            description="The same three gaps show up regardless of industry or document type. Document automation closes each one."
           />
           <div className={styles.gapList}>
             {gapRows.map((row, i) => {
@@ -177,10 +175,9 @@ export default function AiLeadResponsePage() {
         <div className={styles.darkGlow} aria-hidden />
         <div className={`container ${styles.darkInner}`}>
           <SectionHeader
-          
             dark
-            title="From First Contact to a Routed, Ready Lead"
-            description="The same path runs no matter which channel the inquiry came through."
+            title="From Document Received to Data Routed"
+            description="The same path runs no matter the document type or where it came from."
           />
           <WorkflowDiagram stages={data.workflow} highlightIndex={1} />
         </div>
@@ -190,15 +187,14 @@ export default function AiLeadResponsePage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-           
-            title="Manual Follow-Up vs. Automated Lead Response"
-            description="What changes once every inquiry gets an immediate, qualified response."
+            title="Manual Entry vs. Automated Document Processing"
+            description="What changes once documents are read, validated, and routed on their own."
           />
           <AnimatedSection className={styles.compare}>
             <div className={`${styles.compareRow} ${styles.compareHead}`}>
               <span />
-              <span>Without lead response automation</span>
-              <span className={styles.compareAfterHead}>With AI Lead Response</span>
+              <span>Without document automation</span>
+              <span className={styles.compareAfterHead}>With AI Document Processing</span>
             </div>
             {compareRows.map((r) => (
               <div key={r.label} className={styles.compareRow}>
@@ -220,8 +216,8 @@ export default function AiLeadResponsePage() {
       {/* 6. INTEGRATIONS + FAQ -------------------------------------------------- */}
       <section className="section section-surface">
         <div className="container">
-         {/*<div style={{ marginBottom: "var(--space-9)" }}>
-            <SectionHeader title="Integrations" description="Connects to the CRM and channels you already run on." />
+          {/*<div style={{ marginBottom: "var(--space-9)" }}>
+            <SectionHeader title="Integrations" description="Connects to the systems you already file and route documents into." />
             <div className={styles.integrationRow}>
               {data.integrations.map((i) => (
                 <span key={i} className={styles.integrationChip}>{i}</span>
@@ -231,8 +227,7 @@ export default function AiLeadResponsePage() {
 
           <div className={styles.faqLayout}>
             <SectionHeader
-           
-              title="Lead Response FAQs"
+              title="Document Processing FAQs"
               description="Answers to the questions we hear most before a rollout."
             />
             <FAQAccordion items={faqs} />
@@ -242,8 +237,8 @@ export default function AiLeadResponsePage() {
 
       {/* CTA / FOOTER SECTION ------------------------------------------------ */}
       <CTASection
-        title="Ready to Stop Losing Leads to Slow Response?"
-        description="We'll show you exactly how lead response automation fits into your existing process."
+        title="Ready to Stop Typing What You Could Automate?"
+        description="We'll show you exactly how document automation fits into the systems you already file into."
         primaryLabel="Get Your AI Audit"
         secondaryLabel="See All Solutions"
         secondaryHref="/solutions"

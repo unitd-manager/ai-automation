@@ -1,88 +1,88 @@
 import type { Metadata } from "next";
-import { Check, Clock, Minus, PhoneMissed, Route, ShieldQuestion, Timer, UserCheck } from "lucide-react";
+import { Check, Clock, FileWarning, Minus, PauseCircle, ThumbsDown, TrendingUp } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
 import CTASection from "@/components/sections/CTASection";
 import FAQAccordion from "@/components/sections/FAQAccordion";
-import LeadResponseHeroVisual from "@/components/hero/LeadResponseHeroVisual";
+import FollowUpHeroVisual from "@/components/hero/FollowUpHeroVisual";
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import { StaggerGroup, StaggerItem } from "@/components/animations/StaggerGroup";
 import { solutions } from "@/data/solutions";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
-const data = solutions.find((s) => s.slug === "ai-lead-response")!;
+const data = solutions.find((s) => s.slug === "follow-up-automation")!;
 
 export const metadata: Metadata = buildMetadata({
   title: data.name,
   description: data.problem,
-  path: "/solutions/ai-lead-response",
+  path: "/solutions/ai-follow-up",
 });
 
 /* ------------------------------------------------------------------ */
 /* Process-based content — not tied to one industry                    */
 /* ------------------------------------------------------------------ */
 
-const capIcons = [Timer, ShieldQuestion, Route, Check];
+const capIcons = [Clock, PauseCircle, TrendingUp, Check];
 
 const gapRows = [
   {
-    icon: PhoneMissed,
-    title: "The channel that goes unanswered",
-    moment: "A form, call, or message comes in outside business hours, mid-job, or while the team is on another lead.",
-    cost: "The lead moves to the next result and contacts a competitor instead.",
-    fix: "Every channel gets an immediate, qualified response the moment the inquiry lands, regardless of who's free.",
+    icon: FileWarning,
+    title: "The quote that goes quiet",
+    moment: "An estimate or quote is sent, and then nobody follows up unless the customer reaches out first.",
+    cost: "Open opportunities sit untouched until they're forgotten or lost to a competitor.",
+    fix: "A structured sequence starts automatically the moment a quote goes out, no manual reminder needed.",
   },
   {
     icon: Clock,
-    title: "The gap between inquiry and reply",
-    moment: "A lead reaches out to several providers at once and books with whoever replies first.",
-    cost: "Deals are lost on speed alone, before your team even sees the lead.",
-    fix: "Sub-minute response on every channel, so you're first to reply regardless of when the inquiry came in.",
+    title: "Inconsistent timing",
+    moment: "Follow-up happens whenever a rep remembers to do it, if at all, so timing varies deal to deal.",
+    cost: "Some leads get chased too hard, others not at all, and the pattern is impossible to replicate.",
+    fix: "Multi-touch sequences across SMS and email run on a consistent, defined cadence for every opportunity.",
   },
   {
-    icon: UserCheck,
-    title: "The unqualified handoff",
-    moment: "A rep picks up a lead with no context — no budget, no timeline, no idea what they actually need.",
-    cost: "Wasted calls, mismatched routing, and slower deal cycles.",
-    fix: "Qualifying questions run automatically, and the lead lands on the right rep's desk with context attached.",
+    icon: ThumbsDown,
+    title: "No record of why deals were lost",
+    moment: "A deal quietly goes cold and nobody captures why, so the same pattern repeats on the next one.",
+    cost: "No visibility into win/loss reasons, and no way to improve the process over time.",
+    fix: "Outcomes are logged automatically — won, lost, or paused — with the reason captured for reporting.",
   },
 ];
 
 const compareRows = [
-  { label: "Time to first response", before: "Hours to next business day", after: "Under a minute" },
-  { label: "Coverage", before: "Business hours only", after: "24/7, every channel" },
-  { label: "Qualification", before: "Happens on the first call, if at all", after: "Done before a rep is ever involved" },
-  { label: "Routing", before: "Manual, by whoever's free", after: "Automatic, by service type or territory" },
+  { label: "After a quote is sent", before: "Follow-up if someone remembers", after: "Sequence starts automatically" },
+  { label: "Cadence", before: "Inconsistent, rep-dependent", after: "Defined multi-touch schedule" },
+  { label: "Customer replies", before: "Easy to keep messaging anyway", after: "Sequence pauses automatically" },
+  { label: "Win/loss tracking", before: "Rarely captured", after: "Logged for every opportunity" },
 ];
 
 const faqs = [
   {
-    question: "Which channels does it cover?",
+    question: "What triggers a follow-up sequence to start?",
     answer:
-      "Web forms, missed calls, and chat inquiries are covered as standard. Additional channels like SMS or a specific booking tool can be added during setup.",
+      "Typically a quote or estimate being sent, but the trigger can be matched to whatever moment makes sense in your sales process.",
   },
   {
-    question: "How does it qualify a lead without sounding scripted?",
+    question: "What happens when a customer replies?",
     answer:
-      "Qualifying questions are matched to your actual sales process, not a generic template, so the conversation reads like your team asking, not a form.",
+      "The sequence pauses automatically as soon as a reply comes in, so nobody keeps getting messaged after they've already responded.",
   },
   {
-    question: "How does routing decide which rep gets the lead?",
+    question: "Can the cadence and channels be customized?",
     answer:
-      "Routing rules are set up around how you already assign work — by service type, territory, or rep availability — so leads land where they'd go manually, just faster.",
+      "Yes. The number of touches, the gap between them, and whether each touch is SMS or email are all configured to match your process.",
   },
   {
-    question: "What does a rep see when a lead is routed to them?",
+    question: "How does escalation to a rep work?",
     answer:
-      "The full conversation log and qualification answers are attached to the lead record, so the rep has context before the first call.",
+      "At a defined point in the sequence, or as soon as a lead shows strong interest, the opportunity is handed to a rep with the full history attached.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
 
-export default function AiLeadResponsePage() {
+export default function FollowUpPage() {
   return (
     <>
       {/* 1. HERO ------------------------------------------------------ */}
@@ -106,11 +106,11 @@ export default function AiLeadResponsePage() {
               <p className={styles.blockText}>{data.solution}</p>
             </div>
             <div className={styles.heroActions}>
-              <Button href="/contact" size="lg">Talk to Us About Lead Response</Button>
+              <Button href="/contact" size="lg">Talk to Us About Follow-Up</Button>
               <Button href="/how-it-works" variant="secondary" size="lg">See How It Works</Button>
             </div>
           </div>
-          <LeadResponseHeroVisual />
+          <FollowUpHeroVisual />
         </div>
       </section>
 
@@ -118,9 +118,8 @@ export default function AiLeadResponsePage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-      
             title="Key Capabilities"
-            description="What happens automatically between a lead coming in and a rep picking it up."
+            description="What happens automatically between a quote going out and a deal being won, lost, or paused."
           />
           <StaggerGroup className={styles.capGrid}>
             {data.capabilities.map((cap, i) => {
@@ -136,13 +135,12 @@ export default function AiLeadResponsePage() {
         </div>
       </section>
 
-      {/* 3. WHERE LEADS GET LOST ---------------------------------------- */}
+      {/* 3. WHERE OPPORTUNITIES GO COLD -------------------------------------- */}
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-          
-            title="Where Leads Are Lost Between Inquiry and Response"
-            description="The same three gaps show up regardless of industry or channel. Lead response automation closes each one."
+            title="Where Open Opportunities Go Cold"
+            description="The same three gaps show up regardless of industry or deal size. Follow-up automation closes each one."
           />
           <div className={styles.gapList}>
             {gapRows.map((row, i) => {
@@ -177,10 +175,9 @@ export default function AiLeadResponsePage() {
         <div className={styles.darkGlow} aria-hidden />
         <div className={`container ${styles.darkInner}`}>
           <SectionHeader
-          
             dark
-            title="From First Contact to a Routed, Ready Lead"
-            description="The same path runs no matter which channel the inquiry came through."
+            title="From Quote Sent to Outcome Logged"
+            description="The same path runs no matter the deal size or how long it takes to close."
           />
           <WorkflowDiagram stages={data.workflow} highlightIndex={1} />
         </div>
@@ -190,15 +187,14 @@ export default function AiLeadResponsePage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-           
-            title="Manual Follow-Up vs. Automated Lead Response"
-            description="What changes once every inquiry gets an immediate, qualified response."
+            title="Manual Follow-Up vs. Automated Sequences"
+            description="What changes once every open opportunity is followed up on a consistent cadence."
           />
           <AnimatedSection className={styles.compare}>
             <div className={`${styles.compareRow} ${styles.compareHead}`}>
               <span />
-              <span>Without lead response automation</span>
-              <span className={styles.compareAfterHead}>With AI Lead Response</span>
+              <span>Without follow-up automation</span>
+              <span className={styles.compareAfterHead}>With AI Follow-Up</span>
             </div>
             {compareRows.map((r) => (
               <div key={r.label} className={styles.compareRow}>
@@ -220,8 +216,8 @@ export default function AiLeadResponsePage() {
       {/* 6. INTEGRATIONS + FAQ -------------------------------------------------- */}
       <section className="section section-surface">
         <div className="container">
-         {/*<div style={{ marginBottom: "var(--space-9)" }}>
-            <SectionHeader title="Integrations" description="Connects to the CRM and channels you already run on." />
+          {/*<div style={{ marginBottom: "var(--space-9)" }}>
+            <SectionHeader title="Integrations" description="Connects to the CRM and messaging tools you already run on." />
             <div className={styles.integrationRow}>
               {data.integrations.map((i) => (
                 <span key={i} className={styles.integrationChip}>{i}</span>
@@ -231,8 +227,7 @@ export default function AiLeadResponsePage() {
 
           <div className={styles.faqLayout}>
             <SectionHeader
-           
-              title="Lead Response FAQs"
+              title="Follow-Up FAQs"
               description="Answers to the questions we hear most before a rollout."
             />
             <FAQAccordion items={faqs} />
@@ -242,8 +237,8 @@ export default function AiLeadResponsePage() {
 
       {/* CTA / FOOTER SECTION ------------------------------------------------ */}
       <CTASection
-        title="Ready to Stop Losing Leads to Slow Response?"
-        description="We'll show you exactly how lead response automation fits into your existing process."
+        title="Ready to Stop Losing Deals to No Follow-Up?"
+        description="We'll show you exactly how follow-up automation fits into your existing sales process."
         primaryLabel="Get Your AI Audit"
         secondaryLabel="See All Solutions"
         secondaryHref="/solutions"

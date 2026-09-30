@@ -1,88 +1,88 @@
 import type { Metadata } from "next";
-import { Check, Clock, Minus, PhoneMissed, Route, ShieldQuestion, Timer, UserCheck } from "lucide-react";
+import { Bell, Calendar, Check, MapPin, Minus, PhoneOff, RefreshCw, UserX } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
 import CTASection from "@/components/sections/CTASection";
 import FAQAccordion from "@/components/sections/FAQAccordion";
-import LeadResponseHeroVisual from "@/components/hero/LeadResponseHeroVisual";
+import AppointmentHeroVisual from "@/components/hero/AppointmentHeroVisual";
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import { StaggerGroup, StaggerItem } from "@/components/animations/StaggerGroup";
 import { solutions } from "@/data/solutions";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
-const data = solutions.find((s) => s.slug === "ai-lead-response")!;
+const data = solutions.find((s) => s.slug === "appointment-automation")!;
 
 export const metadata: Metadata = buildMetadata({
   title: data.name,
   description: data.problem,
-  path: "/solutions/ai-lead-response",
+  path: "/solutions/ai-appointment-booking",
 });
 
 /* ------------------------------------------------------------------ */
 /* Process-based content — not tied to one industry                    */
 /* ------------------------------------------------------------------ */
 
-const capIcons = [Timer, ShieldQuestion, Route, Check];
+const capIcons = [RefreshCw, MapPin, Bell, RefreshCw];
 
 const gapRows = [
   {
-    icon: PhoneMissed,
-    title: "The channel that goes unanswered",
-    moment: "A form, call, or message comes in outside business hours, mid-job, or while the team is on another lead.",
-    cost: "The lead moves to the next result and contacts a competitor instead.",
-    fix: "Every channel gets an immediate, qualified response the moment the inquiry lands, regardless of who's free.",
+    icon: PhoneOff,
+    title: "The back-and-forth to find a time",
+    moment: "A lead is ready to book, but confirming a time means several calls or emails checking availability.",
+    cost: "Momentum is lost, and some leads never make it onto the calendar at all.",
+    fix: "Real-time availability is checked automatically and a slot is booked in the same conversation.",
   },
   {
-    icon: Clock,
-    title: "The gap between inquiry and reply",
-    moment: "A lead reaches out to several providers at once and books with whoever replies first.",
-    cost: "Deals are lost on speed alone, before your team even sees the lead.",
-    fix: "Sub-minute response on every channel, so you're first to reply regardless of when the inquiry came in.",
+    icon: Calendar,
+    title: "Double bookings and buffer conflicts",
+    moment: "Two appointments land on the same technician, room, or time slot because availability wasn't checked live.",
+    cost: "Rescheduling, wasted travel, and a frustrated customer on the day of service.",
+    fix: "Buffer rules by technician, room, or location are enforced automatically before a slot is offered.",
   },
   {
-    icon: UserCheck,
-    title: "The unqualified handoff",
-    moment: "A rep picks up a lead with no context — no budget, no timeline, no idea what they actually need.",
-    cost: "Wasted calls, mismatched routing, and slower deal cycles.",
-    fix: "Qualifying questions run automatically, and the lead lands on the right rep's desk with context attached.",
+    icon: UserX,
+    title: "No-shows and forgotten appointments",
+    moment: "A customer forgets the appointment they booked weeks ago, or cancels with no advance notice.",
+    cost: "Wasted labor, travel costs, and lost service revenue for that slot.",
+    fix: "Automated confirmations and reminders run on a schedule, with self-service rescheduling built in.",
   },
 ];
 
 const compareRows = [
-  { label: "Time to first response", before: "Hours to next business day", after: "Under a minute" },
-  { label: "Coverage", before: "Business hours only", after: "24/7, every channel" },
-  { label: "Qualification", before: "Happens on the first call, if at all", after: "Done before a rep is ever involved" },
-  { label: "Routing", before: "Manual, by whoever's free", after: "Automatic, by service type or territory" },
+  { label: "Confirming a time", before: "Back-and-forth calls or emails", after: "Booked in one conversation" },
+  { label: "Availability checks", before: "Manual, per calendar", after: "Live, synced automatically" },
+  { label: "Reminders", before: "Easy to forget", after: "Sent automatically on schedule" },
+  { label: "Rescheduling", before: "Requires a phone call", after: "Self-service, no call needed" },
 ];
 
 const faqs = [
   {
-    question: "Which channels does it cover?",
+    question: "Which calendars does it work with?",
     answer:
-      "Web forms, missed calls, and chat inquiries are covered as standard. Additional channels like SMS or a specific booking tool can be added during setup.",
+      "It syncs two-way with the calendar tools you already use, so availability is always accurate and nothing gets double-booked.",
   },
   {
-    question: "How does it qualify a lead without sounding scripted?",
+    question: "How do buffer rules work?",
     answer:
-      "Qualifying questions are matched to your actual sales process, not a generic template, so the conversation reads like your team asking, not a form.",
+      "You define buffers by technician, room, or location — travel time, setup time, or minimum gaps — and the system only offers slots that respect them.",
   },
   {
-    question: "How does routing decide which rep gets the lead?",
+    question: "Can a customer reschedule without calling in?",
     answer:
-      "Routing rules are set up around how you already assign work — by service type, territory, or rep availability — so leads land where they'd go manually, just faster.",
+      "Yes. Confirmation and reminder messages include a self-service option to reschedule or cancel, so changes don't require a phone call.",
   },
   {
-    question: "What does a rep see when a lead is routed to them?",
+    question: "What happens if no slots are available?",
     answer:
-      "The full conversation log and qualification answers are attached to the lead record, so the rep has context before the first call.",
+      "The system can offer the next available time, add the lead to a waitlist, or hand off to a person, depending on how you want it configured.",
   },
 ];
 
 /* ------------------------------------------------------------------ */
 
-export default function AiLeadResponsePage() {
+export default function AppointmentBookingPage() {
   return (
     <>
       {/* 1. HERO ------------------------------------------------------ */}
@@ -106,11 +106,11 @@ export default function AiLeadResponsePage() {
               <p className={styles.blockText}>{data.solution}</p>
             </div>
             <div className={styles.heroActions}>
-              <Button href="/contact" size="lg">Talk to Us About Lead Response</Button>
+              <Button href="/contact" size="lg">Talk to Us About Appointment Booking</Button>
               <Button href="/how-it-works" variant="secondary" size="lg">See How It Works</Button>
             </div>
           </div>
-          <LeadResponseHeroVisual />
+          <AppointmentHeroVisual />
         </div>
       </section>
 
@@ -118,9 +118,8 @@ export default function AiLeadResponsePage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-      
             title="Key Capabilities"
-            description="What happens automatically between a lead coming in and a rep picking it up."
+            description="What happens automatically between a lead being ready and an appointment on the calendar."
           />
           <StaggerGroup className={styles.capGrid}>
             {data.capabilities.map((cap, i) => {
@@ -136,13 +135,12 @@ export default function AiLeadResponsePage() {
         </div>
       </section>
 
-      {/* 3. WHERE LEADS GET LOST ---------------------------------------- */}
+      {/* 3. WHERE BOOKINGS GET LOST -------------------------------------- */}
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-          
-            title="Where Leads Are Lost Between Inquiry and Response"
-            description="The same three gaps show up regardless of industry or channel. Lead response automation closes each one."
+            title="Where Bookings Fall Through the Cracks"
+            description="The same three gaps show up regardless of industry or calendar tool. Appointment automation closes each one."
           />
           <div className={styles.gapList}>
             {gapRows.map((row, i) => {
@@ -177,12 +175,11 @@ export default function AiLeadResponsePage() {
         <div className={styles.darkGlow} aria-hidden />
         <div className={`container ${styles.darkInner}`}>
           <SectionHeader
-          
             dark
-            title="From First Contact to a Routed, Ready Lead"
-            description="The same path runs no matter which channel the inquiry came through."
+            title="From Qualified Lead to Confirmed Appointment"
+            description="The same path runs no matter which calendar or service type is involved."
           />
-          <WorkflowDiagram stages={data.workflow} highlightIndex={1} />
+          <WorkflowDiagram stages={data.workflow} highlightIndex={2} />
         </div>
       </section>
 
@@ -190,15 +187,14 @@ export default function AiLeadResponsePage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-           
-            title="Manual Follow-Up vs. Automated Lead Response"
-            description="What changes once every inquiry gets an immediate, qualified response."
+            title="Manual Scheduling vs. Automated Booking"
+            description="What changes once availability, confirmations, and reminders run on their own."
           />
           <AnimatedSection className={styles.compare}>
             <div className={`${styles.compareRow} ${styles.compareHead}`}>
               <span />
-              <span>Without lead response automation</span>
-              <span className={styles.compareAfterHead}>With AI Lead Response</span>
+              <span>Without booking automation</span>
+              <span className={styles.compareAfterHead}>With AI Appointment Booking</span>
             </div>
             {compareRows.map((r) => (
               <div key={r.label} className={styles.compareRow}>
@@ -220,8 +216,8 @@ export default function AiLeadResponsePage() {
       {/* 6. INTEGRATIONS + FAQ -------------------------------------------------- */}
       <section className="section section-surface">
         <div className="container">
-         {/*<div style={{ marginBottom: "var(--space-9)" }}>
-            <SectionHeader title="Integrations" description="Connects to the CRM and channels you already run on." />
+          {/*<div style={{ marginBottom: "var(--space-9)" }}>
+            <SectionHeader title="Integrations" description="Connects to the calendar and booking tools you already run on." />
             <div className={styles.integrationRow}>
               {data.integrations.map((i) => (
                 <span key={i} className={styles.integrationChip}>{i}</span>
@@ -231,8 +227,8 @@ export default function AiLeadResponsePage() {
 
           <div className={styles.faqLayout}>
             <SectionHeader
-           
-              title="Lead Response FAQs"
+              
+              title="Appointment Booking FAQs"
               description="Answers to the questions we hear most before a rollout."
             />
             <FAQAccordion items={faqs} />
@@ -242,8 +238,8 @@ export default function AiLeadResponsePage() {
 
       {/* CTA / FOOTER SECTION ------------------------------------------------ */}
       <CTASection
-        title="Ready to Stop Losing Leads to Slow Response?"
-        description="We'll show you exactly how lead response automation fits into your existing process."
+        title="Ready to Stop Losing Appointments to Manual Scheduling?"
+        description="We'll show you exactly how booking automation fits into your existing calendar and process."
         primaryLabel="Get Your AI Audit"
         secondaryLabel="See All Solutions"
         secondaryHref="/solutions"
