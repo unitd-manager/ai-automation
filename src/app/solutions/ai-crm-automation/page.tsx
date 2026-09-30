@@ -118,7 +118,6 @@ export default function CrmAutomationPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="01"
             title="Key Capabilities"
             description="What happens automatically between a customer interaction and an accurate CRM record."
           />
@@ -140,7 +139,6 @@ export default function CrmAutomationPage() {
       <section className="section section-surface">
         <div className="container">
           <SectionHeader
-            index="02"
             title="Where Customer Data Falls Apart"
             description="The same three gaps show up regardless of industry or CRM. CRM automation closes each one."
           />
@@ -177,7 +175,6 @@ export default function CrmAutomationPage() {
         <div className={styles.darkGlow} aria-hidden />
         <div className={`container ${styles.darkInner}`}>
           <SectionHeader
-            index="03"
             dark
             title="From Interaction to Updated Record"
             description="The same path runs no matter which channel the interaction came through."
@@ -190,7 +187,6 @@ export default function CrmAutomationPage() {
       <section className="section">
         <div className="container">
           <SectionHeader
-            index="04"
             title="Manual Data Entry vs. Automated CRM Sync"
             description="What changes once every interaction writes back to one accurate record automatically."
           />
@@ -220,18 +216,17 @@ export default function CrmAutomationPage() {
       {/* 6. INTEGRATIONS + FAQ -------------------------------------------------- */}
       <section className="section section-surface">
         <div className="container">
-          <div style={{ marginBottom: "var(--space-9)" }}>
+          {/*<div style={{ marginBottom: "var(--space-9)" }}>
             <SectionHeader title="Integrations" description="Connects to the CRM you already run on." />
             <div className={styles.integrationRow}>
               {data.integrations.map((i) => (
                 <span key={i} className={styles.integrationChip}>{i}</span>
               ))}
             </div>
-          </div>
+          </div>*/}
 
           <div className={styles.faqLayout}>
             <SectionHeader
-              index="05"
               title="CRM Automation FAQs"
               description="Answers to the questions we hear most before a rollout."
             />
