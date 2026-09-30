@@ -18,9 +18,8 @@ const columns = [
       { label: "AI Chat", href: "/solutions/ai-chat" },
       { label: "Lead Response", href: "/solutions/ai-lead-response" },
       { label: "Appointment Automation", href: "/solutions/ai-appointment-booking" },
-      { label: "CRM Automation", href: "/solutions#crm-automation" },
-      { label: "Document Automation", href: "/solutions#document-automation" },
-      { label: "Business Intelligence", href: "/solutions#business-intelligence" },
+      { label: "CRM Automation", href: "/solutions/ai-crm-automation" },
+      { label: "Document Automation", href: "/solutions/ai-document-processing" },
     ],
   },
   {

@@ -39,6 +39,8 @@ const dedicatedPageRoutes: Record<string, string> = {
   "ai-chat": "/solutions/ai-chat",
   "appointment-automation": "/solutions/ai-appointment-booking",
   "follow-up-automation": "/solutions/ai-follow-up",
+  "crm-automation": "/solutions/ai-crm-automation",
+  "document-automation": "/solutions/ai-document-processing",
 };
 
 export default function SolutionCard({ solution, compact = false }: SolutionCardProps) {

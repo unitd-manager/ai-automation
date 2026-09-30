@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -26,16 +26,8 @@ const solutionsMenu = [
   {
     heading: "CRM & Operations",
     items: [
-      { label: "CRM Automation", href: "/solutions#crm-automation" },
-      { label: "Document Processing", href: "/solutions#document-automation" },
-    ],
-  },
-  {
-    heading: "Business Intelligence",
-    items: [
-      { label: "Dashboards", href: "/solutions#business-intelligence" },
-      { label: "Reporting", href: "/solutions#business-intelligence" },
-      { label: "Custom AI Agents", href: "/solutions#custom-ai-agents" },
+      { label: "CRM Automation", href: "/solutions/ai-crm-automation" },
+      { label: "Document Processing", href: "/solutions/ai-document-processing" },
     ],
   },
 ];
@@ -109,9 +101,29 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
   const onDarkHero = darkHeroRoutes.includes(pathname) || pathname.startsWith("/use-cases/");
   const useWhiteLogo = onDarkHero && !scrolled;
+
+  const openMenuNow = (label: string) => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+    setOpenMenu(label);
+  };
+
+  const scheduleClose = () => {
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpenMenu(null), 180);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -150,8 +162,8 @@ export default function Navbar() {
             <div
               key={link.label}
               className={styles.navItem}
-              onMouseEnter={() => link.menu && setOpenMenu(link.label)}
-              onMouseLeave={() => link.menu && setOpenMenu(null)}
+              onMouseEnter={() => link.menu && openMenuNow(link.label)}
+              onMouseLeave={() => link.menu && scheduleClose()}
             >
               <Link href={link.href} className={styles.navLink}>
                 {link.label}
@@ -160,7 +172,7 @@ export default function Navbar() {
 
               {link.menu && (
                 <div
-                  className={`${styles.megaMenu} ${openMenu === link.label ? styles.megaMenuOpen : ""} ${link.menu.length === 1 ? styles.megaMenuNarrow : ""}`}
+                  className={`${styles.megaMenu} ${openMenu === link.label ? styles.megaMenuOpen : ""} ${link.menu.length === 1 ? styles.megaMenuNarrow : ""} ${link.menu.length === 3 ? styles.megaMenuCompact : ""}`}
                 >
                   <div className={styles.megaMenuGrid} style={{ gridTemplateColumns: `repeat(${link.menu.length}, 1fr)` }}>
                     {link.menu.map((group) => (
