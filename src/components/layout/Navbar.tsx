@@ -210,7 +210,7 @@ export default function Navbar() {
               {link.menu && (
                 <div className={styles.mobileSubList}>
                   {link.menu.flatMap((g) => g.items).map((item) => (
-                    <Link key={item.label} href={item.href} className={styles.mobileSubLink} onClick={() => setMobileOpen(false)}>
+                    <Link key={`${item.href}-${item.label}`} href={item.href} className={styles.mobileSubLink} onClick={() => setMobileOpen(false)}>
                       {item.label}
                     </Link>
                   ))}
