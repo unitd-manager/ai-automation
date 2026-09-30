@@ -33,10 +33,16 @@ interface SolutionCardProps {
   compact?: boolean;
 }
 
+const dedicatedPageRoutes: Record<string, string> = {
+  "ai-lead-response": "/solutions/ai-lead-response",
+  "ai-voice-agents": "/solutions/ai-voice-agents",
+  "ai-chat": "/solutions/ai-chat",
+  "appointment-automation": "/solutions/ai-appointment-booking",
+  "follow-up-automation": "/solutions/ai-follow-up",
+};
+
 export default function SolutionCard({ solution, compact = false }: SolutionCardProps) {
-  const href = solution.slug === "ai-lead-response" || solution.slug === "ai-voice-agents"
-    ? `/solutions/${solution.slug}`
-    : `/solutions#${solution.slug}`;
+  const href = dedicatedPageRoutes[solution.slug] ?? `/solutions#${solution.slug}`;
 
   const Icon = iconMap[solution.icon] ?? Zap;
 

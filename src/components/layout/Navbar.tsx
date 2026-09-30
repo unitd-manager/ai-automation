@@ -12,15 +12,15 @@ const solutionsMenu = [
     heading: "Lead & Customer Automation",
     items: [
       { label: "AI Voice Agent", href: "/solutions/ai-voice-agents" },
-      { label: "AI Chat", href: "/solutions#ai-chat" },
+      { label: "AI Chat", href: "/solutions/ai-chat" },
       { label: "Lead Response", href: "/solutions/ai-lead-response" },
     ],
   },
   {
     heading: "Sales & Appointment Automation",
     items: [
-      { label: "Appointment Booking", href: "/solutions#appointment-automation" },
-      { label: "Follow-Up", href: "/solutions#follow-up-automation" },
+      { label: "Appointment Booking", href: "/solutions/ai-appointment-booking" },
+      { label: "Follow-Up", href: "/solutions/ai-follow-up" },
     ],
   },
   {
@@ -209,8 +209,8 @@ export default function Navbar() {
               </Link>
               {link.menu && (
                 <div className={styles.mobileSubList}>
-                  {link.menu.flatMap((g) => g.items).map((item) => (
-                    <Link key={`${item.href}-${item.label}`} href={item.href} className={styles.mobileSubLink} onClick={() => setMobileOpen(false)}>
+                  {link.menu.flatMap((g) => g.items).map((item, i) => (
+                    <Link key={`${item.href}-${i}`} href={item.href} className={styles.mobileSubLink} onClick={() => setMobileOpen(false)}>
                       {item.label}
                     </Link>
                   ))}
