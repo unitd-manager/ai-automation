@@ -1,4 +1,18 @@
 .diagram {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5) 0;
+}
+
+.stageWrap {
+  display: flex;
+  align-items: center;
+}
+
+/* Hide the trailing connector for the last item in each row of 4,
+   so arrows never dangle at a line break. */
+.stageWrap:nth-child(4n) .connector {
+  visibility: hidden;
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
@@ -12,6 +26,7 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  width: 100%;
   width: auto;
   min-width: 142px;
   min-height: 64px;
@@ -152,6 +167,16 @@
 
 @media (max-width: 860px) {
   .diagram {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .stageWrap {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+  .stageWrap:nth-child(4n) .connector {
+    visibility: visible;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -160,10 +185,6 @@
   .node {
     width: 100%;
     max-width: none;
-  }
-  .nodeLeft,
-  .nodeRight {
-    justify-self: stretch;
   }
   .connector {
     width: 100%;

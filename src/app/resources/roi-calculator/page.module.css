@@ -141,3 +141,256 @@
   position: relative;
   z-index: 1;
 }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  color: #ffffff;
+  background: linear-gradient(116deg, var(--color-primary) 0%, #162a55 62%, var(--color-secondary) 100%);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  right: -12%;
+  bottom: -62%;
+  width: 58%;
+  height: 135%;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 50%;
+  transform: rotate(-24deg);
+  box-shadow: 0 0 0 34px rgba(255, 255, 255, 0.035), 0 0 0 70px rgba(255, 255, 255, 0.02);
+}
+
+.heroEyebrow,
+.sectionEyebrow {
+  position: relative;
+  z-index: 1;
+  margin-bottom: var(--space-3);
+  color: #a9c0f4;
+  font: 600 0.75rem var(--font-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.heroTitle,
+.heroCopy {
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  color: #ffffff;
+  max-width: 19ch;
+}
+
+.heroCopy {
+  color: #d7e0f3;
+}
+
+.contextGrid,
+.teamBlock {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: var(--space-9);
+  align-items: start;
+}
+
+.contextGrid h2,
+.teamBlock h2 {
+  font-size: var(--fs-h2);
+}
+
+.contextCopy {
+  margin-bottom: var(--space-4);
+  color: var(--color-muted);
+  line-height: 1.65;
+}
+
+.taskGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-8);
+}
+
+.taskItem {
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-primary);
+  font-size: 0.85rem;
+  background: var(--color-surface);
+}
+
+.calculatorSection {
+  scroll-margin-top: 90px;
+}
+
+.valueGrid,
+.measureGrid,
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+.valueCard,
+.measureCard,
+.stepCard {
+  position: relative;
+  min-height: 220px;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(145deg, #ffffff, #f4f7fb);
+  box-shadow: var(--shadow-sm);
+}
+
+.valueIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: var(--space-5);
+  border: 1px solid rgba(62, 95, 174, 0.2);
+  border-radius: var(--radius-sm);
+  color: var(--color-accent);
+  background: var(--color-accent-100);
+}
+
+.valueCard h3,
+.measureCard h3,
+.stepCard h3 {
+  margin-bottom: var(--space-3);
+  font-size: 1.05rem;
+}
+
+.valueCard p,
+.measureCard p,
+.stepCard p {
+  color: var(--color-muted);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.impact {
+  display: block;
+  margin-top: var(--space-5);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--color-border);
+  color: var(--color-accent-600);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.compareSection,
+.faqSection {
+  background: var(--color-surface);
+}
+
+.compareGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+}
+
+.comparePanel {
+  padding: var(--space-7);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+}
+
+.comparePanelActive {
+  border-color: rgba(62, 95, 174, 0.45);
+  background: linear-gradient(145deg, #162a55, #0b1220);
+  color: #ffffff;
+  box-shadow: var(--shadow-lg);
+}
+
+.compareLabel {
+  display: block;
+  margin-bottom: var(--space-5);
+  color: var(--color-accent);
+  font: 600 0.75rem var(--font-mono);
+  text-transform: uppercase;
+}
+
+.comparePanel ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  counter-reset: compare;
+}
+
+.comparePanel li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: baseline;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.comparePanelActive li {
+  color: #d7e0f3;
+}
+
+.comparePanel li::before {
+  counter-increment: compare;
+  content: counter(compare, decimal-leading-zero);
+  color: var(--color-accent);
+  font: 0.7rem var(--font-mono);
+}
+
+.compareNote {
+  margin-top: var(--space-5);
+  color: var(--color-accent-600);
+  font-weight: 600;
+  text-align: center;
+}
+
+.measureCard svg {
+  margin-bottom: var(--space-5);
+  color: var(--color-accent);
+}
+
+.stepCard {
+  min-height: 180px;
+}
+
+.stepNumber {
+  display: block;
+  margin-bottom: var(--space-6);
+  color: var(--color-accent);
+  font-size: 0.75rem;
+}
+
+.teamPoints {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.teamPoints p {
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.teamPoints strong {
+  color: var(--color-primary);
+}
+
+@media (max-width: 860px) {
+  .contextGrid,
+  .teamBlock,
+  .valueGrid,
+  .measureGrid,
+  .stepsGrid,
+  .taskGrid,
+  .compareGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -3,17 +3,76 @@
   flex-direction: column;
   border: 1px solid var(--color-dark-border);
   border-radius: var(--radius-md);
+  min-height: 620px;
   padding: var(--space-7);
-  background: linear-gradient(160deg, var(--color-dark-surface) 0%, #0e1626 100%);
-  transition: border-color var(--dur-fast), transform var(--dur-fast), box-shadow var(--dur-fast);
+  background: linear-gradient(145deg, #121d34 0%, #0b1324 72%, #101d3b 100%);
+  transition: border-color var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
   height: 100%;
   position: relative;
+  overflow: hidden;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  top: -120px;
+  right: -90px;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(76, 116, 214, 0.2) 0%, rgba(76, 116, 214, 0) 70%);
+  pointer-events: none;
+}
+
+.accentBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-med) var(--ease-out);
 }
 
 .card:hover {
   border-color: var(--color-accent);
-  transform: translateY(-3px);
-  box-shadow: 0 20px 40px -16px rgba(76, 116, 214, 0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 28px 48px -18px rgba(76, 116, 214, 0.4);
+}
+
+.card:hover .accentBar {
+  transform: scaleX(1);
+}
+
+.topRow {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+.iconWrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(76, 116, 214, 0.3);
+  background: rgba(76, 116, 214, 0.12);
+  color: var(--color-accent);
+  transition: background var(--dur-med), transform var(--dur-med);
+}
+
+.card:hover .iconWrap {
+  background: var(--color-accent);
+  color: #fff;
+  transform: rotate(-6deg) scale(1.06);
 }
 
 .index {
@@ -24,31 +83,42 @@
   border: 1px solid rgba(76, 116, 214, 0.35);
   border-radius: 999px;
   padding: 0.25rem 0.7rem;
-  margin-bottom: var(--space-5);
 }
 
 .name {
+  position: relative;
+  z-index: 1;
   font-size: 1.4rem;
   color: #ffffff;
+  min-height: 1.7em;
   margin-bottom: var(--space-2);
 }
 
 .segments {
+  position: relative;
+  z-index: 1;
   font-size: 0.875rem;
   color: var(--color-dark-muted);
+  min-height: 2.6em;
   margin-bottom: var(--space-5);
 }
 
 .hero {
+  position: relative;
+  z-index: 1;
   font-size: 0.9375rem;
   color: #d7dde6;
   line-height: 1.55;
+  min-height: 4.8rem;
   border-top: 1px solid var(--color-dark-border);
   padding-top: var(--space-4);
 }
 
 .opportunity {
+  position: relative;
+  z-index: 1;
   margin-top: var(--space-4);
+  min-height: 7rem;
   padding-top: var(--space-4);
   border-top: 1px solid var(--color-dark-border);
 }
@@ -68,18 +138,46 @@
   line-height: 1.5;
 }
 
+.connects {
+  position: relative;
+  z-index: 1;
+  font-size: 0.8125rem;
+  color: var(--color-dark-muted);
+  min-height: 3.2rem;
+  margin-top: var(--space-3);
+}
+
 .exploreLink {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   font-size: 0.8125rem;
   font-weight: 600;
   color: #ffffff;
-  margin-top: var(--space-5);
+  width: 100%;
+  margin-top: auto;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--color-dark-border);
   transition: gap var(--dur-fast) var(--ease-out);
 }
 
 .card:hover .exploreLink {
   gap: var(--space-3);
   color: var(--color-accent);
+}
+
+@media (max-width: 860px) {
+  .card {
+    min-height: 0;
+  }
+
+  .name,
+  .segments,
+  .hero,
+  .opportunity,
+  .connects {
+    min-height: 0;
+  }
 }

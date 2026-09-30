@@ -1,0 +1,38 @@
+.hero { padding: 160px 0 var(--space-9); background: radial-gradient(90% 120% at 100% 0%, #203b70 0%, var(--color-dark-bg) 62%); color: #fff; }
+.eyebrow, .heroLabel { display: block; color: #a8c4ff; font-family: var(--font-mono); font-size: var(--fs-micro); letter-spacing: 0; text-transform: uppercase; }
+.heroTitle { max-width: 17ch; margin: var(--space-4) 0 var(--space-5); color: #fff; font-size: var(--fs-hero); }
+.heroDescription { max-width: 62ch; color: #d2dcf0; font-size: var(--fs-lead); line-height: 1.55; }
+.actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); }
+.heroRule { height: 1px; margin: var(--space-9) 0 var(--space-5); background: var(--color-dark-border); }
+.heroLabel { margin-bottom: var(--space-3); color: #a8c4ff; }
+.tagGrid { display: flex; flex-wrap: wrap; gap: var(--space-2); max-width: 850px; }
+.tag { padding: 0.55rem 0.8rem; border: 1px solid #3d5687; border-radius: var(--radius-sm); color: #e7edfb; font-size: var(--fs-small); }
+.sectionTint, .integrationSection { background: var(--color-surface); }
+.cardGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+.painCard { min-height: 190px; padding: var(--space-5); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: #fff; box-shadow: var(--shadow-sm); }
+.cardNumber, .solutionIndex, .opportunityNumber { display: block; color: var(--color-accent); font-size: var(--fs-micro); }
+.painCard h3 { margin: var(--space-6) 0 var(--space-3); font-size: var(--fs-h3); }
+.painCard p, .impact p { color: var(--color-muted); line-height: 1.6; }
+.solutionGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-5); }
+.solutionCard { padding: var(--space-6); border: 1px solid var(--color-dark-border); border-radius: var(--radius-md); background: var(--color-dark-surface); }
+.solutionIndex { color: #9bb8ff; }
+.solutionCard h3 { margin: var(--space-4) 0 var(--space-3); color: #fff; font-size: var(--fs-h3); }
+.solutionDescription { min-height: 3.2em; color: var(--color-dark-muted); }
+.solutionCard ul { display: grid; gap: var(--space-3); margin: var(--space-5) 0 var(--space-6); }
+.solutionCard li { position: relative; padding-left: 1.25rem; color: #e6ebf4; font-size: var(--fs-small); }
+.solutionCard li::before { content: ""; position: absolute; left: 0; top: 0.65em; width: 6px; height: 6px; border-radius: 50%; background: #82a8ff; }
+.solutionLink { color: #a8c4ff; font-size: var(--fs-small); font-weight: 600; }
+.opportunityGrid { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--color-border); border-left: 1px solid var(--color-border); }
+.opportunity { min-height: 120px; display: flex; flex-direction: column; justify-content: space-between; gap: var(--space-4); padding: var(--space-5); border-right: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); font-family: var(--font-display); font-size: 1.1rem; }
+.opportunityNumber { color: var(--color-subtle); }
+.workflowSection { background: var(--color-primary); color: var(--color-dark-text); }
+.workflowWrap { padding-top: var(--space-4); overflow-x: auto; }
+.impactGrid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+.impact { padding-top: var(--space-4); border-top: 2px solid var(--color-accent); }
+.impact strong { display: block; margin-bottom: var(--space-5); color: var(--color-accent-600); font-family: var(--font-mono); font-size: var(--fs-small); text-transform: uppercase; }
+.impact h3 { margin-bottom: var(--space-3); font-size: var(--fs-h3); }
+.integrationLayout { display: grid; grid-template-columns: minmax(260px, 1fr) 1.2fr; gap: var(--space-8); align-items: center; }
+.integrationGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-3); }
+.integration { padding: var(--space-4); border: 1px solid var(--color-border-strong); border-radius: var(--radius-sm); background: #fff; color: var(--color-primary); font-weight: 600; }
+@media (max-width: 900px) { .cardGrid, .opportunityGrid { grid-template-columns: repeat(2, 1fr); } .impactGrid { grid-template-columns: repeat(2, 1fr); } .integrationLayout { grid-template-columns: 1fr; gap: var(--space-4); } }
+@media (max-width: 640px) { .hero { padding-top: 130px; } .cardGrid, .solutionGrid, .opportunityGrid, .impactGrid { grid-template-columns: 1fr; } .painCard { min-height: 0; } .solutionDescription { min-height: 0; } .integrationGrid { grid-template-columns: 1fr; } }
