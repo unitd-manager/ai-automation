@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
+import { PhoneCall, Zap, CalendarCheck } from "lucide-react";
+import Button from "@/components/ui/Button";
 import styles from "./page.module.css";
-import { tagline, pains, agents, opportunities, impact, flow, outcomes } from "./Content";
+import { pains, agents, opportunities, impact, flow, outcomes } from "./content";
 
 function Reveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -46,6 +48,19 @@ function Checks({ items }: { items: string[] }) {
   );
 }
 
+const heroDesc = "One AI automation solution, tailored for all verticals.";
+
+const subCopy =
+  "From the first customer call or text to the final follow-up, AI handles every step: answering instantly, qualifying leads, booking appointments, and bringing customers back, so no opportunity is missed.";
+
+const heroPoints: [string, string][] = [
+  ["24/7 Voice & SMS", "Capture every lead, even after hours."],
+  ["Instant response", "Customers get instant answers."],
+  ["Automated booking", "Automated booking, updates and reminders."],
+];
+
+const pointIcons = [PhoneCall, Zap, CalendarCheck];
+
 export default function WorkflowBoard() {
   const [lit, setLit] = useState(1);
   const scene = useRef<HTMLDivElement>(null);
@@ -82,9 +97,25 @@ export default function WorkflowBoard() {
       <header className={styles.hero}>
         <div className={`container ${styles.heroGrid}`}>
           <div className={styles.heroText}>
-            <span className={styles.labelBox}>How it works</span>
-            <h1 className={styles.h1}>How It Works: <em>End-to-End Flow</em></h1>
-            <p className={styles.lead}>{tagline}</p>
+            <span className={styles.eyebrow}>How It Works</span>
+            <h1 className={styles.h1}>From First Call to Repeat Customer, <em>Fully Automated</em></h1>
+            <p className={styles.lead}>{heroDesc}</p>
+            <p className={styles.sub}>{subCopy}</p>
+            <div className={styles.heroActions}>
+              <Button href="/resources/ai-audit" size="lg">Get Your AI Audit</Button>
+              <Button href="/solutions" variant="secondary" size="lg">Explore Our Solutions</Button>
+            </div>
+            <ul className={styles.points}>
+              {heroPoints.map(([ti, bo], i) => {
+                const Icon = pointIcons[i];
+                return (
+                  <li key={ti}>
+                    <span className={styles.pIco}><Icon size={18} aria-hidden="true" /></span>
+                    <div><b>{ti}</b><span>{bo}</span></div>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
           <div ref={scene} className={styles.scene} onMouseMove={onSceneMove} onMouseLeave={onSceneLeave} aria-hidden="true">
             <div className={styles.sceneTitle}>
@@ -117,7 +148,7 @@ export default function WorkflowBoard() {
                 <span className={styles.feedIdx}>{String(i + 1).padStart(2, "0")}</span>
                 <span className={styles.dot} aria-hidden="true" />
                 <p>{t}</p>
-                
+                <span className={styles.feedArrow} aria-hidden="true">→</span>
               </li>
             ))}
           </ul>
