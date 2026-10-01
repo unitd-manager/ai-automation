@@ -5,7 +5,6 @@
   background-size: 32px 32px;
 }
 .label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-accent); }
-.labelBox { composes: label; display: inline-block; border: 1px dashed var(--color-accent); padding: 5px 10px; border-radius: 4px; background: var(--color-background); }
 .h1 { font-family: var(--font-display); font-size: var(--fs-hero); line-height: 1.05; letter-spacing: -0.03em; margin: 20px 0 20px; text-wrap: balance; }
 .h1 em { font-style: normal; color: var(--color-accent); }
 .h2 { font-family: var(--font-display); font-size: var(--fs-h1); line-height: 1.08; letter-spacing: -0.025em; margin: 12px 0 0; }
@@ -126,6 +125,19 @@
 @media (max-width: 560px) { .cards3, .cards4, .outcomes { grid-template-columns: 1fr; } .block { padding: 48px 0; } }
 @media (prefers-reduced-motion: reduce) { .bar, .in .bar { clip-path: none; transition: none; } .rings span, .hot .dot, .feedRow:hover .dot { animation: none; } .feedRow, .feedArrow { transition: none; } .reveal { opacity: 1; transform: none; transition: none; } .fx, .fx::after, .ic, .plus { transition: none; animation: none; } .step { opacity: 1; } }
 
+/* ---- Site-theme overrides (match home/pricing pages) ---- */
+.page { background: var(--color-background); background-image: none; }
+.eyebrow { display: inline-flex; align-items: center; gap: var(--space-2); font-size: 0.8125rem; color: var(--color-accent); font-weight: 600; margin-bottom: var(--space-5); }
+.eyebrow::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: var(--color-accent); }
+.label { display: inline-flex; align-items: center; gap: var(--space-2); font-family: var(--font-body); font-size: 0.8125rem; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--color-accent); }
+.label::before { content: ""; width: 18px; height: 2px; border-radius: 2px; background: var(--color-accent); }
+.hero { padding: 160px 0 var(--space-9); background: linear-gradient(180deg, #f8f9fb 0%, #ffffff 60%); position: relative; overflow: hidden; }
+.h1 { font-size: var(--fs-hero); max-width: 18ch; margin: 0 0 var(--space-5); }
+.lead { font-size: var(--fs-lead); color: var(--color-ink); font-weight: 500; line-height: 1.5; max-width: 40ch; margin: 0; }
+.sub { font-size: 1rem; color: var(--color-muted); line-height: 1.7; max-width: 52ch; margin: var(--space-5) 0 0; padding-left: var(--space-4); border-left: 2px solid var(--color-accent-100); }
+.blockAlt { background: linear-gradient(180deg, var(--color-surface) 0%, #eef1f6 100%); border-block: 0; }
+
+
 /* ---- 3D hero scene (pure CSS): readable floating plates ---- */
 .grp { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-secondary); font-weight: 500; }
 .scene { --px: 0; --py: 0; position: relative; height: 470px; border-radius: var(--radius-lg); background: var(--color-primary); overflow: hidden; perspective: 1200px; box-shadow: var(--shadow-lg); }
@@ -142,3 +154,17 @@
 @keyframes float { 0%, 100% { transform: translateZ(calc(var(--i) * 12px)); } 50% { transform: translateZ(calc(var(--i) * 12px + 14px)); } }
 @media (max-width: 560px) { .scene { height: 450px; } .plateTxt { font-size: 13px; } }
 @media (prefers-reduced-motion: reduce) { .plate { animation: none; } .stage { transition: none; } }
+
+
+/* ---- Hero: fill left column to match the 3D scene ---- */
+.heroGrid { align-items: stretch; }
+.heroText { display: flex; flex-direction: column; justify-content: center; }
+.h1 { font-size: clamp(2.2rem, 4.2vw, 3.4rem); max-width: 20ch; line-height: 1.08; }
+.heroActions { display: flex; gap: var(--space-4); flex-wrap: wrap; margin-top: var(--space-6); }
+.points { list-style: none; margin: var(--space-6) 0 0; padding: var(--space-5) 0 0; border-top: 1px dashed var(--color-border-strong); display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+.points li { display: flex; gap: 10px; align-items: flex-start; }
+.pIco { flex: none; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--color-accent-100); color: var(--color-accent); transition: background 0.3s, color 0.3s, transform 0.3s; }
+.points li:hover .pIco { background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); color: #fff; transform: rotate(-8deg) scale(1.08); }
+.points b { display: block; font-family: var(--font-display); font-size: 0.95rem; line-height: 1.25; }
+.points li span:not(.pIco) { display: block; margin-top: 2px; font-size: 0.85rem; line-height: 1.4; color: var(--color-muted); }
+@media (max-width: 560px) { .points { grid-template-columns: 1fr; } }

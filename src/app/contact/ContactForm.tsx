@@ -6,11 +6,73 @@ import styles from "./page.module.css";
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
-  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // Wire this up to your CRM, email service, or form backend (e.g. HubSpot, Formspree, a Next.js API route).
-    setSubmitted(true);
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+    const nextErrors: Record<string, string> = {};
+    const requiredFields = [
+      ["name", "Name"],
+      ["company", "Company"],
+      ["email", "Email"],
+      ["industry", "Industry"],
+    ];
+
+    for (const [field, label] of requiredFields) {
+      if (!String(formData.get(field) ?? "").trim()) {
+        nextErrors[field] = `${label} is required.`;
+      }
+    }
+
+    const email = String(formData.get("email") ?? "").trim();
+    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      nextErrors.email = "Enter a valid email address.";
+    }
+
+    const website = form.elements.namedItem("website") as HTMLInputElement;
+    if (website.value && website.validity.typeMismatch) {
+      nextErrors.website = "Enter a valid website URL, including https://.";
+    }
+
+    setErrors(nextErrors);
+    const firstInvalidField = Object.keys(nextErrors)[0];
+    if (firstInvalidField) {
+      (form.elements.namedItem(firstInvalidField) as HTMLElement).focus();
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitError("");
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(Object.fromEntries(formData.entries())),
+      });
+      const result = await response.json();
+      if (!response.ok) {
+        setSubmitError(result.error || "We couldn't send your request. Please try again.");
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Unable to send your request right now. Please check your connection and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  function clearFieldError(name: string) {
+    setErrors((currentErrors) => {
+      if (!currentErrors[name]) return currentErrors;
+      const nextErrors = { ...currentErrors };
+      delete nextErrors[name];
+      return nextErrors;
+    });
   }
 
   if (submitted) {
@@ -25,22 +87,25 @@ export default function ContactForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.field}>
         <label htmlFor="name">Name</label>
-        <input id="name" name="name" type="text" required autoComplete="name" />
+        <input id="name" name="name" type="text" required autoComplete="name" aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} onChange={() => clearFieldError("name")} />
+        {errors.name && <p id="name-error" className={styles.fieldError} role="alert">{errors.name}</p>}
       </div>
       <div className={styles.field}>
         <label htmlFor="company">Company</label>
-        <input id="company" name="company" type="text" required autoComplete="organization" />
+        <input id="company" name="company" type="text" required autoComplete="organization" aria-invalid={Boolean(errors.company)} aria-describedby={errors.company ? "company-error" : undefined} onChange={() => clearFieldError("company")} />
+        {errors.company && <p id="company-error" className={styles.fieldError} role="alert">{errors.company}</p>}
       </div>
       <div className={styles.field}>
         <label htmlFor="email">Email</label>
-        <input id="email" name="email" type="email" required autoComplete="email" />
+        <input id="email" name="email" type="email" required autoComplete="email" aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "email-error" : undefined} onChange={() => clearFieldError("email")} />
+        {errors.email && <p id="email-error" className={styles.fieldError} role="alert">{errors.email}</p>}
       </div>
       <div className={styles.field}>
         <label htmlFor="industry">Industry</label>
-        <select id="industry" name="industry" required defaultValue="">
+        <select id="industry" name="industry" required defaultValue="" aria-invalid={Boolean(errors.industry)} aria-describedby={errors.industry ? "industry-error" : undefined} onChange={() => clearFieldError("industry")}>
           <option value="" disabled>Select industry</option>
           <option>HVAC</option>
           <option>Plumbing</option>
@@ -52,10 +117,12 @@ export default function ContactForm() {
           <option>Construction / General Contracting</option>
           <option>Other</option>
         </select>
+        {errors.industry && <p id="industry-error" className={styles.fieldError} role="alert">{errors.industry}</p>}
       </div>
       <div className={styles.field}>
         <label htmlFor="website">Website</label>
-        <input id="website" name="website" type="url" placeholder="https://" />
+        <input id="website" name="website" type="url" placeholder="https://" aria-invalid={Boolean(errors.website)} aria-describedby={errors.website ? "website-error" : undefined} onChange={() => clearFieldError("website")} />
+        {errors.website && <p id="website-error" className={styles.fieldError} role="alert">{errors.website}</p>}
       </div>
       <div className={styles.field}>
         <label htmlFor="crm">Current CRM</label>
@@ -89,8 +156,9 @@ export default function ContactForm() {
         <textarea id="challenge" name="challenge" rows={4} placeholder="What's costing your team the most time or revenue right now?" />
       </div>
       <div className={styles.submitRow}>
-        <button type="submit" className={`${buttonStyles.button} ${buttonStyles.primary} ${buttonStyles.lg}`}>
-          Request AI Audit
+        {submitError && <p className={styles.fieldError} role="alert">{submitError}</p>}
+        <button type="submit" disabled={isSubmitting} className={`${buttonStyles.button} ${buttonStyles.primary} ${buttonStyles.lg}`}>
+          {isSubmitting ? "Sending…" : "Request AI Audit"}
         </button>
       </div>
     </form>
