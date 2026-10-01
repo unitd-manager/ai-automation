@@ -3,6 +3,7 @@ import { Check, Clock, TrendingUp, Map, ShieldCheck } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
+import FAQAccordion from "@/components/sections/FAQAccordion";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
@@ -43,6 +44,25 @@ const whyPoints = [
   },
 ];
 
+const auditSteps = [
+  { number: "01", title: "Map the workflow", body: "We trace how an inquiry moves from first contact through qualification, booking, handoff, and follow-up." },
+  { number: "02", title: "Find the leverage", body: "We identify the slowdowns, drop-off points, and repetitive work where automation can create measurable capacity." },
+  { number: "03", title: "Prioritize the build", body: "You get a sequenced plan showing what to automate first, what it connects to, and what success should look like." },
+];
+
+const auditOutcomes = [
+  { title: "A clear starting point", body: "Know which workflow deserves attention first instead of trying to automate everything at once." },
+  { title: "A business case", body: "See the likely time, response, and revenue impact behind each recommendation." },
+  { title: "A practical next step", body: "Leave with an implementation sequence your team can discuss, budget, and act on." },
+];
+
+const faqs = [
+  { question: "How long does the audit take?", answer: "Most audits are completed within one focused working session, followed by a written opportunity map and recommendations." },
+  { question: "Do I need to prepare anything?", answer: "Bring a basic view of your lead sources, scheduling process, CRM, and the moments where work tends to slow down. We will guide the conversation." },
+  { question: "Is the audit only for businesses ready to buy?", answer: "No. The audit is designed to give you a useful prioritization whether you implement immediately, later, or with another partner." },
+  { question: "What happens after the audit?", answer: "You receive the findings and roadmap. From there, you can use it internally or ask us to scope and build the first workflow." },
+];
+
 export default function AiAuditPage() {
   return (
     <>
@@ -56,6 +76,55 @@ export default function AiAuditPage() {
           </p>
           <div className={styles.heroCta}>
             <Button href="/contact" size="lg">Request Your AI Audit</Button>
+          </div>
+        </div>
+      </section>
+
+      <section className={`section ${styles.processSection}`}>
+        <div className="container">
+          <SectionHeader
+            title="How the Audit Works"
+            description="A focused review that turns operational friction into a short list of high-confidence automation opportunities."
+          />
+          <div className={styles.processGrid}>
+            {auditSteps.map((step) => (
+              <article key={step.number} className={styles.processCard}>
+                <span className={`${styles.stepNumber} mono`}>{step.number}</span>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section-surface">
+        <div className="container">
+          <SectionHeader
+            title="What You Leave With"
+            description="The result is designed to be useful in an operations meeting, a planning conversation, or a build brief."
+          />
+          <div className={styles.outcomesGrid}>
+            {auditOutcomes.map((outcome) => (
+              <article key={outcome.title} className={styles.outcomeCard}>
+                <span className={styles.outcomeMark}><Check size={16} /></span>
+                <h3>{outcome.title}</h3>
+                <p>{outcome.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`section ${styles.faqSection}`}>
+        <div className="container">
+          <div className={styles.faqLayout}>
+            <div>
+              <p className={styles.faqEyebrow}>Before you book</p>
+              <h2>Questions about the audit?</h2>
+              <p className={styles.faqIntro}>A few practical answers about the time, preparation, and next steps involved.</p>
+            </div>
+            <FAQAccordion items={faqs} />
           </div>
         </div>
       </section>
