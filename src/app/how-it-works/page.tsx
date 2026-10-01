@@ -14,7 +14,7 @@ export default function HowItWorksPage() {
     <>
       <WorkflowBoard />
       <CTASection
-        title="Automate today. Scale tomorrow."
+        title="Respond when the customer needs you most."
         description="Solve real problems. Automate peak moments. Scale predictably."
       />
     </>
