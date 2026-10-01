@@ -2,133 +2,253 @@
   display: flex;
   flex-direction: column;
   border: 1px solid var(--color-dark-border);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   padding: var(--space-7);
-  background: linear-gradient(160deg, var(--color-dark-surface) 0%, #0e1626 100%);
+  background: linear-gradient(165deg, #16213a 0%, var(--color-dark-bg) 70%);
   transition: border-color var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out),
     box-shadow var(--dur-med) var(--ease-out);
   height: 100%;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
 
+/* Top edge that draws in on hover */
 .accentBar {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-secondary) 100%);
+  background: linear-gradient(90deg, #7aa2ff 0%, var(--color-accent) 50%, var(--color-secondary) 100%);
   transform: scaleX(0);
   transform-origin: left center;
   transition: transform var(--dur-med) var(--ease-out);
+  z-index: 2;
 }
 
-.card:hover {
-  border-color: var(--color-accent);
+/* Blue light that blooms from the top-right corner on hover */
+.glow {
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(circle, rgba(76, 116, 214, 0.38) 0%, rgba(76, 116, 214, 0) 65%);
+  opacity: 0.35;
+  transition: opacity var(--dur-med) var(--ease-out);
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Blueprint grid, same language as the hero */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(80% 60% at 100% 0%, #000 0%, transparent 75%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: rgba(122, 162, 255, 0.45);
   transform: translateY(-6px);
-  box-shadow: 0 28px 48px -18px rgba(76, 116, 214, 0.4);
+  box-shadow: 0 22px 38px -20px rgba(62, 95, 174, 0.35);
 }
 
-.card:hover .accentBar {
+.card:hover .accentBar,
+.card:focus-visible .accentBar {
   transform: scaleX(1);
+}
+
+.card:hover .glow,
+.card:focus-visible .glow {
+  opacity: 1;
 }
 
 .topRow {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-6);
 }
 
 .iconWrap {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(76, 116, 214, 0.3);
-  background: rgba(76, 116, 214, 0.12);
-  color: var(--color-accent);
-  transition: background var(--dur-med), transform var(--dur-med);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(122, 162, 255, 0.3);
+  background: rgba(76, 116, 214, 0.14);
+  color: #8fb0ff;
+  transition: background var(--dur-med), color var(--dur-med), transform var(--dur-med) var(--ease-out);
 }
 
 .card:hover .iconWrap {
   background: var(--color-accent);
   color: #fff;
-  transform: rotate(-6deg) scale(1.06);
+  transform: rotate(-6deg) scale(1.08);
 }
 
 .index {
   font-size: 0.6875rem;
-  color: var(--color-accent);
+  color: #8fb0ff;
   display: inline-flex;
   align-self: flex-start;
-  border: 1px solid rgba(76, 116, 214, 0.35);
+  border: 1px solid rgba(122, 162, 255, 0.35);
   border-radius: 999px;
   padding: 0.25rem 0.7rem;
 }
 
 .name {
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   color: #ffffff;
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
 }
 
-.segments {
-  font-size: 0.875rem;
-  color: var(--color-dark-muted);
+/* Segments as chips instead of a dotted string */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   margin-bottom: var(--space-5);
 }
 
+.chip {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #dbe2f5;
+  border: 1px solid var(--color-dark-border);
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+  padding: 0.25rem 0.7rem;
+  transition: border-color var(--dur-med) var(--ease-out), background var(--dur-med) var(--ease-out);
+}
+
+.card:hover .chip {
+  border-color: rgba(122, 162, 255, 0.4);
+  background: rgba(76, 116, 214, 0.12);
+}
+
 .hero {
-  font-size: 0.9375rem;
-  color: #d7dde6;
-  line-height: 1.55;
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 1.4;
   border-top: 1px solid var(--color-dark-border);
-  padding-top: var(--space-4);
+  padding-top: var(--space-5);
 }
 
 .opportunity {
-  margin-top: var(--space-4);
-  padding-top: var(--space-4);
-  border-top: 1px solid var(--color-dark-border);
+  margin-top: var(--space-5);
+  padding: var(--space-3) 0 var(--space-3) var(--space-4);
+  border-left: 2px solid var(--color-accent);
 }
 
 .opportunityLabel {
   display: block;
-  font-size: 0.6875rem;
-  color: var(--color-accent);
+  font-size: 0.75rem;
+  color: #8fb0ff;
   font-weight: 600;
-  letter-spacing: 0.02em;
   margin-bottom: var(--space-2);
 }
 
 .opportunityText {
-  font-size: 0.85rem;
-  color: #b9c1cf;
+  font-size: 0.9rem;
+  color: #c3cbda;
   line-height: 1.5;
+}
+
+/* Where inquiries get lost */
+.lost {
+  margin-top: var(--space-4);
+}
+
+.lostLabel {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--color-dark-muted);
+  font-weight: 600;
+  margin-bottom: var(--space-2);
+}
+
+.lostList {
+  display: grid;
+  gap: 6px;
+}
+
+.lostList li {
+  position: relative;
+  padding-left: var(--space-4);
+  font-size: 0.85rem;
+  color: #aeb7c7;
+  line-height: 1.45;
+}
+
+.lostList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 6px;
+  height: 6px;
+  border-radius: 1.5px;
+  background: #e0685b;
+  transform: rotate(45deg);
 }
 
 .connects {
   font-size: 0.8125rem;
   color: var(--color-dark-muted);
-  margin-top: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+/* Footer pinned to the bottom so all three cards align */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: var(--space-5);
+}
+
+.connects + .footer {
+  border-top: 0;
 }
 
 .exploreLink {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  font-size: 0.8125rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   color: #ffffff;
-  margin-top: var(--space-5);
-  transition: gap var(--dur-fast) var(--ease-out);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(122, 162, 255, 0.4);
+  color: #ffffff;
+  transition: background var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out),
+    transform var(--dur-med) var(--ease-out);
+}
+
+.card:hover .arrow {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+  transform: translateX(4px);
 }
 
 .card:hover .exploreLink {
-  gap: var(--space-3);
-  color: var(--color-accent);
+  color: #a8c4ff;
 }
