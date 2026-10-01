@@ -4,13 +4,17 @@ import AnimatedSection from "@/components/animations/AnimatedSection";
 import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
 import SolutionCard from "@/components/cards/SolutionCard";
 import CTASection from "@/components/sections/CTASection";
-import { solutions, solutionCategories } from "@/data/solutions";
+import { solutions as allSolutions, solutionCategories as allCategories } from "@/data/solutions";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
+// Only the solutions that have a dedicated page (matches the Solutions menu).
+const solutionCategories = allCategories.slice(0, 3);
+const solutions = allSolutions.filter((s) => solutionCategories.includes(s.category));
+
 export const metadata: Metadata = buildMetadata({
   title: "AI Automation Solutions",
-  description: "Connected AI systems for lead response, voice, appointments, CRM, documents, and business intelligence.",
+  description: "Connected AI systems for lead response, voice, chat, appointments, follow-up, CRM, and documents.",
   path: "/solutions",
 });
 
@@ -32,7 +36,7 @@ export default function SolutionsPage() {
 
       <section className="section">
         <div className="container">
-          <SectionHeader title="Nine Connected Solutions" description="Each solution below is built to plug into the others — a lead response system feeds a CRM, which feeds business intelligence." />
+          <SectionHeader title="Seven Connected Solutions" description="Each solution below is built to plug into the others — a lead response system feeds a booking, which feeds follow-up and the CRM." />
 
           {solutionCategories.map((category) => (
             <div key={category}>

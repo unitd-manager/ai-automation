@@ -1,9 +1,11 @@
 .panel {
-  background: var(--color-dark-bg);
-  border: 1px solid var(--color-dark-border);
+  background:
+    radial-gradient(ellipse at 88% 8%, rgba(62, 95, 174, 0.38) 0%, transparent 42%),
+    linear-gradient(145deg, var(--color-primary) 0%, var(--color-secondary) 62%, var(--color-accent) 100%);
+  border: 1px solid rgba(195, 221, 255, 0.38);
   border-radius: var(--radius-lg);
   padding: var(--space-6) var(--space-7) var(--space-7);
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 22px 52px rgba(11, 18, 32, 0.28), 0 3px 10px rgba(11, 18, 32, 0.16);
   position: relative;
   overflow: hidden;
 }
@@ -14,21 +16,96 @@
   right: -20%;
   width: 60%;
   height: 60%;
-  background: radial-gradient(circle, rgba(76, 116, 214, 0.25) 0%, rgba(76, 116, 214, 0) 70%);
+  background: radial-gradient(circle, rgba(62, 95, 174, 0.28) 0%, rgba(62, 95, 174, 0) 70%);
   pointer-events: none;
+  z-index: 0;
+}
+
+.radioWaves {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  width: min(92%, 34rem);
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.radioRing {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(183, 216, 255, 0.23);
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.18);
+  animation: radioPulse 6s ease-out infinite;
+}
+
+.radioRing:nth-child(1) {
+  --ring-scale: 0.28;
+  animation-delay: 0s;
+}
+
+.radioRing:nth-child(2) {
+  --ring-scale: 0.48;
+  animation-delay: -1.5s;
+}
+
+.radioRing:nth-child(3) {
+  --ring-scale: 0.68;
+  animation-delay: -3s;
+}
+
+.radioRing:nth-child(4) {
+  --ring-scale: 0.88;
+  animation-delay: -4.5s;
+}
+
+@keyframes radioPulse {
+  0% {
+    opacity: 0;
+    transform: scale(0.18);
+  }
+  16% {
+    opacity: 0.2;
+  }
+  68% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.16);
+  }
+}
+
+.panelHeader,
+.panelIntro,
+.readout {
+  position: relative;
+  z-index: 1;
 }
 
 .panelHeader {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-6);
+  margin-bottom: var(--space-5);
 }
 
 .panelLabel {
   font-size: 0.6875rem;
-  color: var(--color-dark-muted);
+  color: #c1dcff;
   letter-spacing: 0.06em;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: #a8f0cb;
+  font-size: 0.7rem;
+  font-weight: 600;
 }
 
 .dot {
@@ -39,8 +116,27 @@
   box-shadow: 0 0 0 3px rgba(78, 201, 138, 0.18);
 }
 
+.panelIntro {
+  max-width: 27rem;
+  margin-bottom: var(--space-6);
+}
+
+.panelTitle {
+  margin-bottom: var(--space-2);
+  color: #ffffff;
+  font-size: clamp(1.35rem, 1.4vw + 1rem, 1.8rem);
+  letter-spacing: -0.02em;
+}
+
+.panelDescription {
+  color: #d3e5ff;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 .flow {
   position: relative;
+  z-index: 1;
   padding-left: var(--space-6);
 }
 
@@ -59,8 +155,8 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #7ba0f2;
-  box-shadow: 0 0 10px 3px rgba(123, 160, 242, 0.65);
+  background: #b6dcff;
+  box-shadow: 0 0 10px 3px rgba(147, 202, 255, 0.7);
   transform: translateX(-50%);
 }
 
@@ -83,28 +179,33 @@
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: #4c74d6;
-  box-shadow: 0 0 0 4px rgba(76, 116, 214, 0.16);
+  background: #a7d2ff;
+  box-shadow: 0 0 0 4px rgba(167, 210, 255, 0.18);
 }
 
 .stageLabel {
   font-family: var(--font-display);
   font-size: 0.95rem;
-  color: #eef1f6;
+  color: #f0f6ff;
 }
 
 .readout {
   display: flex;
-  gap: var(--space-7);
+  gap: var(--space-4);
   margin-top: var(--space-7);
   padding-top: var(--space-6);
-  border-top: 1px solid var(--color-dark-border);
+  border-top: 1px solid rgba(206, 227, 255, 0.24);
 }
 
 .readoutItem {
   display: flex;
+  flex: 1;
   flex-direction: column;
   gap: var(--space-1);
+  padding: var(--space-3);
+  border: 1px solid rgba(206, 227, 255, 0.2);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .readoutValue {
@@ -115,5 +216,13 @@
 
 .readoutLabel {
   font-size: 0.6875rem;
-  color: var(--color-dark-muted);
+  color: #c1d8f5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .radioRing {
+    animation: none;
+    opacity: 0.1;
+    transform: scale(var(--ring-scale));
+  }
 }

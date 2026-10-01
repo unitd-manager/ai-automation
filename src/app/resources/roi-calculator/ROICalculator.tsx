@@ -19,14 +19,24 @@ export default function ROICalculator() {
     const recoveredAppointments = recoveredLeads * (conversionRate / 100);
     const revenueOpportunity = recoveredAppointments * avgValue;
     const hoursSavedMonthly = manualHours * 4.33 * 0.6; // assume 60% of manual hours automated
+    const monthlySavings = hoursSavedMonthly * hourlyCost;
+    const annualSavings = monthlySavings * 12;
+    const estimatedInvestment = 25000;
+    const paybackMonths = monthlySavings > 0 ? estimatedInvestment / monthlySavings : 0;
+    const roiPercent = estimatedInvestment > 0 ? ((annualSavings - estimatedInvestment) / estimatedInvestment) * 100 : 0;
 
     return {
       recoveredLeads: Math.round(recoveredLeads),
       recoveredAppointments: Math.round(recoveredAppointments),
       revenueOpportunity: Math.round(revenueOpportunity),
       hoursSavedMonthly: Math.round(hoursSavedMonthly),
+      monthlySavings: Math.round(monthlySavings),
+      annualSavings: Math.round(annualSavings),
+      estimatedInvestment,
+      paybackMonths: Math.round(paybackMonths * 10) / 10,
+      roiPercent: Math.round(roiPercent),
     };
-  }, [monthlyLeads, avgValue, conversionRate, missedPercent, manualHours]);
+  }, [monthlyLeads, avgValue, conversionRate, missedPercent, manualHours, hourlyCost]);
 
   return (
     <div className={styles.dashboard}>
@@ -106,6 +116,26 @@ export default function ROICalculator() {
           <div className={styles.outputItem}>
             <span className={`${styles.outputValue} mono`}>{results.hoursSavedMonthly}</span>
             <span className={styles.outputSub}>Hours saved per month</span>
+          </div>
+          <div className={styles.outputItem}>
+            <span className={`${styles.outputValue} mono`}>${results.monthlySavings.toLocaleString()}</span>
+            <span className={styles.outputSub}>Potential monthly savings</span>
+          </div>
+          <div className={styles.outputItem}>
+            <span className={`${styles.outputValue} mono`}>${results.annualSavings.toLocaleString()}</span>
+            <span className={styles.outputSub}>Potential annual savings</span>
+          </div>
+          <div className={styles.outputItem}>
+            <span className={`${styles.outputValue} mono`}>${results.estimatedInvestment.toLocaleString()}</span>
+            <span className={styles.outputSub}>Estimated automation investment</span>
+          </div>
+          <div className={styles.outputItem}>
+            <span className={`${styles.outputValue} mono`}>{results.paybackMonths} mo</span>
+            <span className={styles.outputSub}>Estimated payback period</span>
+          </div>
+          <div className={styles.outputItem}>
+            <span className={`${styles.outputValue} mono`}>{results.roiPercent}%</span>
+            <span className={styles.outputSub}>Estimated annual ROI</span>
           </div>
         </div>
         <p className={styles.estimateNote}>

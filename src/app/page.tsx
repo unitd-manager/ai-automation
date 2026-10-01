@@ -52,7 +52,7 @@ const solutionSlugOrder = [
   "appointment-automation",
   "crm-automation",
   "document-automation",
-  "business-intelligence",
+  "follow-up-automation",
 ];
 const solutionsPreview = solutionSlugOrder
   .map((slug) => solutions.find((s) => s.slug === slug))
@@ -110,6 +110,12 @@ export default function HomePage() {
     <>
       {/* 1. Hero */}
       <section className={styles.hero}>
+        <svg className={styles.heroWaves} viewBox="0 0 1440 700" preserveAspectRatio="none" aria-hidden focusable="false">
+          <path d="M-80 170 C180 80 330 260 590 170 S1000 80 1260 170 S1520 260 1780 170" />
+          <path d="M-80 290 C180 200 330 380 590 290 S1000 200 1260 290 S1520 380 1780 290" />
+          <path d="M-80 420 C180 330 330 510 590 420 S1000 330 1260 420 S1520 510 1780 420" />
+          <path d="M-80 550 C180 460 330 640 590 550 S1000 460 1260 550 S1520 640 1780 550" />
+        </svg>
         <div className={`container ${styles.heroGrid}`}>
           <div>
             <span className={styles.eyebrow}>AI Automation for US Small &amp; Mid-Size Businesses</span>
@@ -126,20 +132,13 @@ export default function HomePage() {
           <AnimatedSection as="fade-in">
             <HeroPanel
               eyebrow="LIVE AUTOMATION"
+              // title="From inquiry to appointment"
+              description="One connected system that keeps every customer moment moving."
               stages={["Lead", "AI Detection", "AI Response", "Qualification", "CRM", "Appointment", "Follow-Up", "Business Outcome"]}
             />
           </AnimatedSection>
         </div>
-        <div className={`container ${styles.quickLinksWrap}`}>
-          <span className={styles.quickLinksLabel}>Not sure where to start?</span>
-          <div className={styles.quickLinksRow}>
-            {quickLinks.map((link) => (
-              <Link key={link.label} href={link.href} className={styles.quickLinkChip}>
-                {link.label}
-              </Link>
-            ))}
-          </div>
-        </div>
+       
       </section>
 
       {/* 2. Business Pain / Problem */}
@@ -209,7 +208,7 @@ export default function HomePage() {
       </section>
 
       {/* 6. Peak-Emergency Concept */}
-      <section className={`section ${styles.peakSection}`}>
+      {/* <section className={`section ${styles.peakSection}`}>
         <div className="container">
           <SectionHeader
             title="When Every Minute Matters, AI Should Already Be Working."
@@ -227,11 +226,9 @@ export default function HomePage() {
               </StaggerItem>
             ))}
           </StaggerGroup>
-          <div className={styles.workflowWrapDark}>
-            <WorkflowDiagram stages={["Peak Moment", "AI Response", "Revenue / Efficiency Outcome"]} highlightIndex={1} />
-          </div>
+          
         </div>
-      </section>
+      </section> */}
 
       {/* 7. How It Works — short overview */}
       <section className="section section-surface">
@@ -272,7 +269,7 @@ export default function HomePage() {
       </section>
 
       {/* 9. Featured Case Studies — preview only */}
-      <section className="section section-surface">
+      {/* <section className="section section-surface">
         <div className="container">
           <SectionHeader title="See Automation in Action." description="Illustrative workflows showing how these systems apply across real industries." />
           <div className={styles.caseGrid}>
@@ -286,7 +283,7 @@ export default function HomePage() {
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 10. Why Us / Philosophy */}
       <section className={`section ${styles.philosophySection}`}>

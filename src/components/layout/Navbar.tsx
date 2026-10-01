@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { Menu, X, ChevronDown } from "lucide-react";
 import styles from "./Navbar.module.css";
 
@@ -96,16 +95,11 @@ const navLinks = [
   { label: "About", href: "/about" },
 ];
 
-const darkHeroRoutes = ["/solutions", "/resources/ai-audit"];
-
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const pathname = usePathname();
-  const onDarkHero = darkHeroRoutes.includes(pathname) || pathname.startsWith("/use-cases/");
-  const useWhiteLogo = onDarkHero && !scrolled;
 
   const openMenuNow = (label: string) => {
     if (closeTimer.current) {
@@ -145,11 +139,11 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""} ${useWhiteLogo ? styles.onDark : ""}`}>
+    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logoLink} aria-label="United Technologies home">
           <Image
-            src={useWhiteLogo ? "/logo-white.png" : "/logo.png"}
+            src="/logo.png"
             alt="United Technologies"
             width={2015}
             height={921}

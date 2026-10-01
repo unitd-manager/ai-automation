@@ -4,8 +4,8 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background: transparent;
-  border-bottom: 1px solid transparent;
+  background: #ffffff;
+  border-bottom: 1px solid var(--color-border);
   transition: background var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
 }
 
@@ -14,23 +14,6 @@
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border);
   box-shadow: var(--shadow-sm);
-}
-
-.onDark .navLink {
-  color: #ffffff;
-}
-
-.onDark .cta {
-  background: #ffffff;
-  color: var(--color-primary);
-}
-
-.onDark .cta:hover {
-  background: var(--color-accent-100);
-}
-
-.onDark .mobileToggle {
-  color: #ffffff;
 }
 
 .inner {
