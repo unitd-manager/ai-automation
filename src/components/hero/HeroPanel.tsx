@@ -21,6 +21,12 @@ export default function HeroPanel({
   return (
     <div className={styles.panel}>
       <div className={styles.panelGlow} aria-hidden />
+      <div className={styles.radioWaves} aria-hidden>
+        <span className={styles.radioRing} />
+        <span className={styles.radioRing} />
+        <span className={styles.radioRing} />
+        <span className={styles.radioRing} />
+      </div>
       <div className={styles.panelHeader}>
         <span className={`${styles.panelLabel} mono`}>{eyebrow}</span>
         <span className={styles.status}>
@@ -36,16 +42,16 @@ export default function HeroPanel({
 
       <div className={styles.flow}>
         <svg className={styles.line} viewBox="0 0 2 100" preserveAspectRatio="none" aria-hidden>
-          <line x1="1" y1="0" x2="1" y2="100" stroke="#26314a" strokeWidth="2" />
+          <line x1="1" y1="0" x2="1" y2="100" stroke="rgba(215, 233, 255, 0.42)" strokeWidth="2" />
           {reduceMotion ? (
-            <line x1="1" y1="0" x2="1" y2="100" stroke="#4c74d6" strokeWidth="2" />
+            <line x1="1" y1="0" x2="1" y2="100" stroke="#9bcaff" strokeWidth="2" />
           ) : (
             <motion.line
               x1="1"
               y1="0"
               x2="1"
               y2="100"
-              stroke="#4c74d6"
+              stroke="#9bcaff"
               strokeWidth="2"
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}

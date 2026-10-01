@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import styles from "./page.module.css";
-import { tagline, pains, agents, opportunities, impact, flow, outcomes } from "./content";
+import { tagline, pains, agents, opportunities, impact, flow, outcomes } from "./Content";
 
 function Reveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
