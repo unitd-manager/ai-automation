@@ -4,7 +4,16 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  ArrowRight,
+  Wrench,
+  HeartPulse,
+  Car,
+  type LucideIcon,
+} from "lucide-react";
 import styles from "./Navbar.module.css";
 
 type MenuGroup = {
