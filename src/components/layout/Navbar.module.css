@@ -81,6 +81,12 @@
   padding: var(--space-3) 0;
 }
 
+.auditPage .navLink,
+.auditPage .mobileLink,
+.auditPage .mobileToggle {
+  color: #000000;
+}
+
 .megaMenu {
   position: absolute;
   top: 100%;
