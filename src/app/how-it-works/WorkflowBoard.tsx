@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { PhoneCall, Zap, CalendarCheck } from "lucide-react";
 import Button from "@/components/ui/Button";
 import styles from "./page.module.css";
-import { pains, agents, opportunities, impact, flow, outcomes } from "./content";
+import { pains, agents, opportunities, impact, flow, outcomes } from "./Content";
 
 function Reveal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);

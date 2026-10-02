@@ -125,7 +125,7 @@ const navLinks = [
   { label: "About", href: "/about" },
 ];
 
-const darkHeroRoutes = ["/solutions", "/resources/ai-audit"];
+const darkHeroRoutes = ["/solutions"];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -174,7 +174,7 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+  <header className={`${styles.header} ${scrolled ? styles.scrolled : ""} ${useWhiteLogo ? styles.onDark : ""} ${pathname === "/resources/ai-audit" ? styles.auditPage : ""}`}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logoLink} aria-label="United Technologies home">
           <Image

@@ -119,6 +119,12 @@
   transform: rotate(180deg);
 }
 
+.auditPage .navLink,
+.auditPage .mobileLink,
+.auditPage .mobileToggle {
+  color: #000000;
+}
+
 .megaMenu {
   position: absolute;
   top: 100%;

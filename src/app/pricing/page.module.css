@@ -34,6 +34,7 @@
 
 .compareTable {
   width: 100%;
+  min-width: 720px;
   border-collapse: separate;
   border-spacing: 0;
   font-size: 0.9rem;
@@ -52,12 +53,27 @@
   font-size: 0.9rem;
 }
 
-.compareTable th:first-child {
+.compareTable thead th:first-child {
+  width: 36%;
   border-radius: var(--radius-md) 0 0 0;
 }
 
-.compareTable th:last-child {
+.compareTable thead th:last-child {
   border-radius: 0 var(--radius-md) 0 0;
+}
+
+.compareTable thead th:not(:first-child) {
+  width: 21.33%;
+}
+
+.compareTable thead th span,
+.compareTable thead th strong {
+  display: block;
+}
+
+.compareTable thead th strong {
+  margin-top: var(--space-1);
+  font-size: 1.05rem;
 }
 
 .compareTable td {
@@ -71,6 +87,25 @@
 
 .compareTable tbody tr:nth-child(even) td {
   background: var(--color-surface);
+}
+
+.compareTable tbody th[scope="row"] {
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 500;
+  text-align: left;
+}
+
+.compareTable tbody .groupRow th {
+  padding-block: var(--space-3);
+  background: var(--color-surface-2);
+  color: var(--color-primary);
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
 }
 
 .compareTable td:not(:first-child) {
@@ -88,8 +123,8 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--color-accent-100);
-  color: var(--color-accent-600);
+  background: #eaf0fb;
+  color: #32498a;
 }
 
 .noMark {
