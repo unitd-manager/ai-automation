@@ -72,7 +72,7 @@ const industriesMenu: MenuGroup[] = [
       { label: "Dental", href: "/industries/healthcare" },
       { label: "Med Spa", href: "/industries/healthcare" },
       { label: "Dermatology", href: "/industries/healthcare" },
-       { label: "Physical Therapy", href: "/industries/healthcare" },
+      { label: "Physical Therapy", href: "/industries/healthcare" },
     ],
   },
   {
@@ -114,6 +114,7 @@ const resourcesMenu: MenuGroup[] = [
 ];
 
 const navLinks = [
+  // "/solutions" redirects to the AI Voice Agent page.
   { label: "Solutions", href: "/solutions", menu: solutionsMenu },
   { label: "Industries", href: "/industries", menu: industriesMenu },
   { label: "Use Case Pages", href: "/use-cases/home-services", menu: useCaseMenu },
