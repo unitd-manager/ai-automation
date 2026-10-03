@@ -1,7 +1,6 @@
-/* About — "Blueprint" design: light schematic grid. Page is built on the workflow + mind map concept. */
+/* About — "Blueprint" design: light schematic grid. Page is built on the workflow + mind map concept. Plain background, no grid lines. */
 
 .page {
-  --grid-line: rgba(62, 95, 174, 0.07);
   --brand-bright: #2360b5; /* logo gradient end */
   --ok: #1e7a52;
   --ok-bg: #e6f4ec;
@@ -9,10 +8,6 @@
   --bad-bg: #fbece8;
 
   background-color: var(--color-surface);
-  background-image:
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: 32px 32px;
 }
 
 .label {
@@ -730,17 +725,6 @@
   gap: var(--space-6);
   position: relative;
   overflow: hidden;
-}
-
-.ctaBox::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
 }
 
 .ctaBox > * {
