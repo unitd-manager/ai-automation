@@ -111,6 +111,12 @@ export default function PricingPage() {
         </div>
       </section>
 
+      <section className={styles.maintenanceSlot}>
+        <div className="container">
+          <MaintenancePlans />
+        </div>
+      </section>
+
       <section className="section section-surface">
         <div className="container">
           <SectionHeader title="How the Tiers Compare" />
@@ -147,12 +153,6 @@ export default function PricingPage() {
             Pricing reflects typical engagement scope. Final pricing for DWY and DFY depends on the number of systems
             involved and is confirmed after your AI Audit.
           </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <MaintenancePlans />
         </div>
       </section>
 
