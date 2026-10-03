@@ -69,7 +69,10 @@ export default function AiAuditPage() {
       <section className={`section ${styles.hero}`}>
         <div className="container">
           <p className={styles.heroEyebrow}>AI Automation Audit</p>
-          <h1 className={styles.heroTitle}>Find the First Workflow You Should Automate.</h1>
+          <h1 className={styles.heroTitle}>
+            Find the First Workflow
+            <span className={styles.heroAccent}>You Should Automate</span>
+          </h1>
           <p className={styles.heroCopy}>
             The AI Audit is a business process review — not a sales pitch. You&apos;ll leave with a specific,
             prioritized plan, whether or not you build it with us.
@@ -131,7 +134,7 @@ export default function AiAuditPage() {
 
       <section className="section section-surface">
         <div className="container">
-          <SectionHeader title="Why $500 Is the Easiest Decision You'll Make This Year" />
+          <SectionHeader title="What the $500 AI Audit Can Do for Your Business" />
           <p className={styles.whyLead}>
             Think of the audit as buying back your time and your clarity. For one small, one-time
             investment, you stop guessing where automation fits and start working from a plan.
@@ -181,12 +184,15 @@ export default function AiAuditPage() {
                   </li>
                 ))}
               </ul>
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "space-between", gap: "var(--space-4)" }}>
+              <div style={{ display: "grid", gap: "var(--space-5)" }}>
                 <div>
                   <strong style={{ display: "block", color: "#ffffff", fontSize: "2.5rem", lineHeight: 1 }}>$500</strong>
                   <span style={{ display: "block", marginTop: "var(--space-2)", color: "#d5e3ff", fontSize: "0.85rem" }}>One-time payment</span>
                 </div>
-                <Button href="/contact" variant="light" size="lg">Get Your AI Audit</Button>
+                <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "flex-start", gap: "var(--space-3)" }}>
+                  <Button href="/pricing" variant="light" size="md">Check Other Packages</Button>
+                  <Button href="/contact" variant="light" size="lg">Get Your AI Audit</Button>
+                </div>
               </div>
             </div>
           </div>

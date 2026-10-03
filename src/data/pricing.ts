@@ -17,6 +17,7 @@ export const pricingTiers: PricingTier[] = [
     priceNote: "one-time",
     description: "A low-friction entry offer to reveal where missed opportunities are costing your business.",
     included: [
+      "Information only one-time",
       "Audit peak-emergency revenue leakage",
       "Identify operational bottlenecks",
       "AI Automation Blueprint",
@@ -32,6 +33,7 @@ export const pricingTiers: PricingTier[] = [
     priceNote: "starting price",
     description: "A recurring-revenue offer to automate lead response, booking, and follow-up with your team.",
     included: [
+      "3-month engagement",
       "AI voice and SMS",
       "Lead qualification",
       "Appointment automation",
@@ -51,6 +53,7 @@ export const pricingTiers: PricingTier[] = [
     priceNote: "project-based",
     description: "A high-value, fully managed AI operations system with complete infrastructure built around your business.",
     included: [
+      "6-month engagement",
       "Fully managed AI agents",
       "Custom API integrations",
       "Multi-channel workflows",
