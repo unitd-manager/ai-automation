@@ -297,7 +297,7 @@ export function PricingHero() {
 
 export function MaintenancePlans() {
   return (
-    <section className={styles.points} aria-labelledby="maintenance-mode">
+    <section className={`${styles.points} ${styles.maintenanceSection}`} aria-labelledby="maintenance-mode">
       <article className={styles.maintenancePanel}>
         <div className={styles.maintenanceDetails}>
           <span className={styles.maintenanceEyebrow}>Optional ongoing support</span>
