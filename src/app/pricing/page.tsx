@@ -70,6 +70,12 @@ const comparisonGroups: CompareGroup[] = [
       { label: "Minimal client involvement", cells: [false, false, true] },
     ],
   },
+  {
+    title: "Engagement terms",
+    rows: [
+      { label: "Payment and duration", cells: ["Information only · one-time", "Subscription · 3 months", "6 months"] },
+    ],
+  },
 ];
 
 function CompareValue({ value }: { value: CompareCell }) {
@@ -83,7 +89,10 @@ export default function PricingPage() {
     <>
       <section className={`section ${styles.hero}`}>
         <div className="container">
-          <h1 className={styles.heroTitle}>Start Small Build Smart Scale When Ready</h1>
+          <h1 className={styles.heroTitle}>
+            Start Small Build Smart
+            <span className={styles.heroAccent}>Scale When Ready</span>
+          </h1>
           <p className={styles.heroCopy}>
             Every engagement starts with clarity on what to <br />
             automate first.From there, choose the level of<br />

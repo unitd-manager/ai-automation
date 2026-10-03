@@ -13,6 +13,7 @@
   color: var(--color-muted);
   max-width: 54ch;
   line-height: 1.6;
+  margin-bottom: var(--space-6);
 }
 
 .dashboard {
