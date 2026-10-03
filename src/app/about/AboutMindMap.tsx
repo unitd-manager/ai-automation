@@ -99,7 +99,6 @@ export default function AboutMindMap() {
       })}
 
       <div className={styles.root}>
-        <span className={styles.rootGrid} aria-hidden />
         <span className={`${styles.stub} ${styles.stubL}`} aria-hidden />
         <span className={`${styles.stub} ${styles.stubR}`} aria-hidden />
         <span className={`${styles.kicker} mono`}>The idea</span>
