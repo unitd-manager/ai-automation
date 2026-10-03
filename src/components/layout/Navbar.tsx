@@ -3,10 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { usePathname } from "next/navigation";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  ArrowRight,
+  Wrench,
+  HeartPulse,
+  Car,
+  type LucideIcon,
+} from "lucide-react";
 import styles from "./Navbar.module.css";
 
-const solutionsMenu = [
+type MenuGroup = {
+  heading: string;
+  items: { label: string; href: string }[];
+  /** Optional rich-header fields (used by the Industries mega menu). */
+  href?: string;
+  icon?: LucideIcon;
+  blurb?: string;
+};
+
+const solutionsMenu: MenuGroup[] = [
   {
     heading: "Lead & Customer Automation",
     items: [
@@ -31,9 +50,12 @@ const solutionsMenu = [
   },
 ];
 
-const industriesMenu = [
+const industriesMenu: MenuGroup[] = [
   {
     heading: "Home Services",
+    href: "/industries/home-services",
+    icon: Wrench,
+    blurb: "Answer every call and dispatch faster during breakdowns and emergencies.",
     items: [
       { label: "HVAC", href: "/industries/home-services" },
       { label: "Plumbing", href: "/industries/home-services" },
@@ -43,14 +65,21 @@ const industriesMenu = [
   },
   {
     heading: "Healthcare",
+    href: "/industries/healthcare",
+    icon: HeartPulse,
+    blurb: "Turn new-patient inquiries into scheduled appointments.",
     items: [
       { label: "Dental", href: "/industries/healthcare" },
       { label: "Med Spa", href: "/industries/healthcare" },
       { label: "Dermatology", href: "/industries/healthcare" },
+       { label: "Physical Therapy", href: "/industries/healthcare" },
     ],
   },
   {
     heading: "Automotive Services",
+    href: "/industries/automotive-services",
+    icon: Car,
+    blurb: "Keep every bay booked and bring customers back for service.",
     items: [
       { label: "Auto Repair", href: "/industries/automotive-services" },
       { label: "Auto Body & Collision", href: "/industries/automotive-services" },
@@ -60,7 +89,7 @@ const industriesMenu = [
   },
 ];
 
-const useCaseMenu = [
+const useCaseMenu: MenuGroup[] = [
   {
     heading: "Use Case Pages",
     items: [
@@ -71,7 +100,7 @@ const useCaseMenu = [
   },
 ];
 
-const resourcesMenu = [
+const resourcesMenu: MenuGroup[] = [
   {
     heading: "Resources",
     items: [
@@ -95,11 +124,16 @@ const navLinks = [
   { label: "About", href: "/about" },
 ];
 
+const darkHeroRoutes = ["/solutions"];
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pathname = usePathname();
+  const onDarkHero = darkHeroRoutes.includes(pathname) || pathname.startsWith("/use-cases/");
+  const useWhiteLogo = onDarkHero && !scrolled;
 
   const openMenuNow = (label: string) => {
     if (closeTimer.current) {
@@ -139,7 +173,7 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header className={`${styles.header} ${scrolled ? styles.scrolled : ""}`}>
+  <header className={`${styles.header} ${scrolled ? styles.scrolled : ""} ${useWhiteLogo ? styles.onDark : ""} ${pathname === "/resources/ai-audit" ? styles.auditPage : ""}`}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logoLink} aria-label="United Technologies home">
           <Image
@@ -167,24 +201,53 @@ export default function Navbar() {
 
               {link.menu && (
                 <div
-                  className={`${styles.megaMenu} ${openMenu === link.label ? styles.megaMenuOpen : ""} ${link.menu.length === 1 ? styles.megaMenuNarrow : ""} ${link.menu.length === 3 ? styles.megaMenuCompact : ""}`}
+                  className={`${styles.megaMenu} ${openMenu === link.label ? styles.megaMenuOpen : ""} ${link.menu.length === 1 ? styles.megaMenuNarrow : ""} ${link.menu.length === 3 ? styles.megaMenuCompact : ""} ${link.label === "Industries" ? styles.megaMenuIndustries : ""}`}
                 >
                   <div className={styles.megaMenuGrid} style={{ gridTemplateColumns: `repeat(${link.menu.length}, 1fr)` }}>
-                    {link.menu.map((group) => (
-                      <div key={group.heading} className={styles.megaGroup}>
-                        <p className={styles.megaHeading}>{group.heading}</p>
-                        <ul>
-                          {group.items.map((item) => (
-                            <li key={item.label}>
-                              <Link href={item.href} className={styles.megaItem}>
-                                {item.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                    {link.menu.map((group) => {
+                      const GroupIcon = group.icon;
+                      return (
+                        <div key={group.heading} className={`${styles.megaGroup} ${group.icon ? styles.megaGroupRich : ""}`}>
+                          {GroupIcon && group.href ? (
+                            <Link href={group.href} className={styles.megaHead} onClick={() => setOpenMenu(null)}>
+                              <span className={styles.megaIcon}>
+                                <GroupIcon size={18} strokeWidth={1.75} aria-hidden />
+                              </span>
+                              <span className={styles.megaHeadText}>
+                                <span className={styles.megaTitle}>{group.heading}</span>
+                                {group.blurb && <span className={styles.megaBlurb}>{group.blurb}</span>}
+                              </span>
+                            </Link>
+                          ) : (
+                            <p className={styles.megaHeading}>{group.heading}</p>
+                          )}
+                          <ul className={group.icon ? styles.megaChips : undefined}>
+                            {group.items.map((item) =>
+                              group.icon ? (
+                                <li key={item.label}>
+                                  <span className={styles.megaChip}>{item.label}</span>
+                                </li>
+                              ) : (
+                                <li key={item.label}>
+                                  <Link href={item.href} className={styles.megaItem}>
+                                    {item.label}
+                                  </Link>
+                                </li>
+                              )
+                            )}
+                          </ul>
+                        </div>
+                      );
+                    })}
                   </div>
+                  {link.label === "Industries" && (
+                    <div className={styles.megaFooter}>
+                      <span>Not sure where you fit? Any business that runs on calls and appointments does.</span>
+                      <Link href="/industries" className={styles.megaFooterLink} onClick={() => setOpenMenu(null)}>
+                        View all industries <ArrowRight size={14} aria-hidden />
+                      </Link>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -216,11 +279,27 @@ export default function Navbar() {
               </Link>
               {link.menu && (
                 <div className={styles.mobileSubList}>
-                  {link.menu.flatMap((g) => g.items).map((item, i) => (
-                    <Link key={`${item.href}-${i}`} href={item.href} className={styles.mobileSubLink} onClick={() => setMobileOpen(false)}>
-                      {item.label}
-                    </Link>
-                  ))}
+                  {link.label === "Industries"
+                    ? link.menu.map((g) => (
+                        <Link
+                          key={g.heading}
+                          href={g.href ?? link.href}
+                          className={styles.mobileSubLink}
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {g.heading}
+                        </Link>
+                      ))
+                    : link.menu.flatMap((g) => g.items).map((item, i) => (
+                        <Link
+                          key={`${item.href}-${i}`}
+                          href={item.href}
+                          className={styles.mobileSubLink}
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
                 </div>
               )}
             </div>
