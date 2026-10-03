@@ -134,7 +134,7 @@ export default function AiAuditPage() {
 
       <section className="section section-surface">
         <div className="container">
-          <SectionHeader title="What the $500 AI Audit Can Do for Your Business" />
+          <SectionHeader title="How an AI Audit Creates Business Value" />
           <p className={styles.whyLead}>
             Think of the audit as buying back your time and your clarity. For one small, one-time
             investment, you stop guessing where automation fits and start working from a plan.
