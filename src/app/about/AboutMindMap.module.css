@@ -1,0 +1,288 @@
+.map {
+  --gap-x: 56px;
+  --gap-y: 24px;
+  --line: rgba(76, 116, 214, 0.5);
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(220px, 280px) minmax(0, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "tl root tr"
+    "bl root br";
+  column-gap: var(--gap-x);
+  row-gap: var(--gap-y);
+  margin-top: var(--space-7);
+}
+
+.tl { grid-area: tl; }
+.tr { grid-area: tr; }
+.bl { grid-area: bl; }
+.br { grid-area: br; }
+
+/* ---------- Root ---------- */
+.root {
+  grid-area: root;
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(122, 162, 255, 0.4);
+  background:
+    radial-gradient(90% 70% at 100% 0%, rgba(76, 116, 214, 0.5) 0%, rgba(76, 116, 214, 0) 70%),
+    linear-gradient(160deg, #1b2c52 0%, var(--color-dark-bg) 80%);
+  color: #fff;
+  box-shadow: 0 30px 60px -28px rgba(38, 65, 122, 0.8);
+}
+
+.rootGrid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(90% 90% at 100% 0%, #000 0%, transparent 80%);
+}
+
+/* stubs: from the vertical joint (mid-gutter) into the root's centre */
+.stub {
+  position: absolute;
+  top: 50%;
+  width: calc(var(--gap-x) / 2);
+  height: 2px;
+  margin-top: -1px;
+  background: var(--line);
+}
+
+.stubL { right: 100%; }
+.stubR { left: 100%; }
+
+/* junction dots where the lines meet the root */
+.root::before,
+.root::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  border-radius: 3px;
+  transform: rotate(45deg);
+  background: var(--color-dark-bg);
+  border: 2px solid #7aa2ff;
+}
+
+.root::before { left: -7px; }
+.root::after { right: -7px; }
+
+.kicker {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #8fb0ff;
+  margin-bottom: var(--space-3);
+}
+
+.rootText {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--space-3);
+  text-wrap: balance;
+}
+
+.rootSub {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #c9d4ee;
+}
+
+/* ---------- Branches ---------- */
+.branch {
+  position: relative;
+  padding: var(--space-5) var(--space-5) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-background);
+  transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
+}
+
+.branch:hover {
+  border-color: rgba(76, 116, 214, 0.6);
+  box-shadow: 0 22px 40px -24px rgba(38, 65, 122, 0.5);
+}
+
+/* elbow from each card to the root. Rows are equal height, so the elbow always lands
+   on the vertical centre of the whole map. */
+.branch::after {
+  content: "";
+  position: absolute;
+  width: calc(var(--gap-x) / 2);
+  height: calc(50% + var(--gap-y) / 2);
+  border: 0 solid var(--line);
+  transition: border-color var(--dur-med) var(--ease-out);
+  pointer-events: none;
+}
+
+.tl::after { left: 100%; top: 50%; border-top-width: 2px; border-right-width: 2px; border-top-right-radius: 18px; }
+.bl::after { left: 100%; bottom: 50%; border-bottom-width: 2px; border-right-width: 2px; border-bottom-right-radius: 18px; }
+.tr::after { right: 100%; top: 50%; border-top-width: 2px; border-left-width: 2px; border-top-left-radius: 18px; }
+.br::after { right: 100%; bottom: 50%; border-bottom-width: 2px; border-left-width: 2px; border-bottom-left-radius: 18px; }
+
+.branch:hover::after {
+  border-color: var(--color-accent);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #a8c4ff;
+  transition: background var(--dur-med) var(--ease-out), color var(--dur-med) var(--ease-out),
+    transform var(--dur-med) var(--ease-out);
+}
+
+.branch:hover .icon {
+  background: var(--color-accent);
+  color: #fff;
+  transform: rotate(-6deg) scale(1.06);
+}
+
+.title {
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+.lead {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--color-muted);
+  margin-bottom: var(--space-4);
+}
+
+.leaves {
+  display: grid;
+  gap: 6px;
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--color-border);
+}
+
+.leaf {
+  position: relative;
+  display: block;
+  padding: 0.35rem var(--space-3) 0.35rem var(--space-5);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-ink);
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
+    padding var(--dur-fast) var(--ease-out);
+}
+
+.leaf::before {
+  content: "";
+  position: absolute;
+  left: var(--space-2);
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  margin-top: -3px;
+  border-radius: 1.5px;
+  transform: rotate(45deg);
+  background: var(--color-accent);
+}
+
+.leafLink:hover,
+.leafLink:focus-visible {
+  background: var(--color-primary);
+  color: #fff;
+  padding-left: calc(var(--space-5) + 4px);
+  outline: none;
+}
+
+/* ---------- Mobile: root on top, branches hang off a left spine ---------- */
+@media (max-width: 960px) {
+  .map {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    padding-left: var(--space-6);
+    position: relative;
+  }
+
+  .map::before {
+    content: "";
+    position: absolute;
+    left: 8px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--line);
+    border-radius: 2px;
+  }
+
+  .root {
+    order: -1;
+  }
+
+  .root::before {
+    left: -31px;
+    top: 28px;
+    margin-top: 0;
+  }
+
+  .root::after,
+  .stub {
+    display: none;
+  }
+
+  .branch::after {
+    left: calc(var(--space-6) * -1 + 8px);
+    right: auto;
+    top: 28px;
+    bottom: auto;
+    width: calc(var(--space-6) - 8px);
+    height: 0;
+    border: 0;
+    border-top: 2px solid var(--line);
+    border-radius: 0;
+  }
+
+  .tl::after, .tr::after, .bl::after, .br::after {
+    left: calc(var(--space-6) * -1 + 8px);
+    right: auto;
+    top: 28px;
+    bottom: auto;
+    width: calc(var(--space-6) - 8px);
+    height: 0;
+    border-width: 2px 0 0 0;
+    border-radius: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .branch,
+  .icon,
+  .leaf {
+    transition: none;
+  }
+}

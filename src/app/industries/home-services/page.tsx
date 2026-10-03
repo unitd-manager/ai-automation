@@ -6,9 +6,11 @@ import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
 import BookingCard from "@/components/industry/BookingCard";
 import FrontDeskTimeline from "@/components/industry/FrontDeskTimeline";
 import FeatureExplorer from "@/components/industry/FeatureExplorer";
+import MomentMap from "@/components/industry/MomentMap";
 import CTASection from "@/components/sections/CTASection";
 import { industries } from "@/data/industries";
 import { industrySystems } from "@/data/industrySystems";
+import { momentPlays } from "@/data/momentPlays";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
@@ -72,14 +74,12 @@ export default function HomeServicesPage() {
             title="The Moments That Matter Most"
             description="The highest-value automation opportunities in home services show up during these moments."
           />
-          <div className={styles.momentsGrid}>
-            {data.peakMoments.map((m) => (
-              <div key={m.text} className={styles.momentCard}>
-                <p className={styles.momentText}>{m.text}</p>
-                <span className={styles.momentTag}>Handled at: {m.step}</span>
-              </div>
-            ))}
-          </div>
+          <MomentMap
+            workflow={data.workflow}
+            rootNote={momentPlays["home-services"].rootNote}
+            moments={data.peakMoments}
+            plays={momentPlays["home-services"].plays}
+          />
         </div>
       </section>
 

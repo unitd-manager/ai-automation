@@ -182,55 +182,7 @@
   margin-bottom: var(--space-6);
 }
 
-/* ===== Moments: tied to the AI workflow ===== */
-.momentsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--space-5);
-  margin-top: var(--space-7);
-}
-
-@media (max-width: 700px) {
-  .momentsGrid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.momentCard {
-  padding: var(--space-6);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  background: #fff;
-  transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out),
-    border-color var(--dur-med) var(--ease-out);
-}
-
-.momentCard:hover {
-  transform: translateY(-3px);
-  border-color: rgba(76, 116, 214, 0.45);
-  box-shadow: 0 14px 28px -18px rgba(38, 65, 122, 0.35);
-}
-
-.momentText {
-  margin: 0 0 var(--space-5);
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--color-ink);
-  line-height: 1.5;
-}
-
-.momentTag {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--color-accent);
-  background: rgba(76, 116, 214, 0.08);
-  border: 1px solid rgba(76, 116, 214, 0.25);
-  border-radius: 999px;
-  padding: 0.35rem 0.8rem;
-}
+/* ===== Moments: tied to the AI workflow, four pale themes for visual clarity ===== */
 
 /* ===== What's Included: holds the FeatureExplorer component ===== */
 .featuresSection {

@@ -55,7 +55,7 @@ const industriesMenu: MenuGroup[] = [
     heading: "Home Services",
     href: "/industries/home-services",
     icon: Wrench,
-    blurb: "Answer every call and dispatch faster during breakdowns and emergencies.",
+    blurb: "Answer every call and dispatch faster during emergencies.",
     items: [
       { label: "HVAC", href: "/industries/home-services" },
       { label: "Plumbing", href: "/industries/home-services" },
