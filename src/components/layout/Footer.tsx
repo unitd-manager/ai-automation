@@ -18,10 +18,13 @@ const columns = [
       { label: "AI Chat", href: "/solutions/ai-chat" },
       { label: "Lead Response", href: "/solutions/ai-lead-response" },
       { label: "Appointment Automation", href: "/solutions/ai-appointment-booking" },
+      { label: "AI Follow-Up", href: "/solutions/ai-follow-up" },
       { label: "CRM Automation", href: "/solutions/ai-crm-automation" },
       { label: "Document Automation", href: "/solutions/ai-document-processing" },
     ],
   },
+
+  
   {
     heading: "Industries",
     links: [

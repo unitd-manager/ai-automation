@@ -1,0 +1,232 @@
+.wrap {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.scenario {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid rgba(122, 162, 255, 0.28);
+  border-radius: var(--radius-md);
+  background: rgba(76, 116, 214, 0.1);
+}
+
+.scenarioTag {
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #8fb0ff;
+  border: 1px solid rgba(122, 162, 255, 0.4);
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+}
+
+.scenarioText {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #fff;
+}
+
+.columns,
+.row {
+  display: grid;
+  grid-template-columns: 1fr 150px 1fr;
+  column-gap: var(--space-4);
+}
+
+.columns {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: calc(var(--space-3) * -1);
+}
+
+.colWithout {
+  color: #e0685b;
+}
+
+.colWith {
+  color: #a8c4ff;
+  text-align: right;
+}
+
+.rows {
+  position: relative;
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* The spine every step hangs off */
+.rows::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(224, 104, 91, 0.7) 0%, rgba(122, 162, 255, 0.9) 100%);
+  border-radius: 2px;
+}
+
+.row {
+  position: relative;
+  align-items: stretch;
+}
+
+.card {
+  position: relative;
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  transition: transform var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out),
+    background var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
+}
+
+.cardTag {
+  display: none;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--space-2);
+}
+
+/* Without: muted, a little cold, dashed like something unfinished */
+.without {
+  border: 1px dashed rgba(224, 104, 91, 0.45);
+  background: rgba(224, 104, 91, 0.05);
+  color: #aeb7c7;
+  text-align: right;
+}
+
+.without .cardTag {
+  color: #e0685b;
+}
+
+/* With: brand blue */
+.withUs {
+  border: 1px solid rgba(122, 162, 255, 0.4);
+  background: linear-gradient(150deg, #1f3f82 0%, #152a58 60%, #11224a 100%);
+  color: #fff;
+}
+
+.withUs .cardTag {
+  color: #a8c4ff;
+}
+
+.row:hover .without {
+  transform: translateX(-4px);
+  border-color: rgba(224, 104, 91, 0.6);
+  background: rgba(224, 104, 91, 0.08);
+}
+
+.row:hover .withUs {
+  transform: translateX(4px);
+  border-color: rgba(168, 196, 255, 0.55);
+  box-shadow: 0 14px 26px -16px rgba(76, 116, 214, 0.45);
+}
+
+/* Centre node: dot on the spine, clock time, workflow stage */
+.node {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  padding: var(--space-2) 0;
+  position: relative;
+  z-index: 1;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  transform: rotate(45deg);
+  background: var(--color-dark-bg);
+  border: 2px solid #7aa2ff;
+  transition: background var(--dur-med) var(--ease-out), transform var(--dur-med) var(--ease-out);
+}
+
+.row:hover .dot {
+  background: #7aa2ff;
+  transform: rotate(45deg) scale(1.3);
+}
+
+.time {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--color-dark-bg);
+  padding: 0 6px;
+}
+
+.stage {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #8fb0ff;
+  background: var(--color-dark-bg);
+  padding: 0 6px;
+  line-height: 1.3;
+}
+
+@media (max-width: 860px) {
+  .columns {
+    display: none;
+  }
+
+  .rows::before {
+    left: 9px;
+    transform: none;
+  }
+
+  .row {
+    grid-template-columns: 1fr;
+    row-gap: var(--space-3);
+    padding-left: var(--space-7);
+  }
+
+  /* Node goes first on mobile, as a small header for the step */
+  .node {
+    order: -1;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: var(--space-3);
+  }
+
+  .dot {
+    position: absolute;
+    left: -35px;
+    top: 50%;
+    margin-top: -6px;
+  }
+
+  .without {
+    text-align: left;
+  }
+
+  .cardTag {
+    display: block;
+  }
+
+  .row:hover .without,
+  .row:hover .withUs {
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .dot {
+    transition: none;
+  }
+}

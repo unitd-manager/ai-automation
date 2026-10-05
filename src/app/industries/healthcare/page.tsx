@@ -1,15 +1,21 @@
 import type { Metadata } from "next";
-import { HeartPulse, X, Check } from "lucide-react";
+import { HeartPulse } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
 import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
 import BookingCard from "@/components/industry/BookingCard";
+import FrontDeskTimeline from "@/components/industry/FrontDeskTimeline";
+import FeatureExplorer from "@/components/industry/FeatureExplorer";
+import MomentMap from "@/components/industry/MomentMap";
 import CTASection from "@/components/sections/CTASection";
 import { industries } from "@/data/industries";
+import { industrySystems } from "@/data/industrySystems";
+import { momentPlays } from "@/data/momentPlays";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
 const data = industries.find((i) => i.slug === "healthcare")!;
+const system = industrySystems["healthcare"];
 
 export const metadata: Metadata = buildMetadata({
   title: "AI Automation for Healthcare Practices",
@@ -57,31 +63,8 @@ export default function HealthcarePage() {
       <section className={`section ${styles.challengeSection}`}>
         <div className="container">
           <span className={`${styles.eyebrow} mono`}>Before &amp; After</span>
-          <h2 className={styles.challengeTitle}>Two Versions of Your Front Desk</h2>
-          <div className={styles.challengeGrid}>
-            <div className={`${styles.challengeCard} ${styles.without}`}>
-              <span className={styles.challengeLabel}>Without automation</span>
-              <ul className={styles.challengeList}>
-                {data.challenges.map((c) => (
-                  <li key={c}>
-                    <X size={16} className={styles.xIcon} />
-                    <span>{c}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className={`${styles.challengeCard} ${styles.with}`}>
-              <span className={styles.challengeLabel}>With United Technologies</span>
-              <ul className={styles.challengeList}>
-                {data.resolutions.map((r) => (
-                  <li key={r}>
-                    <Check size={16} className={styles.checkIcon} />
-                    <span>{r}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+          <h2 className={styles.challengeTitle}>One Call, Two Versions of Your Front Desk</h2>
+          <FrontDeskTimeline scenario={system.scenario} rows={system.rows} />
         </div>
       </section>
 
@@ -91,14 +74,12 @@ export default function HealthcarePage() {
             title="The Moments That Matter Most"
             description="These are the moments that decide whether a patient books, or looks elsewhere."
           />
-          <div className={styles.momentsGrid}>
-            {data.peakMoments.map((m) => (
-              <div key={m.text} className={styles.momentCard}>
-                <p className={styles.momentText}>{m.text}</p>
-                <span className={styles.momentTag}>Handled at: {m.step}</span>
-              </div>
-            ))}
-          </div>
+          <MomentMap
+            workflow={data.workflow}
+            rootNote={momentPlays["healthcare"].rootNote}
+            moments={data.peakMoments}
+            plays={momentPlays["healthcare"].plays}
+          />
         </div>
       </section>
 
@@ -106,15 +87,11 @@ export default function HealthcarePage() {
         <div className="container">
           <span className={`${styles.eyebrow} mono`}>What&apos;s Included</span>
           <h2 className={styles.featuresTitle}>Inside the {data.name} System</h2>
-          <div className={styles.featuresGrid}>
-            {data.features.map((f, i) => (
-              <div key={f.title} className={styles.featureCard}>
-                <span className={`${styles.featureIndex} mono`}>{String(i + 1).padStart(2, "0")}</span>
-                <h3 className={styles.featureTitle}>{f.title}</h3>
-                <p className={styles.featureDescription}>{f.description}</p>
-              </div>
-            ))}
-          </div>
+          <p className={styles.featuresLead}>
+            Six capabilities, listed in the order a patient moves through your workflow. Pick one to see where it
+            runs and what your patient experiences.
+          </p>
+          <FeatureExplorer system={system.systemFeatures} workflow={data.workflow} />
         </div>
       </section>
 
