@@ -16,5 +16,5 @@ export function findTier(id: unknown): PricingTier | undefined {
 }
 
 export function formatMoney(amount: number, currency = (process.env.NEXT_PUBLIC_STRIPE_CURRENCY || "USD").toUpperCase()) {
-  return new Intl.NumberFormat("en-US", { style: "currency", currency, maximumFractionDigits: 2 }).format(amount);
+  return new Intl.NumberFormat(currency === "SGD" ? "en-SG" : "en-US", { style: "currency", currency, maximumFractionDigits: 2 }).format(amount);
 }
