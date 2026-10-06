@@ -12,8 +12,10 @@ import {
   Wrench,
   HeartPulse,
   Car,
+  ShoppingCart,
   type LucideIcon,
 } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 import styles from "./Navbar.module.css";
 
 type MenuGroup = {
@@ -55,7 +57,7 @@ const industriesMenu: MenuGroup[] = [
     heading: "Home Services",
     href: "/industries/home-services",
     icon: Wrench,
-    blurb: "Answer every call and dispatch faster during breakdowns and emergencies.",
+    blurb: "Answer every call and dispatch faster during emergencies.",
     items: [
       { label: "HVAC", href: "/industries/home-services" },
       { label: "Plumbing", href: "/industries/home-services" },
@@ -125,9 +127,11 @@ const navLinks = [
   { label: "About", href: "/about" },
 ];
 
-const darkHeroRoutes = ["/solutions"];
+// /solutions now has a light hero, so it uses the normal dark-text navbar.
+const darkHeroRoutes: string[] = [];
 
 export default function Navbar() {
+  const { itemCount } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -254,6 +258,16 @@ export default function Navbar() {
             </div>
           ))}
         </nav>
+
+        <Link
+          href="/cart"
+          className={styles.cartLink}
+          aria-label={`View cart${itemCount > 0 ? `, ${itemCount} ${itemCount === 1 ? "item" : "items"}` : ""}`}
+        >
+          <ShoppingCart size={21} aria-hidden />
+          {itemCount > 0 && <span className={styles.cartCount}>{itemCount}</span>}
+          <span className={styles.cartLabel}>Cart</span>
+        </Link>
 
         <div className={styles.ctaWrap}>
           <Link href="/resources/ai-audit" className={styles.cta}>

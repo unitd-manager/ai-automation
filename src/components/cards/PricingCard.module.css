@@ -112,6 +112,30 @@
 .featured .footer > a { background: var(--tint); color: #fff; }
 .featured .footer > a:hover { background: var(--tint); filter: brightness(1.12); }
 
+.addToCart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 var(--space-5);
+  border: 1.5px solid var(--tint);
+  border-radius: 12px;
+  color: var(--tint);
+  background: transparent;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: background var(--dur-fast), color var(--dur-fast);
+}
+.addToCart:hover { background: color-mix(in srgb, var(--tint) 10%, white); }
+.addToCart:focus-visible { outline: 2px solid var(--tint); outline-offset: 3px; }
+.addedToCart { color: #fff; background: #1e7a52; border-color: #1e7a52; }
+.addedToCart:hover { background: #176641; }
+.card[data-tier="DWY"] .addToCart { color: #fff; border-color: rgba(255, 255, 255, 0.65); }
+.card[data-tier="DWY"] .addToCart:hover { background: rgba(255, 255, 255, 0.14); }
+.card[data-tier="DWY"] .addToCart.addedToCart { background: #1e7a52; border-color: #1e7a52; }
+
 /* ===== Optional grid + compare table ===== */
 .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-6); align-items: stretch; padding-top: 14px; }
 
@@ -198,6 +222,45 @@
 /* ===== Descriptive pricing points ===== */
 .points { padding-block: var(--space-8); }
 .pointsGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-5); }
+
+.maintenancePanel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(260px, 0.55fr);
+  align-items: center;
+  gap: var(--space-7);
+  padding: var(--space-7);
+  border: 1px solid rgba(29, 78, 216, 0.2);
+  border-radius: 12px;
+  background: linear-gradient(120deg, #ffffff 0%, #f2f6ff 100%);
+  box-shadow: var(--shadow-md);
+}
+.maintenanceSection { padding-block: var(--space-2); }
+.maintenanceDetails { min-width: 0; }
+.maintenanceEyebrow,
+.maintenancePriceLabel {
+  display: block;
+  color: #1d4ed8;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.maintenanceTitle { margin: var(--space-2) 0 var(--space-3); font-size: 1.5rem; color: var(--color-ink); }
+.maintenanceDescription { max-width: 58ch; color: var(--color-muted); line-height: 1.6; }
+.maintenanceList { display: grid; gap: var(--space-3); margin-top: var(--space-5); }
+.maintenanceList li { display: flex; align-items: flex-start; gap: var(--space-2); color: var(--color-ink); font-size: 0.9rem; }
+.maintenanceList svg { flex: 0 0 auto; color: #1d4ed8; }
+.maintenancePrice { border-left: 1px solid rgba(29, 78, 216, 0.18); padding-left: var(--space-7); }
+.maintenanceAmount { display: flex; align-items: baseline; gap: var(--space-2); margin: var(--space-3) 0; color: var(--color-ink); }
+.maintenanceAmount strong { font-size: 2.25rem; line-height: 1; }
+.maintenanceAmount span { color: var(--color-muted); }
+.maintenanceNote { margin-bottom: var(--space-5); color: var(--color-muted); font-size: 0.82rem; line-height: 1.5; }
+
+@media (max-width: 760px) {
+  .maintenancePanel { grid-template-columns: 1fr; gap: var(--space-5); padding: var(--space-5); }
+  .maintenancePrice { border-left: 0; border-top: 1px solid rgba(29, 78, 216, 0.18); padding: var(--space-5) 0 0; }
+}
+
 .pointCard {
   padding: var(--space-6); background: #fff;
   border: 1px solid var(--color-border); border-radius: 16px;

@@ -182,7 +182,7 @@
   margin-bottom: var(--space-6);
 }
 
-/* ===== Moments: tied to the AI workflow ===== */
+/* ===== Moments: tied to the AI workflow, four pale themes for visual clarity ===== */
 .momentsGrid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -200,15 +200,13 @@
   padding: var(--space-6);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background: #fff;
   transition: transform var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out),
     border-color var(--dur-med) var(--ease-out);
 }
 
 .momentCard:hover {
-  transform: translateY(-3px);
-  border-color: rgba(76, 116, 214, 0.45);
-  box-shadow: 0 14px 28px -18px rgba(38, 65, 122, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 30px -18px rgba(38, 65, 122, 0.35);
 }
 
 .momentText {
@@ -225,11 +223,56 @@
   gap: 6px;
   font-size: 0.75rem;
   font-weight: 600;
-  color: var(--color-accent);
-  background: rgba(76, 116, 214, 0.08);
-  border: 1px solid rgba(76, 116, 214, 0.25);
   border-radius: 999px;
   padding: 0.35rem 0.8rem;
+}
+
+.momentCard:nth-child(4n+1) {
+  background: linear-gradient(160deg, #eef1fb 0%, #fff 55%);
+}
+.momentCard:nth-child(4n+1) .momentTag {
+  color: #3651b0;
+  background: rgba(76, 116, 214, 0.12);
+  border: 1px solid rgba(76, 116, 214, 0.3);
+}
+.momentCard:nth-child(4n+1):hover {
+  border-color: rgba(76, 116, 214, 0.45);
+}
+
+.momentCard:nth-child(4n+2) {
+  background: linear-gradient(160deg, #fdf3e7 0%, #fff 55%);
+}
+.momentCard:nth-child(4n+2) .momentTag {
+  color: #b5690b;
+  background: rgba(226, 149, 75, 0.15);
+  border: 1px solid rgba(226, 149, 75, 0.35);
+}
+.momentCard:nth-child(4n+2):hover {
+  border-color: rgba(226, 149, 75, 0.5);
+}
+
+.momentCard:nth-child(4n+3) {
+  background: linear-gradient(160deg, #e9f9f2 0%, #fff 55%);
+}
+.momentCard:nth-child(4n+3) .momentTag {
+  color: #1f9d70;
+  background: rgba(52, 199, 142, 0.14);
+  border: 1px solid rgba(52, 199, 142, 0.35);
+}
+.momentCard:nth-child(4n+3):hover {
+  border-color: rgba(52, 199, 142, 0.5);
+}
+
+.momentCard:nth-child(4n+4) {
+  background: linear-gradient(160deg, #fbeef1 0%, #fff 55%);
+}
+.momentCard:nth-child(4n+4) .momentTag {
+  color: #c14f74;
+  background: rgba(224, 104, 91, 0.12);
+  border: 1px solid rgba(224, 104, 91, 0.3);
+}
+.momentCard:nth-child(4n+4):hover {
+  border-color: rgba(224, 104, 91, 0.45);
 }
 
 /* ===== What's Included: holds the FeatureExplorer component ===== */

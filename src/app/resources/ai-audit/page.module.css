@@ -15,10 +15,18 @@
 }
 
 .heroTitle {
-  font-size: var(--fs-h1);
+  font-size: 4.5rem;
+  line-height: 1.04;
   color: var(--color-primary);
-  max-width: 20ch;
+  max-width: 26ch;
   margin: 0 auto var(--space-5);
+}
+
+.heroAccent {
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  color: #3b5fae;
 }
 
 .heroCopy {
@@ -29,6 +37,10 @@
   margin-bottom: var(--space-7);
   margin-left: auto;
   margin-right: auto;
+}
+
+@media (max-width: 640px) {
+  .heroTitle { font-size: 2.9rem; }
 }
 
 /* Keep the primary action visible on the light hero surface. */

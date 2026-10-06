@@ -6,9 +6,11 @@ import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
 import BookingCard from "@/components/industry/BookingCard";
 import FrontDeskTimeline from "@/components/industry/FrontDeskTimeline";
 import FeatureExplorer from "@/components/industry/FeatureExplorer";
+import MomentMap from "@/components/industry/MomentMap";
 import CTASection from "@/components/sections/CTASection";
 import { industries } from "@/data/industries";
-import { industrySystems } from "@/data/industrySystems";
+import { industrySystems } from "@/data/Industrysystems";
+import { momentPlays } from "@/data/momentPlays";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
@@ -72,14 +74,12 @@ export default function HealthcarePage() {
             title="The Moments That Matter Most"
             description="These are the moments that decide whether a patient books, or looks elsewhere."
           />
-          <div className={styles.momentsGrid}>
-            {data.peakMoments.map((m) => (
-              <div key={m.text} className={styles.momentCard}>
-                <p className={styles.momentText}>{m.text}</p>
-                <span className={styles.momentTag}>Handled at: {m.step}</span>
-              </div>
-            ))}
-          </div>
+          <MomentMap
+            workflow={data.workflow}
+            rootNote={momentPlays["healthcare"].rootNote}
+            moments={data.peakMoments}
+            plays={momentPlays["healthcare"].plays}
+          />
         </div>
       </section>
 

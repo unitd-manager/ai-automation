@@ -67,7 +67,7 @@ export default function ROICalculatorPage() {
           <p className={styles.heroCopy}>
             Turn repetitive work into measurable savings. Estimate potential cost savings, hours recovered, productivity gains, and return on investment using your own numbers.
           </p>
-          <Button href="#calculator" size="lg">Calculate Your ROI <ArrowRight size={16} /></Button>
+          <Button href="#calculator" variant="light" size="lg">Calculate Your ROI <ArrowRight size={16} /></Button>
         </div>
       </section>
 

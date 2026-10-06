@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Check, Minus, Zap, TrendingUp, Crown, Target, Layers, Gauge, Users, ShieldCheck } from "lucide-react";
 import type { PricingTier } from "@/data/pricing";
 import Button from "@/components/ui/Button";
+import PricingAddToCart from "./PricingAddToCart";
 import styles from "./PricingCard.module.css";
 
 type Tier = PricingTier & { range?: string; ctaLabel?: string; ctaNote?: string; badge?: string };
@@ -60,6 +61,7 @@ export function PricingCard({ tier }: { tier: Tier }) {
           <Button href="/contact" variant={tier.featured ? "primary" : "secondary"} size="lg">
             {tier.ctaLabel ?? "Talk to Us"}
           </Button>
+          <PricingAddToCart tier={tier} />
           {tier.ctaNote && <p className={styles.ctaNote}>{tier.ctaNote}</p>}
         </footer>
       </div>
@@ -295,78 +297,31 @@ export function PricingHero() {
   );
 }
 
-/* ---------- Maintenance Mode: optional month-on-month subscription after the build ---------- */
-// EDIT: put your real monthly prices in `price`. Text/points are drafts, change freely.
-const maintenanceTiers: Tier[] = [
-  {
-    code: "DIY",
-    name: "Guided Support",
-    price: "Custom",
-    priceNote: "/ month",
-    description: "Keep your roadmap moving after the diagnostic, with ongoing guidance as you build.",
-    included: [
-      "Progress check-ins on your checklist",
-      "Updates to your AI Automation Blueprint",
-      "Answers when your team gets stuck",
-    ],
-    bestFor: "Teams executing the plan themselves.",
-    ctaLabel: "Add Maintenance",
-  },
-  {
-    code: "DWY",
-    name: "Optimization Plan",
-    price: "Custom",
-    priceNote: "/ month",
-    description: "Your live workflow stays tuned, measured, and improving, month after month.",
-    included: [
-      "Monthly optimization",
-      "Reporting",
-      "Lead and follow-up workflow tuning",
-      "Emergency routing review",
-    ],
-    bestFor: "Businesses with a core workflow already running.",
-    featured: true,
-    badge: "Month-on-month",
-    ctaLabel: "Add Maintenance",
-  },
-  {
-    code: "DFY",
-    name: "Managed Operations",
-    price: "Custom",
-    priceNote: "/ month",
-    description: "We keep your whole automation system running, so you don't have to think about it.",
-    included: [
-      "Fully managed AI agents",
-      "Continuous optimization",
-      "Dashboards",
-      "Multi-channel workflow upkeep",
-      "Minimal client involvement",
-    ],
-    bestFor: "Businesses running on AI-driven infrastructure.",
-    ctaLabel: "Add Maintenance",
-  },
-];
-
 export function MaintenancePlans() {
   return (
-    <section className={styles.points} aria-labelledby="maintenance-mode">
-      <div className={styles.compareHead}>
-        <span className={styles.eyebrow}>After launch</span>
-        <h2 id="maintenance-mode" className={styles.compareTitle}>
-          <span className={styles.compareAccent}>Maintenance</span> Mode
-        </h2>
-        <span className={styles.compareBar} aria-hidden />
-        <p className={styles.compareSub}>
-          Keep your automation running, optimized, and improving with optional month-to-month
-          support. Maintenance pricing is scoped to your system; third-party tool subscriptions,
-          such as Claude, are billed separately by their providers.
-        </p>
-      </div>
-      <div className={styles.grid}>
-        {maintenanceTiers.map((t) => (
-          <PricingCard key={t.code} tier={t} />
-        ))}
-      </div>
+    <section className={`${styles.points} ${styles.maintenanceSection}`} aria-labelledby="maintenance-mode">
+      <article className={styles.maintenancePanel}>
+        <div className={styles.maintenanceDetails}>
+          <span className={styles.maintenanceEyebrow}>Optional ongoing support</span>
+          <h2 id="maintenance-mode" className={styles.maintenanceTitle}>Month-on-Month Maintenance</h2>
+          <p className={styles.maintenanceDescription}>
+            Keep your AI workflows reliable with software upgrades, integration updates, and ongoing optimization.
+          </p>
+          <ul className={styles.maintenanceList}>
+            <li><Check size={17} aria-hidden /> Software and integration updates</li>
+            <li><Check size={17} aria-hidden /> Workflow tuning and maintenance</li>
+            <li><Check size={17} aria-hidden /> Monitoring and issue resolution</li>
+          </ul>
+        </div>
+        <div className={styles.maintenancePrice}>
+          <span className={styles.maintenancePriceLabel}>MONTH-TO-MONTH</span>
+          <p className={styles.maintenanceAmount}><strong>Custom</strong><span>/ month</span></p>
+          <p className={styles.maintenanceNote}>
+            AI tool subscriptions and usage, including Claude, are billed separately at provider rates.
+          </p>
+          <Button href="/contact" variant="primary" size="lg">Discuss Maintenance</Button>
+        </div>
+      </article>
     </section>
   );
 }

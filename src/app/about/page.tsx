@@ -1,47 +1,50 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Check, X } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import FAQAccordion from "@/components/sections/FAQAccordion";
 import type { FAQItem } from "@/data/pricing";
+import { industries } from "@/data/industries";
 import { buildMetadata } from "@/lib/metadata";
+import { agents, flow } from "../how-it-works/Content";
+import AboutMindMap from "./AboutMindMap";
 import WorkflowDemo from "./WorkflowDemo";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = buildMetadata({
   title: "About",
   description:
-    "United Technologies is an AI automation partner for US small and mid-size businesses — we map how your business runs, then build the systems that respond, qualify, and book.",
+    "United Technologies is an AI automation partner for US small and mid-size businesses. We map how your business runs, then build the workflow that answers, qualifies, books and follows up.",
   path: "/about",
 });
 
 const tools = ["HubSpot", "GoHighLevel", "Salesforce", "ServiceTitan", "Google Calendar", "Twilio", "Zapier", "Make", "n8n"];
 
-const principles = [
-  { title: "Process before product", body: "We map intake, scheduling, and follow-up first. The AI is built to fit what we find." },
-  { title: "Speed wins the work", body: "The business that replies first usually gets the job. We protect that moment." },
-  { title: "Connected by default", body: "Every system plugs into your CRM and calendar — no new silos to manage." },
-];
-
-const before = [
-  { lead: "After-hours calls go to voicemail", rest: " — and callers try the next company." },
-  { lead: "Estimate requests wait days", rest: " in a shared inbox." },
-  { lead: "Follow-ups depend on memory", rest: ", so warm leads go cold." },
-  { lead: "Staff re-type data", rest: " between phone, CRM, and calendar." },
-];
-
-const after = [
-  { lead: "Every call answered", rest: " by a voice agent, 24/7." },
-  { lead: "Instant replies", rest: " to web, SMS, and email inquiries." },
-  { lead: "Automatic follow-up sequences", rest: " until the lead books or declines." },
-  { lead: "One source of truth", rest: " — CRM and calendar update themselves." },
-];
-
-// TODO: replace "20XX" with real company dates before launch.
-const milestones = [
-  { year: "20XX", title: "The first missed call", body: "Founded after seeing local businesses lose jobs to slow response." },
-  { year: "20XX", title: "First voice agent live", body: "Launched after-hours call handling for a home services client." },
-  { year: "20XX", title: "Full-stack automation", body: "Expanded into CRM, scheduling, and document workflows." },
-  { year: "Today", title: "Three industries", body: "Serving home services, healthcare, and construction teams across the US." },
+// How we deliver, one step per principle. Each step maps onto the workflow above it.
+const process = [
+  {
+    step: "Map",
+    principle: "Process before product",
+    body: "We map intake, scheduling and follow-up first. The AI is built to fit what we find, not the other way around.",
+    get: "A clear map of where leads stall today",
+  },
+  {
+    step: "Build",
+    principle: "Speed wins the work",
+    body: "The business that replies first usually gets the job. We script and tune the response and booking agent around your services and your tone.",
+    get: "A voice and SMS agent tested on real call scenarios",
+  },
+  {
+    step: "Connect",
+    principle: "Connected by default",
+    body: "Every system plugs into your CRM and calendar, with no new silos to manage and no forced platform switch.",
+    get: "Phone, CRM and calendar that update each other",
+  },
+  {
+    step: "Monitor",
+    principle: "No black box",
+    body: "We watch the conversations, report on results and adjust the workflow as your business changes.",
+    get: "Reporting and ongoing tuning after launch",
+  },
 ];
 
 const aboutFaqs: FAQItem[] = [
@@ -63,17 +66,15 @@ const aboutFaqs: FAQItem[] = [
   },
 ];
 
-function PixelMark() {
-  return (
-    <div className={styles.pixels} aria-hidden>
-      <i style={{ width: 22, height: 18 }} />
-      <i style={{ width: 14, height: 12, opacity: 0.7 }} />
-      <i style={{ width: 8, height: 7, opacity: 0.45 }} />
-    </div>
-  );
-}
+// The six shared workflow steps split between the two agents (first four / last two).
+const AGENT_SPLIT = 4;
 
 export default function AboutPage() {
+  const groups = [
+    { agent: agents[0], steps: flow.slice(0, AGENT_SPLIT), offset: 0 },
+    { agent: agents[1], steps: flow.slice(AGENT_SPLIT), offset: AGENT_SPLIT },
+  ];
+
   return (
     <div className={styles.page}>
       {/* Hero */}
@@ -82,145 +83,127 @@ export default function AboutPage() {
           <div>
             <span className={`${styles.label} ${styles.labelBox}`}>About United Technologies</span>
             <h1 className={styles.heroTitle}>
-              Every lead answered. <em>Every time.</em>
+              The system behind <em>every answered call.</em>
             </h1>
             <p className={styles.lead}>
               We&apos;re an AI automation partner for US small and mid-size businesses. We map how your business
-              actually runs, then build the systems that respond, qualify, and book — while your team does the work
-              that needs a person.
+              actually runs, then build the workflow that answers, qualifies, books and follows up, so nothing slips
+              between the first call and the finished job.
             </p>
             <div className={styles.heroCta}>
               <Link href="/resources/ai-audit" className={`${styles.btn} ${styles.btnPrimary}`}>
                 Get a free AI audit <ArrowRight size={16} />
               </Link>
-              <a href="#story" className={`${styles.btn} ${styles.btnLine}`}>Read our story</a>
+              <Link href="/how-it-works" className={`${styles.btn} ${styles.btnLine}`}>
+                See how it works
+              </Link>
             </div>
           </div>
           <WorkflowDemo />
         </div>
       </header>
 
-      {/* Tools strip */}
-      <div className={styles.tools} aria-label="Tools we integrate with">
-        <div className={`container ${styles.toolsInner}`}>
-          <span className={styles.label}>Built on the tools you use</span>
-          <div className={styles.viewport}>
-            <div className={styles.track}>
-              {[...tools, ...tools].map((t, i) => (
-                <span key={`${t}-${i}`} aria-hidden={i >= tools.length || undefined}>{t}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Who we are — bento */}
-      <section className="section" id="story">
+      {/* Mind map */}
+      <section className="section" id="map">
         <div className="container">
-          <span className={styles.label}>Who we are</span>
-          <h2 className={styles.h2}>Automation engineers who start with operations.</h2>
-          <div className={styles.bento}>
-            <div className={`${styles.tile} ${styles.w4}`}>
-              <span className={styles.label}>Our story</span>
-              <p className={styles.quote}>
-                &ldquo;We kept seeing good businesses lose work for one reason: nobody picked up in time. That&apos;s
-                not a hard problem — it&apos;s a consistency problem.&rdquo;
-              </p>
-              {/* TODO: replace with the founder's real name, initials, and photo. */}
-              <div className={styles.who}>
-                <div className={styles.avatar}>UT</div>
-                <div>
-                  <b>Founder Name</b>
-                  <span>Founder &amp; CEO</span>
+          <span className={styles.label}>The idea, mapped</span>
+          <h2 className={styles.h2}>One idea at the center of everything we build.</h2>
+          <AboutMindMap />
+        </div>
+      </section>
+
+      {/* Workflow: one flow, two agents */}
+      <section className={`section ${styles.tight}`}>
+        <div className="container">
+          <span className={styles.label}>The workflow</span>
+          <h2 className={styles.h2}>One workflow. Two agents.</h2>
+          <p className={`${styles.lead} ${styles.sectionLead}`}>
+            Every engagement runs on the same spine: a customer reaches out, the first agent handles the response and
+            the booking, and the second keeps the relationship going.
+          </p>
+
+          <div className={styles.flowBoard}>
+            {groups.map((g, gi) => (
+              <div key={g.agent.name} className={`${styles.agentGroup} ${gi === 0 ? styles.groupWide : styles.groupNarrow}`}>
+                <div className={styles.agentHead}>
+                  <b>{g.agent.name}</b>
+                  <span>{g.agent.sub}</span>
                 </div>
-              </div>
-            </div>
-            <div className={`${styles.tile} ${styles.w2} ${styles.tileDark}`}>
-              <span className={styles.label}>Mission</span>
-              <h3>Make fast, consistent response the default for every growing business.</h3>
-            </div>
-            {principles.map((p) => (
-              <div key={p.title} className={`${styles.tile} ${styles.w2}`}>
-                <PixelMark />
-                <h3>{p.title}</h3>
-                <p>{p.body}</p>
+                <ol className={styles.steps}>
+                  {g.steps.map((s, i) => (
+                    <li key={s} className={styles.stepItem}>
+                      <span className={`${styles.stepNo} mono`}>{String(g.offset + i + 1).padStart(2, "0")}</span>
+                      <span className={styles.stepText}>{s}</span>
+                    </li>
+                  ))}
+                </ol>
               </div>
             ))}
-            <div className={`${styles.tile} ${styles.w3}`}>
-              <span className={styles.label}>Industries we know</span>
-              <h3>Deep in three verticals where response time decides revenue.</h3>
-              <div className={styles.chips}>
-                <Link href="/industries/home-services">Home services</Link>
-                <Link href="/industries/healthcare">Healthcare</Link>
-                <Link href="/industries/construction">Construction</Link>
-              </div>
-            </div>
-            <div className={`${styles.tile} ${styles.w3}`}>
-              <span className={styles.label}>What we build</span>
-              <h3>From one voice agent to a full operations stack.</h3>
-              <div className={styles.chips}>
-                {["Voice AI", "Lead response", "Scheduling", "Follow-up", "Documents", "Dashboards"].map((c) => (
-                  <span key={c}>{c}</span>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Before / after */}
+      {/* How we work */}
       <section className={`section ${styles.tight}`}>
-        <div className="container">
-          <span className={styles.label}>Why we exist</span>
-          <h2 className={styles.h2}>The gap we close</h2>
-          <div className={styles.ba}>
-            <div className={styles.col}>
-              <div className={styles.colHead}>
-                <b>Without automation</b>
-                <span className={`${styles.pill} ${styles.pillBad}`}>Today</span>
-              </div>
-              <ul>
-                {before.map((item) => (
-                  <li key={item.lead}>
-                    <span className={`${styles.mark} ${styles.markBad}`}><X size={12} strokeWidth={3} /></span>
-                    <span><b>{item.lead}</b>{item.rest}</span>
-                  </li>
+        <div className={`container ${styles.processGrid}`}>
+          <div className={styles.processIntro}>
+            <span className={styles.label}>How we work</span>
+            <h2 className={styles.h2}>Map it. Build it. Connect it. Keep it sharp.</h2>
+            <p className={styles.lead}>
+              Four steps, each tied to a principle we won&apos;t trade away. Most first workflows go live in two to
+              four weeks.
+            </p>
+            <div className={styles.toolsBlock}>
+              <span className={styles.label}>Built on the tools you use</span>
+              <div className={styles.toolChips}>
+                {tools.map((t) => (
+                  <span key={t}>{t}</span>
                 ))}
-              </ul>
-            </div>
-            <div className={`${styles.col} ${styles.colAfter}`}>
-              <div className={styles.colHead}>
-                <b>With United Technologies</b>
-                <span className={`${styles.pill} ${styles.pillOk}`}>After</span>
               </div>
-              <ul>
-                {after.map((item) => (
-                  <li key={item.lead}>
-                    <span className={`${styles.mark} ${styles.markOk}`}><Check size={12} strokeWidth={3} /></span>
-                    <span><b>{item.lead}</b>{item.rest}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Timeline */}
-      <section className={`section ${styles.tight}`}>
-        <div className="container">
-          <span className={styles.label}>Our journey</span>
-          <h2 className={styles.h2}>How we got here</h2>
-          <ol className={styles.timeline}>
-            {milestones.map((m, i) => (
-              <li key={m.title} className={`${styles.milestone} ${i === milestones.length - 1 ? styles.now : ""}`}>
-                <span className={styles.dot} />
-                <span className={styles.year}>{m.year}</span>
-                <h3>{m.title}</h3>
-                <p>{m.body}</p>
+          <ol className={styles.process}>
+            {process.map((p, i) => (
+              <li key={p.step} className={styles.processStep}>
+                <span className={`${styles.processNo} mono`}>{String(i + 1).padStart(2, "0")}</span>
+                <div className={styles.processBody}>
+                  <div className={styles.processTop}>
+                    <h3>{p.step}</h3>
+                    <span className={styles.principle}>{p.principle}</span>
+                  </div>
+                  <p>{p.body}</p>
+                  <span className={styles.getLine}>
+                    <b>You get:</b> {p.get}
+                  </span>
+                </div>
               </li>
             ))}
           </ol>
+        </div>
+      </section>
+
+      {/* Industries */}
+      <section className={`section ${styles.tight}`}>
+        <div className="container">
+          <span className={styles.label}>Who we serve</span>
+          <h2 className={styles.h2}>Industries where response time decides revenue.</h2>
+          <div className={styles.industries}>
+            {industries.map((ind) => (
+              <Link key={ind.slug} href={`/industries/${ind.slug}`} className={styles.industry}>
+                <h3>{ind.name}</h3>
+                <p className={styles.segments}>{ind.segments.join(" · ")}</p>
+                <p className={styles.flowLine}>
+                  <span>{ind.workflow[0]}</span>
+                  <i aria-hidden />
+                  <span>{ind.workflow[ind.workflow.length - 1]}</span>
+                </p>
+                <span className={styles.explore}>
+                  Explore industry <ArrowRight size={15} aria-hidden />
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 

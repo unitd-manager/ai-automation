@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { Check, Minus } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import PricingCard from "@/components/cards/PricingCard";
+import PricingCartLink from "@/components/cards/PricingCartLink";
 import { MaintenancePlans } from "@/components/cards/PricingCard";
 import CTASection from "@/components/sections/CTASection";
 import { pricingTiers } from "@/data/pricing";
@@ -70,6 +71,12 @@ const comparisonGroups: CompareGroup[] = [
       { label: "Minimal client involvement", cells: [false, false, true] },
     ],
   },
+  {
+    title: "Engagement terms",
+    rows: [
+      { label: "Payment and duration", cells: ["Information only · one-time", "Subscription · 3 months", "6 months"] },
+    ],
+  },
 ];
 
 function CompareValue({ value }: { value: CompareCell }) {
@@ -83,7 +90,10 @@ export default function PricingPage() {
     <>
       <section className={`section ${styles.hero}`}>
         <div className="container">
-          <h1 className={styles.heroTitle}>Start Small Build Smart Scale When Ready</h1>
+          <h1 className={styles.heroTitle}>
+            Start Small Build Smart
+            <span className={styles.heroAccent}>Scale When Ready</span>
+          </h1>
           <p className={styles.heroCopy}>
             Every engagement starts with clarity on what to <br />
             automate first.From there, choose the level of<br />
@@ -94,11 +104,18 @@ export default function PricingPage() {
 
       <section className="section">
         <div className="container">
+          <PricingCartLink />
           <div className={styles.grid}>
             {pricingTiers.map((tier) => (
               <PricingCard key={tier.code} tier={tier} />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className={styles.maintenanceSlot}>
+        <div className="container">
+          <MaintenancePlans />
         </div>
       </section>
 
@@ -138,12 +155,6 @@ export default function PricingPage() {
             Pricing reflects typical engagement scope. Final pricing for DWY and DFY depends on the number of systems
             involved and is confirmed after your AI Audit.
           </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <MaintenancePlans />
         </div>
       </section>
 

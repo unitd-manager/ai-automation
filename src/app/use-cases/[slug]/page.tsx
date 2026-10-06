@@ -8,6 +8,18 @@ import { getUseCase, useCases } from "@/data/useCases";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
 
+/**
+ * The navbar is solid white but turns its links white on "/use-cases/...", which makes them
+ * invisible. These overrides apply only while a use case page is shown.
+ */
+const navFix = `
+header a[class*="navLink"] { color: var(--color-primary) !important; }
+header a[class*="navLink"]::after { background: var(--color-accent) !important; }
+header a[class*="cta"] { background: var(--color-primary) !important; color: #fff !important; }
+header a[class*="cta"]:hover { background: var(--color-accent-600) !important; }
+header button[class*="mobileToggle"] { color: var(--color-primary) !important; }
+`;
+
 export function generateStaticParams() {
   return useCases.map(({ slug }) => ({ slug }));
 }
@@ -24,6 +36,7 @@ export default async function UseCasePage({ params }: { params: Promise<{ slug: 
  
   return (
     <>
+      <style>{navFix}</style>
       <section className={`section ${styles.hero}`}>
         <div className="container">
           <span className={styles.eyebrow}>{data.eyebrow}</span>
