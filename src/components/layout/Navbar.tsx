@@ -12,8 +12,10 @@ import {
   Wrench,
   HeartPulse,
   Car,
+  ShoppingCart,
   type LucideIcon,
 } from "lucide-react";
+import { useCart } from "@/context/CartContext";
 import styles from "./Navbar.module.css";
 
 type MenuGroup = {
@@ -127,6 +129,7 @@ const navLinks = [
 const darkHeroRoutes = ["/solutions"];
 
 export default function Navbar() {
+  const { itemCount } = useCart();
   const [scrolled, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -134,6 +137,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const onDarkHero = darkHeroRoutes.includes(pathname) || pathname.startsWith("/use-cases/");
   const useWhiteLogo = onDarkHero && !scrolled;
+  const isCommercePage = pathname === "/cart" || pathname === "/checkout";
 
   const openMenuNow = (label: string) => {
     if (closeTimer.current) {
@@ -173,7 +177,7 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
-  <header className={`${styles.header} ${scrolled ? styles.scrolled : ""} ${useWhiteLogo ? styles.onDark : ""} ${pathname === "/resources/ai-audit" ? styles.auditPage : ""}`}>
+  <header className={`${styles.header} ${scrolled ? styles.scrolled : ""} ${useWhiteLogo ? styles.onDark : ""} ${isCommercePage ? styles.commerce : ""} ${pathname === "/resources/ai-audit" ? styles.auditPage : ""}`}>
       <div className={`container ${styles.inner}`}>
         <Link href="/" className={styles.logoLink} aria-label="United Technologies home">
           <Image
@@ -253,6 +257,16 @@ export default function Navbar() {
             </div>
           ))}
         </nav>
+
+        <Link
+          href="/cart"
+          className={styles.cartLink}
+          aria-label={`View cart${itemCount > 0 ? `, ${itemCount} ${itemCount === 1 ? "item" : "items"}` : ""}`}
+        >
+          <ShoppingCart size={21} aria-hidden />
+          {itemCount > 0 && <span className={styles.cartCount}>{itemCount}</span>}
+          <span className={styles.cartLabel}>Cart</span>
+        </Link>
 
         <div className={styles.ctaWrap}>
           <Link href="/resources/ai-audit" className={styles.cta}>

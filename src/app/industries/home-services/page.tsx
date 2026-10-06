@@ -9,7 +9,7 @@ import FeatureExplorer from "@/components/industry/FeatureExplorer";
 import MomentMap from "@/components/industry/MomentMap";
 import CTASection from "@/components/sections/CTASection";
 import { industries } from "@/data/industries";
-import { industrySystems } from "@/data/industrySystems";
+import { industrySystems } from "@/data/Industrysystems";
 import { momentPlays } from "@/data/momentPlays";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";
