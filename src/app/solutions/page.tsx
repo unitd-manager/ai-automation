@@ -132,25 +132,11 @@ const faqs = [
   },
 ];
 
-/**
- * The navbar (not edited here) is solid white and turns its links white on "/solutions",
- * which makes them invisible. These overrides apply only while this page is shown.
- */
-const navFix = `
-header a[class*="navLink"] { color: var(--color-primary) !important; }
-header a[class*="navLink"]::after { background: var(--color-accent) !important; }
-header a[class*="cta"] { background: var(--color-primary) !important; color: #fff !important; }
-header a[class*="cta"]:hover { background: var(--color-accent-600) !important; }
-header button[class*="mobileToggle"] { color: var(--color-primary) !important; }
-`;
-
 /* ---------- page ---------- */
 
 export default function SolutionsPage() {
   return (
     <>
-      <style>{navFix}</style>
-
       {/* 1. HERO: a request travelling down one line */}
       <section className={styles.hero}>
         <div className={`container ${styles.heroGrid}`}>
@@ -165,7 +151,7 @@ export default function SolutionsPage() {
             </p>
             <div className={styles.heroActions}>
               <Button href="/resources/ai-audit" size="lg">Get Your AI Audit</Button>
-              <Button href="#lookup" variant="ghost" size="lg">Find your starting point</Button>
+              <Button href="#lookup" variant="secondary" size="lg">Find your starting point</Button>
             </div>
           </div>
 

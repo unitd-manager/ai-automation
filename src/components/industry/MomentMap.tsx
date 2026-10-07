@@ -12,15 +12,13 @@ interface Props {
 
 /**
  * Workflow mind map. The first workflow stage is the root; each peak moment branches off it,
- * lands on the stage that handles it (shown on a mini track of the whole workflow), and ends
- * in the outcome for the business.
+ * lands on the stage that handles it, and ends in the outcome for the business.
  */
 export default function MomentMap({ workflow, rootNote, moments, plays }: Props) {
   const root = workflow[0];
   const rows = moments.map((m) => {
     const play = plays.find((p) => p.text === m.text);
-    const index = workflow.indexOf(m.step);
-    return { ...m, action: play?.action ?? "", outcome: play?.outcome ?? "", index };
+    return { ...m, action: play?.action ?? "", outcome: play?.outcome ?? "" };
   });
 
   return (
@@ -45,22 +43,11 @@ export default function MomentMap({ workflow, rootNote, moments, plays }: Props)
 
             <span className={styles.link} aria-hidden />
 
-            {/* Handling stage, shown on the workflow track */}
+            {/* Handling stage */}
             <div className={`${styles.node} ${styles.stage}`}>
-              <span className={`${styles.nodeLabel} mono`}>
-                {row.index >= 0 ? `Step ${String(row.index + 1).padStart(2, "0")} of ${String(workflow.length).padStart(2, "0")}` : "Handled at"}
-              </span>
+              <span className={`${styles.nodeLabel} mono`}>Handled at</span>
               <strong className={styles.stageName}>{row.step}</strong>
               <p className={styles.action}>{row.action}</p>
-              <ol className={styles.track} aria-label={`Position in the workflow: ${row.step}`}>
-                {workflow.map((s, si) => (
-                  <li
-                    key={s}
-                    className={`${styles.pip} ${si === row.index ? styles.pipOn : ""} ${si < row.index ? styles.pipPast : ""}`}
-                    title={s}
-                  />
-                ))}
-              </ol>
             </div>
 
             <span className={styles.link} aria-hidden />
