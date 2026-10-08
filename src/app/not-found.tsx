@@ -13,7 +13,7 @@ export default function NotFound() {
         <div style={{ display: "flex", justifyContent: "center", gap: "1rem" }}>
           <Button href="/">Back to Home</Button>
           <Link href="/contact" style={{ alignSelf: "center", fontSize: "0.9rem", color: "var(--color-primary)" }}>
-            Contact Us
+            Talk to Us
           </Link>
         </div>
       </div>

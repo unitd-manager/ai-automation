@@ -78,7 +78,7 @@ export default function AiAuditPage() {
             prioritized plan, whether or not you build it with us.
           </p>
           <div className={styles.heroCta}>
-            <Button href="/contact" size="lg">Request Your AI Audit</Button>
+            <Button href="/contact" size="lg">Talk to Us</Button>
           </div>
         </div>
       </section>
@@ -191,7 +191,7 @@ export default function AiAuditPage() {
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", justifyContent: "flex-start", gap: "var(--space-3)" }}>
                   <Button href="/pricing" variant="light" size="md">Check Other Packages</Button>
-                  <Button href="/contact" variant="light" size="lg">Get Your AI Audit</Button>
+                  <Button href="/contact" variant="light" size="lg">Talk to Us</Button>
                 </div>
               </div>
             </div>

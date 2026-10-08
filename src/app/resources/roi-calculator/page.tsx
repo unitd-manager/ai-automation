@@ -148,7 +148,7 @@ export default function ROICalculatorPage() {
         description="Use the estimate as a starting point, then get a detailed automation assessment built around your actual workflows."
         primaryLabel="Get a Detailed Automation Assessment"
         primaryHref="/resources/ai-audit"
-        secondaryLabel="Talk to an Automation Expert"
+        secondaryLabel="Talk to Us"
         secondaryHref="/contact"
       />
     </>

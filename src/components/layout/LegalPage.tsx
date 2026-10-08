@@ -52,7 +52,7 @@ export default function LegalPage({ eyebrow, titleStart, titleAccent, intro, eff
               Email us at <a href="mailto:hello@unitedtechnologies.ai">hello@unitedtechnologies.ai</a> or use our
               contact page, and we'll get back to you within two business days.
             </p>
-            <Button href="/contact" variant="secondary">Contact Us</Button>
+            <Button href="/contact" variant="secondary">Talk to Us</Button>
           </div>
         </div>
       </section>
