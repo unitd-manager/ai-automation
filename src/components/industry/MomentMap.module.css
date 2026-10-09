@@ -179,30 +179,6 @@
   font-size: 0.875rem;
   line-height: 1.55;
   color: #cfdcff;
-  margin-bottom: var(--space-4);
-}
-
-/* mini workflow track: where this stage sits in the full workflow */
-.track {
-  display: flex;
-  gap: 5px;
-}
-
-.pip {
-  flex: 1;
-  height: 5px;
-  border-radius: 3px;
-  background: rgba(255, 255, 255, 0.16);
-  transition: background var(--dur-med) var(--ease-out), box-shadow var(--dur-med) var(--ease-out);
-}
-
-.pipPast {
-  background: rgba(143, 176, 255, 0.5);
-}
-
-.pipOn {
-  background: #fff;
-  box-shadow: 0 0 0 3px rgba(143, 176, 255, 0.35);
 }
 
 .outcome {
@@ -237,10 +213,6 @@
   border-color: rgba(76, 116, 214, 0.6);
   background: #fff;
   transform: translateX(3px);
-}
-
-.branch:hover .pipOn {
-  box-shadow: 0 0 0 4px rgba(143, 176, 255, 0.5);
 }
 
 /* ---------- Tablet / mobile: one chain per moment, stacked ---------- */
@@ -304,7 +276,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .node,
-  .pip,
   .link,
   .branch::before {
     transition: none;

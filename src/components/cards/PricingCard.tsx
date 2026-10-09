@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import { Check, Minus, Zap, TrendingUp, Crown, Target, Layers, Gauge, Users, ShieldCheck } from "lucide-react";
 import type { PricingTier } from "@/data/pricing";
 import Button from "@/components/ui/Button";
+import PricingAddToCart from "./PricingAddToCart";
 import styles from "./PricingCard.module.css";
 
 type Tier = PricingTier & { range?: string; ctaLabel?: string; ctaNote?: string; badge?: string };
@@ -60,6 +61,7 @@ export function PricingCard({ tier }: { tier: Tier }) {
           <Button href="/contact" variant={tier.featured ? "primary" : "secondary"} size="lg">
             {tier.ctaLabel ?? "Talk to Us"}
           </Button>
+          <PricingAddToCart tier={tier} />
           {tier.ctaNote && <p className={styles.ctaNote}>{tier.ctaNote}</p>}
         </footer>
       </div>

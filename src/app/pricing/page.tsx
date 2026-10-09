@@ -3,6 +3,7 @@ import { Fragment } from "react";
 import { Check, Minus } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import PricingCard from "@/components/cards/PricingCard";
+import PricingCartLink from "@/components/cards/PricingCartLink";
 import { MaintenancePlans } from "@/components/cards/PricingCard";
 import CTASection from "@/components/sections/CTASection";
 import { pricingTiers } from "@/data/pricing";
@@ -103,6 +104,7 @@ export default function PricingPage() {
 
       <section className="section">
         <div className="container">
+          <PricingCartLink />
           <div className={styles.grid}>
             {pricingTiers.map((tier) => (
               <PricingCard key={tier.code} tier={tier} />

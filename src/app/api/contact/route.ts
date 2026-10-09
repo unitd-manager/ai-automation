@@ -59,7 +59,7 @@ export async function POST(request: Request) {
   if (!submission.name || !submission.company || !submission.email || !submission.industry) {
     return Response.json({ error: "Please complete all required fields." }, { status: 400 });
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(submission.email) || submission.email.length > 254) {
+  if (!/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(submission.email) || submission.email.length > 254) {
     return Response.json({ error: "Enter a valid email address." }, { status: 400 });
   }
   if (submission.website) {

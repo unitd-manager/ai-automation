@@ -52,6 +52,18 @@
   box-shadow: var(--shadow-sm);
 }
 
+.principleCard,
+.phaseCard {
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.principleCard:hover,
+.phaseCard:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+  box-shadow: 0 12px 28px rgba(23, 41, 74, 0.12);
+}
+
 .principleNumber,
 .roleIndex {
   display: block;
@@ -180,6 +192,18 @@
 
 .faqSection {
   background: var(--color-surface);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .principleCard,
+  .phaseCard {
+    transition: none;
+  }
+
+  .principleCard:hover,
+  .phaseCard:hover {
+    transform: none;
+  }
 }
 
 @media (max-width: 860px) {

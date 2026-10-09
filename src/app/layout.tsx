@@ -3,6 +3,7 @@ import { Space_Grotesk, Inter, IBM_Plex_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import { CartProvider } from "@/context/CartContext";
 import { buildMetadata } from "@/lib/metadata";
 import "@/styles/globals.css";
 
@@ -36,10 +37,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${plexMono.variable}`}>
       <body>
-        <ScrollReveal />
-        <Navbar />
-        <main id="main">{children}</main>
-        <Footer />
+        <CartProvider>
+          <ScrollReveal />
+          <Navbar />
+          <main id="main">{children}</main>
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

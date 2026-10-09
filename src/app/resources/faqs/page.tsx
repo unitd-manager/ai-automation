@@ -34,7 +34,7 @@ export default function FAQsPage() {
       <CTASection
         title="Still Have Questions?"
         description="Every business's process is a little different. Let's talk through yours specifically."
-        primaryLabel="Contact Us"
+        primaryLabel="Talk to Us"
         primaryHref="/contact"
       />
     </>

@@ -29,7 +29,7 @@ export default function ContactForm() {
     }
 
     const email = String(formData.get("email") ?? "").trim();
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    if (email && !/^[^\s@]+@[^\s@]+\.[A-Za-z]{2,}$/.test(email)) {
       nextErrors.email = "Enter a valid email address.";
     }
 
