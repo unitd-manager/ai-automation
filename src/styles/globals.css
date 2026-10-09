@@ -181,29 +181,6 @@ ul, ol {
   background: linear-gradient(180deg, var(--color-surface) 0%, #eef1f6 100%);
 }
 
-/* Global scroll-reveal: applied at runtime by ScrollReveal.tsx.
-   No-JS / reduced-motion users always see full content — nothing is
-   hidden by default in the base CSS. */
-.reveal-init {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
-  will-change: opacity, transform;
-}
-
-.reveal-init.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal-init {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
 .mono {
   font-family: var(--font-mono);
   letter-spacing: -0.01em;

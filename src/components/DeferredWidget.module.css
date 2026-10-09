@@ -1,0 +1,51 @@
+.diagramLoading,
+.featuresLoading {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.diagramLoading {
+  min-height: 8rem;
+  justify-content: space-around;
+}
+
+.featuresLoading {
+  min-height: 24rem;
+  align-items: stretch;
+}
+
+.diagramLoading span,
+.featuresLoading span {
+  display: block;
+  border-radius: 0.75rem;
+  background: linear-gradient(90deg, #edf0f4 25%, #f7f8fa 50%, #edf0f4 75%);
+  background-size: 200% 100%;
+  animation: deferredShimmer 1.2s ease-in-out infinite;
+}
+
+.diagramLoading span {
+  width: 20%;
+  height: 4rem;
+}
+
+.featuresLoading span:first-of-type {
+  width: 30%;
+}
+
+.featuresLoading span:not(:first-of-type) {
+  flex: 1;
+}
+
+@keyframes deferredShimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagramLoading span,
+  .featuresLoading span {
+    animation: none;
+  }
+}

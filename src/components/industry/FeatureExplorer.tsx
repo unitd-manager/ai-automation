@@ -2,7 +2,7 @@
 
 import { useRef, useState, type KeyboardEvent } from "react";
 import { Phone, MessageSquare, Mail, type LucideIcon } from "lucide-react";
-import type { Channel, SystemFeatureMeta } from "@/data/industrySystems";
+import type { Channel, SystemFeatureMeta } from "@/data/Industrysystems";
 import styles from "./FeatureExplorer.module.css";
 
 const channelMeta: Record<Channel, { label: string; Icon: LucideIcon }> = {

@@ -10,17 +10,27 @@ export default function ScrollReveal() {
     const targets = Array.from(document.querySelectorAll<HTMLElement>(".section"));
     if (!targets.length) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduced) {
-      targets.forEach((el) => el.classList.add("is-visible"));
-      return;
-    }
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) return;
 
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
+            const element = entry.target as HTMLElement;
+            element.animate(
+              [
+                { opacity: 0, transform: "translateY(28px)" },
+                { opacity: 1, transform: "translateY(0)" },
+              ],
+              {
+                duration: 800,
+                easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+                fill: "both",
+              }
+            );
             io.unobserve(entry.target);
           }
         });
@@ -29,7 +39,6 @@ export default function ScrollReveal() {
     );
 
     targets.forEach((el) => {
-      el.classList.add("reveal-init");
       io.observe(el);
     });
 

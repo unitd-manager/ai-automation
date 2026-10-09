@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Button from "@/components/ui/Button";
 import CTASection from "@/components/sections/CTASection";
 import SectionHeader from "@/components/ui/SectionHeader";
-import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
+import WorkflowDiagram from "@/components/workflows/LazyWorkflowDiagram";
 import { getUseCase, useCases } from "@/data/useCases";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";

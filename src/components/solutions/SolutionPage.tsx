@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import SectionHeader from "@/components/ui/SectionHeader";
 import Button from "@/components/ui/Button";
-import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
+import WorkflowDiagram from "@/components/workflows/LazyWorkflowDiagram";
 import CTASection from "@/components/sections/CTASection";
 import FAQAccordion from "@/components/sections/FAQAccordion";
 import AnimatedSection from "@/components/animations/AnimatedSection";

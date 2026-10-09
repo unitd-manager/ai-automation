@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { notFound } from "next/navigation";
 import CTASection from "@/components/sections/CTASection";
-import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
+import WorkflowDiagram from "@/components/workflows/LazyWorkflowDiagram";
 import { caseStudies } from "@/data/pricing";
 import { buildMetadata } from "@/lib/metadata";
 import styles from "./page.module.css";

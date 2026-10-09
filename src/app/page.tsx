@@ -25,7 +25,7 @@ import SectionHeader from "@/components/ui/SectionHeader";
 import AnimatedSection from "@/components/animations/AnimatedSection";
 import { StaggerGroup, StaggerItem } from "@/components/animations/StaggerGroup";
 import HeroPanel from "@/components/hero/HeroPanel";
-import WorkflowDiagram from "@/components/workflows/WorkflowDiagram";
+import WorkflowDiagram from "@/components/workflows/LazyWorkflowDiagram";
 import SolutionCard from "@/components/cards/SolutionCard";
 import IndustryCard from "@/components/cards/IndustryCard";
 import CaseStudyCard from "@/components/cards/CaseStudyCard";
