@@ -151,7 +151,7 @@ export default function SolutionsPage() {
             </p>
             <div className={styles.heroActions}>
               <Button href="/resources/ai-audit" size="lg">Get Your AI Audit</Button>
-              <Button href="#lookup" variant="secondary" size="lg">Find your starting point</Button>
+              {/* <Button href="#lookup" variant="secondary" size="lg">Find your starting point</Button> */}
             </div>
           </div>
 

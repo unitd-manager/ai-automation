@@ -1,0 +1,124 @@
+.scene {
+  --s: 190px;
+  position: relative;
+  display: flex;
+  min-height: 440px;
+  align-items: center;
+  justify-content: center;
+  perspective: 1100px;
+  perspective-origin: 50% 40%;
+}
+
+/* soft light spreading from the middle */
+.aura {
+  position: absolute;
+  inset: 5% 0;
+  background: radial-gradient(closest-side, rgba(62, 95, 174, 0.38), rgba(62, 95, 174, 0.12) 55%, rgba(62, 95, 174, 0) 75%);
+  filter: blur(24px);
+  animation: breathe 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.floor {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--s) * 2);
+  height: calc(var(--s) * 2);
+  margin: calc(var(--s) * -1) 0 0 calc(var(--s) * -1);
+  border: 1px dashed rgba(62, 95, 174, 0.45);
+  border-radius: 50%;
+  transform: translateY(calc(var(--s) * 0.78)) rotateX(76deg);
+  pointer-events: none;
+}
+
+.cube {
+  position: relative;
+  width: var(--s);
+  height: var(--s);
+  transform-style: preserve-3d;
+  animation: turn 16s linear infinite;
+}
+
+@keyframes turn {
+  from { transform: rotateX(-24deg) rotateY(0deg); }
+  to { transform: rotateX(-24deg) rotateY(360deg); }
+}
+
+/* light glowing inside the cube */
+.core {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 70%;
+  height: 70%;
+  margin: -35% 0 0 -35%;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #a8c4ff 28%, rgba(62, 95, 174, 0) 70%);
+  filter: blur(6px);
+  animation: pulse 2.6s ease-in-out infinite;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid rgba(62, 95, 174, 0.75);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(168, 196, 255, 0.4), rgba(38, 65, 122, 0.3));
+  box-shadow: inset 0 0 38px rgba(62, 95, 174, 0.55), 0 0 22px rgba(62, 95, 174, 0.35);
+}
+
+.front { transform: translateZ(calc(var(--s) / 2)); }
+.back { transform: rotateY(180deg) translateZ(calc(var(--s) / 2)); }
+.right { transform: rotateY(90deg) translateZ(calc(var(--s) / 2)); }
+.left { transform: rotateY(-90deg) translateZ(calc(var(--s) / 2)); }
+.top { transform: rotateX(90deg) translateZ(calc(var(--s) / 2)); }
+.bottom { transform: rotateX(-90deg) translateZ(calc(var(--s) / 2)); }
+
+.check {
+  width: 52%;
+  height: 52%;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.9));
+}
+
+.checkPath {
+  stroke: #ffffff;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 54;
+  stroke-dashoffset: 54;
+  animation: drawCheck 3.6s ease-in-out infinite;
+}
+
+@keyframes drawCheck {
+  0% { stroke-dashoffset: 54; }
+  30%, 80% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -54; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.65; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+@media (max-width: 960px) {
+  .scene { min-height: 380px; margin-top: var(--space-6); }
+}
+
+@media (max-width: 560px) {
+  .scene { --s: 140px; min-height: 320px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cube { animation: none; transform: rotateX(-24deg) rotateY(35deg); }
+  .core, .aura { animation: none; }
+  .checkPath { animation: none; stroke-dashoffset: 0; }
+}

@@ -28,7 +28,7 @@ export interface SolutionPageContent {
 export const solutionPages: Record<string, SolutionPageContent> = {
   "ai-voice-agents": {
     dataSlug: "ai-voice-agents",
-    heroCta: "Talk to Us About Voice Agents",
+    heroCta: "Talk to Us",
     painTitle: "Where Calls Are Lost",
     painDescription: "The same three gaps appear in any business that runs on inbound calls. A voice agent closes each one.",
     pains: [
@@ -60,7 +60,7 @@ export const solutionPages: Record<string, SolutionPageContent> = {
 
   "ai-chat": {
     dataSlug: "ai-chat",
-    heroCta: "Talk to Us About AI Chat",
+    heroCta: "Talk to Us",
     painTitle: "Where Enquiries Are Lost",
     painDescription: "The same three gaps appear on any website that depends on visitor questions. AI chat closes each one.",
     pains: [
@@ -92,7 +92,7 @@ export const solutionPages: Record<string, SolutionPageContent> = {
 
   "ai-lead-response": {
     dataSlug: "ai-lead-response",
-    heroCta: "Talk to Us About Lead Response",
+    heroCta: "Talk to Us",
     painTitle: "Where Leads Are Lost Between Inquiry and Reply",
     painDescription: "The same three gaps appear regardless of channel. Lead response automation closes each one.",
     pains: [
@@ -124,7 +124,7 @@ export const solutionPages: Record<string, SolutionPageContent> = {
 
   "ai-appointment-booking": {
     dataSlug: "appointment-automation",
-    heroCta: "Talk to Us About Booking Automation",
+    heroCta: "Talk to Us",
     painTitle: "Where Bookings Are Lost",
     painDescription: "The same three gaps appear in any business that runs on a calendar. Booking automation closes each one.",
     pains: [
@@ -156,7 +156,7 @@ export const solutionPages: Record<string, SolutionPageContent> = {
 
   "ai-follow-up": {
     dataSlug: "follow-up-automation",
-    heroCta: "Talk to Us About Follow-Up",
+    heroCta: "Talk to Us",
     painTitle: "Where Opportunities Go Cold",
     painDescription: "The same three gaps appear after any quote, estimate, or service. Follow-up automation closes each one.",
     pains: [
@@ -188,7 +188,7 @@ export const solutionPages: Record<string, SolutionPageContent> = {
 
   "ai-crm-automation": {
     dataSlug: "crm-automation",
-    heroCta: "Talk to Us About CRM Automation",
+    heroCta: "Talk to Us",
     painTitle: "Where Customer Data Breaks Down",
     painDescription: "The same three gaps appear in any team that tracks customers by hand. CRM automation closes each one.",
     pains: [
@@ -220,7 +220,7 @@ export const solutionPages: Record<string, SolutionPageContent> = {
 
   "ai-document-processing": {
     dataSlug: "document-automation",
-    heroCta: "Talk to Us About Document Processing",
+    heroCta: "Talk to Us",
     painTitle: "Where Paperwork Breaks Down",
     painDescription: "The same three gaps appear in any process that runs on forms and documents. Document automation closes each one.",
     pains: [
